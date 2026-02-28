@@ -1,5 +1,5 @@
 ---
-stepsCompleted: [step-01-init, step-02-discovery, step-02b-vision, step-02c-executive-summary, step-03-success, step-04-journeys, step-05-domain, step-06-innovation, step-07-project-type, step-08-scoping, step-09-functional, step-10-nonfunctional]
+stepsCompleted: [step-01-init, step-02-discovery, step-02b-vision, step-02c-executive-summary, step-03-success, step-04-journeys, step-05-domain, step-06-innovation, step-07-project-type, step-08-scoping, step-09-functional, step-10-nonfunctional, step-11-polish]
 classification:
   projectType: web_app
   domain: general
@@ -56,10 +56,8 @@ Ce n'est pas un portfolio from scratch — c'est une **migration technique** d'u
 
 ### Technical Success
 
-- Lighthouse Performance ≥ 90
+- Toutes les cibles NFR Performance et Accessibilité atteintes (voir section Non-Functional Requirements)
 - Lighthouse SEO ≥ 95
-- Lighthouse Accessibility ≥ 85
-- Core Web Vitals : LCP < 2.5s, CLS < 0.1, INP < 200ms
 - 0 bug bloquant en production au lancement
 - Architecture FSD validée : aucune violation de règles d'import (ESLint enforced, CI/CD)
 - Fidélité pixel-perfect validée par comparaison visuelle Framer vs Next.js
@@ -68,24 +66,35 @@ Ce n'est pas un portfolio from scratch — c'est une **migration technique** d'u
 
 | Outcome | Mesure | Cible |
 |---------|--------|-------|
-| Performance | Lighthouse score | ≥ 90 |
+| Performance | Lighthouse score | ≥ 90 desktop, ≥ 85 mobile |
 | SEO | Lighthouse score | ≥ 95 |
+| Accessibilité | Lighthouse score | ≥ 85 |
 | Fidélité design | Comparaison visuelle | 100% identique |
 | Animations | Audit visuel | Toutes reproduites |
 | Autonomie BO | Test utilisateur Tianoa | Projet créé en < 5min |
 | Bugs production | Bug tracker | 0 bloquant |
+| Architecture FSD | ESLint CI/CD | 0 violation |
 
-## Product Scope
+## Product Scope & Development Strategy
 
-### MVP - Minimum Viable Product
+### MVP Strategy
 
-**Phase 0 — Audit & Migration Data**
+**Approche :** Experience MVP — reproduire l'expérience exacte du site Framer, BO inclus pour l'autonomie de gestion.
+
+**Ressources :** Dev solo (Doens) assisté par agents IA. Pas de designer dédié — le design est le site Framer.
+
+**Journeys supportés :** J1 (Prospect), J2 (Mobile), J3 (Edge case), J4 (Admin Tianoa) — tous les journeys dès le MVP.
+
+### Phase 0 — Audit & Migration Data
+
 - Scraping Framer via Playwright : design, animations, structure, contenu
 - Inventaire complet : pages, sections, projets, médias, tokens CSS
 - Scripts de seed pour peupler Payload avec les données existantes
 - Tianoa fournit les médias originaux (vidéos, photos HD)
 
-**Frontend Next.js**
+### Phase 1 — MVP
+
+**Frontend Next.js :**
 - Homepage pixel-perfect (hero, grille projets, toutes sections)
 - Page projet individuelle (détail, médias, contexte)
 - Page contact (formulaire ou liens — selon audit Framer)
@@ -93,31 +102,67 @@ Ce n'est pas un portfolio from scratch — c'est une **migration technique** d'u
 - Toutes les animations reproduites fidèlement
 - Responsive : desktop, tablet, mobile
 
-**Back-Office Payload CMS**
+**Back-Office Payload CMS :**
 - Collection `Projets` : titre, description, médias, catégorie, ordre, statut
 - Collection `Infos` : données globales (bio, liens réseaux, email)
 - Upload médias (images/vidéos) vers Blob storage
 
-**Architecture**
+**Architecture :**
 - FSD strict avec ESLint rules enforced
 - Next.js 14+ App Router
 - PostgreSQL + Payload CMS
 - Blob storage pour médias
 - Déploiement Vercel
 
-### Growth Features (Post-MVP)
+**Must-Have Justification :**
+
+| Feature | Justification |
+|---------|--------------|
+| Audit Framer (Phase 0) | Pré-requis — sans ça, on ne sait pas quoi build |
+| Homepage pixel-perfect | Première impression = critique |
+| Page projet détaillée | Core value = voir le travail |
+| Page contact | Conversion = être contacté |
+| Navigation sticky + footer | Structure de base |
+| Toutes animations | Priorité absolue du client |
+| Responsive (desktop/tablet/mobile) | Audience mobile dominante (Instagram) |
+| SEO de base (metadata, sitemap, OG) | Visibilité Google + partage réseaux |
+| Architecture FSD enforced | Priorité absolue technique |
+| Payload CMS + Collections | Autonomie Tianoa |
+| Scripts de seed | Migration contenu existant |
+| Déploiement Vercel | Mise en prod |
+
+### Phase 2 — Growth (Post-MVP)
 
 - Filtres projets par catégorie/type
-- Drag & drop pour réordonner les projets dans le BO
-- Section "À propos" enrichie
-- Optimisations images avancées (blur placeholder, lazy loading poussé)
+- Drag & drop ordering dans le BO
+- Optimisations images avancées (blur placeholder, AVIF)
+- Section "À propos" enrichie (si souhaitée)
+- Upload chunked résilient (connexion Tahiti)
 
-### Vision (Future)
+### Phase 3 — Expansion (Future)
 
 - Analytics léger (Plausible) si souhaité
-- Galeries de médias enrichies dans le BO
-- Extension vers de nouvelles sections créatives
-- Potentiel blog/édito si besoin émerge
+- Galeries médias enrichies dans le BO
+- Extension vers nouvelles sections créatives
+- Blog/édito si besoin émerge
+
+### Risk Mitigation
+
+**Pixel-perfect animations :**
+- Phase 0 d'audit approfondi pour documenter chaque animation avant de coder
+- Fallback : Tianoa a dit "pas obligé d'en faire autant si c'est trop contraignant"
+- Implémenter les animations les plus impactantes d'abord, les subtiles ensuite
+
+**Architecture FSD :**
+- Setup ESLint + règles d'import dès le jour 1, avant tout code feature
+- Non-négociable
+
+**Connexion Tahiti :**
+- CDN edge Vercel pour les visiteurs, upload simple d'abord puis chunked en Phase 2
+- Tester l'expérience admin depuis une connexion simulée basse
+
+**Scope creep :**
+- Ce document de scoping fait référence. Tout ce qui n'est pas Phase 1 attend.
 
 ## User Journeys
 
@@ -208,13 +253,13 @@ Ce n'est pas un portfolio from scratch — c'est une **migration technique** d'u
 | Upload médias résilient (chunked) | | | | ✓ |
 | Publication + revalidation | | | | ✓ |
 
-## Web App Specific Requirements
+## Web App Technical Strategy
 
-### Project-Type Overview
+### Overview
 
-Site portfolio multi-pages (MPA) construit avec Next.js App Router. Architecture hybride : Server Components pour récupérer les données projet à jour depuis Payload CMS à chaque requête. Le design est dicté pixel-perfect par le site de référence Framer (https://cestmoitia.framer.website/).
+Site portfolio multi-pages (MPA) construit avec Next.js App Router. Server Components par défaut pour récupérer les données à jour depuis Payload CMS. Le design est dicté pixel-perfect par le site Framer de référence.
 
-### Browser Matrix
+### Browser Support
 
 | Navigateur | Support | Notes |
 |------------|---------|-------|
@@ -225,7 +270,7 @@ Site portfolio multi-pages (MPA) construit avec Next.js App Router. Architecture
 | Samsung Internet | Best effort | Android |
 | iOS Safari (≥ 16) | Full | Critique — audience Instagram → iPhone |
 
-**Politique :** Progressive enhancement. Pas de polyfills lourds. Les animations CSS/JS dégradent gracieusement sur navigateurs plus anciens.
+Progressive enhancement. Pas de polyfills lourds. Les animations dégradent gracieusement sur navigateurs plus anciens.
 
 ### Responsive Design
 
@@ -234,30 +279,17 @@ Site portfolio multi-pages (MPA) construit avec Next.js App Router. Architecture
 - **Tablet :** 810px
 - **Mobile :** 390px (design de référence mobile)
 
-**Règles :**
-- Mobile-first CSS
-- Aucun scroll horizontal
-- Toutes les images/vidéos responsive (aspect-ratio preserved)
-- Navigation adaptée par breakpoint (burger menu mobile)
-- Animations réduites ou simplifiées sur mobile si impact performance
+Mobile-first CSS. Aucun scroll horizontal. Navigation adaptée par breakpoint (burger menu mobile). Animations réduites sur mobile si impact performance.
 
-### Performance Targets
+### Performance Strategy
 
-| Métrique | Cible | Mesure |
-|----------|-------|--------|
-| LCP | < 2.5s | Lighthouse |
-| CLS | < 0.1 | Lighthouse |
-| INP | < 200ms | Lighthouse |
-| Performance score | ≥ 90 | Lighthouse |
-| TTFB | < 800ms | Server monitoring |
-| Bundle JS | Minimal | Next.js analyzer |
-
-**Stratégie :**
 - Server Components par défaut (zéro JS client sauf nécessité)
 - `"use client"` uniquement pour : animations, interactions, formulaire contact
 - Images : Next.js `<Image>` avec optimisation automatique, formats WebP/AVIF
 - Vidéos : lazy loading, pas d'autoplay sur mobile, placeholder blur
 - Fonts : `next/font` avec Clash Display + Inter (preload, swap)
+
+> Cibles mesurables détaillées : voir NFR1-NFR9.
 
 ### SEO Strategy
 
@@ -277,86 +309,6 @@ Site portfolio multi-pages (MPA) construit avec Next.js App Router. Architecture
 - **ISR en fallback** : revalidation on-demand via webhook Payload → `revalidatePath`/`revalidateTag`
 - **Pas de client-side fetching** pour le contenu principal (zéro waterfall côté client)
 - **Cache strategy** : Next.js cache + CDN edge (Vercel) avec purge on-demand après publication
-
-### Accessibility Level
-
-- **Cible :** WCAG 2.1 AA
-- **Lighthouse Accessibility :** ≥ 85
-- Navigation clavier fonctionnelle
-- Contrastes texte/fond conformes (noir/blanc = facile)
-- Alt text sur toutes les images (champ Payload obligatoire)
-- Focus visible sur éléments interactifs
-- Aria labels sur navigation et formulaire
-
-### Implementation Considerations
-
-- **Architecture FSD** : chaque feature (hero, grille projets, page projet, contact, admin) est un slice isolé avec ses propres composants, hooks, API
-- **Animations** : bibliothèque à définir selon audit Framer (Framer Motion probable pour correspondre aux animations Framer)
-- **Formulaire contact** : validation côté client + server action Next.js, envoi email via service tiers (Resend, SendGrid, ou Payload email adapter)
-- **Médias** : Vercel Blob ou S3-compatible pour le stockage, CDN edge pour la distribution
-- **Upload résilient** : chunked upload depuis le BO pour la connexion Tahiti
-
-## Project Scoping & Phased Development
-
-### MVP Strategy & Philosophy
-
-**Approche MVP :** Experience MVP — reproduire l'expérience exacte du site Framer en premier, BO inclus pour l'autonomie de gestion.
-
-**Ressources :** Dev solo (Doens) assisté par agents IA. Pas de designer dédié — le design est le site Framer.
-
-### MVP Feature Set (Phase 1)
-
-**Core User Journeys supportés :** J1 (Prospect), J2 (Mobile), J3 (Edge case), J4 (Admin Tianoa) — tous les journeys.
-
-**Must-Have :**
-
-| Feature | Justification |
-|---------|--------------|
-| Audit Framer (Phase 0) | Pré-requis — sans ça, on ne sait pas quoi build |
-| Homepage pixel-perfect | Première impression = critique |
-| Page projet détaillée | Core value = voir le travail |
-| Page contact | Conversion = être contacté |
-| Navigation sticky + footer | Structure de base |
-| Toutes animations | Priorité absolue du client |
-| Responsive (desktop/tablet/mobile) | Audience mobile dominante (Instagram) |
-| SEO de base (metadata, sitemap, OG) | Visibilité Google + partage réseaux |
-| Architecture FSD enforced | Priorité absolue technique |
-| Payload CMS + Collections | Autonomie Tianoa |
-| Scripts de seed | Migration contenu existant |
-| Déploiement Vercel | Mise en prod |
-
-### Post-MVP Features
-
-**Phase 2 (Post-MVP) :**
-- Filtres projets par catégorie/type
-- Drag & drop ordering dans le BO
-- Optimisations images avancées (blur placeholder, AVIF)
-- Section "À propos" enrichie (si souhaitée)
-- Upload chunked résilient (connexion Tahiti)
-
-**Phase 3 (Expansion) :**
-- Analytics léger (Plausible)
-- Galeries médias enrichies dans le BO
-- Extension vers nouvelles sections créatives
-- Blog/édito si besoin émerge
-
-### Risk Mitigation Strategy
-
-**Risque technique — Pixel-perfect animations :**
-- Mitigation : Phase 0 d'audit approfondi pour documenter chaque animation avant de coder
-- Fallback : Tianoa a dit "pas obligé d'en faire autant si c'est trop contraignant"
-- Approche : implémenter les animations les plus impactantes d'abord, les subtiles ensuite
-
-**Risque technique — Architecture FSD :**
-- Mitigation : setup ESLint + règles d'import dès le jour 1, avant tout code feature
-- Non-négociable
-
-**Risque infra — Connexion Tahiti :**
-- Mitigation : CDN edge Vercel pour les visiteurs, upload simple d'abord puis chunked en Phase 2
-- Tester l'expérience admin depuis une connexion simulée basse
-
-**Risque planning — Scope creep :**
-- Mitigation : ce document de scoping. Tout ce qui n'est pas Phase 1 attend.
 
 ## Functional Requirements
 
