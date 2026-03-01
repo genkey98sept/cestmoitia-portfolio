@@ -1,1 +1,1 @@
-// FSD Widgets Layer — Footer (T4)
+export { Footer } from "./ui/Footer";
