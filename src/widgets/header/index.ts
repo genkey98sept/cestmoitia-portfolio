@@ -1,1 +1,1 @@
-// FSD Widgets Layer — Header (T4)
+export { Header } from "./ui/Header";
