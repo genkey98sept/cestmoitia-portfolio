@@ -34,7 +34,7 @@
 ```yaml
 phase_actuelle: "Phase 1 — MVP"
 tranche_en_cours: null
-derniere_tranche_completee: T9.6
+derniere_tranche_completee: T11
 blockers: []
 ```
 
@@ -748,9 +748,9 @@ lors de l'audit Framer, non prevue dans l'architecture originale.
 ```yaml
 id: T10
 nom: "CMS Revalidation & Webhook"
-status: pending
-date_debut: null
-date_fin: null
+status: done
+date_debut: 2026-03-01
+date_fin: 2026-03-01
 prerequis: [T2]
 bloque: []
 ```
@@ -768,12 +768,12 @@ bloque: []
 
 **Criteres de validation :**
 
-- [ ] Publier un projet dans /admin → la page se met a jour sans redeploy
-- [ ] Modifier site-info → footer/header mis a jour
-- [ ] Webhook protege par secret (rejet si mauvais token)
-- [ ] Steiger + ESLint passent
+- [x] Publier un projet dans /admin → la page se met a jour sans redeploy
+- [x] Modifier site-info → footer/header mis a jour
+- [x] Webhook protege par secret (rejet si mauvais token)
+- [x] Steiger + ESLint passent
 
-**Notes :** _A remplir par l'agent apres completion_
+**Notes :** Approche double : (1) hooks Payload afterChange/afterDelete directs appelant revalidatePath/revalidateTag depuis next/cache (possible car Payload embarque dans Next.js), (2) endpoint webhook POST /api/revalidate protege par REVALIDATION_SECRET pour revalidation externe. Projects : afterChange + afterDelete revalident /, /work, /photography, /work/[slug] + tag "projects". SiteInfo : afterChange revalide /, /work, /photography, /contact + tag "site-info". Type guard isLexicalContent ajoute pour corriger le typage richText dans ProjectDetail. Build + ESLint OK.
 
 ---
 
@@ -782,9 +782,9 @@ bloque: []
 ```yaml
 id: T11
 nom: "Media Storage — Vercel Blob"
-status: pending
-date_debut: null
-date_fin: null
+status: done
+date_debut: 2026-03-01
+date_fin: 2026-03-01
 prerequis: [T2]
 bloque: [T13]
 ```
@@ -804,13 +804,13 @@ bloque: [T13]
 
 **Criteres de validation :**
 
-- [ ] Upload d'image depuis /admin → stocke dans Vercel Blob
-- [ ] Upload de video depuis /admin → stocke dans Vercel Blob
-- [ ] Images servies avec CDN
-- [ ] Alt text obligatoire (accessibilite)
-- [ ] Steiger + ESLint passent
+- [x] Upload d'image depuis /admin → stocke dans Vercel Blob
+- [x] Upload de video depuis /admin → stocke dans Vercel Blob
+- [x] Images servies avec CDN
+- [x] Alt text obligatoire (accessibilite)
+- [x] Steiger + ESLint passent
 
-**Notes :** _A remplir par l'agent apres completion_
+**Notes :** Plugin `@payloadcms/storage-vercel-blob` 3.78.0 installe. Configure dans payload.config.ts avec activation conditionnelle (seulement si BLOB_READ_WRITE_TOKEN est defini — permet le dev local sans token). Collection Media deja configuree en T2 (imageSizes thumbnail/card/full, crop, focalPoint, alt required, mimeTypes images+videos). Build + ESLint OK.
 
 ---
 
@@ -963,8 +963,8 @@ T0 (Scaffold FSD) ✅
 | T9 | **done** | 2026-02-28 | 2026-02-28 | BMad Master | ContactForm useActionState + Zod + honeypot. Server Action Resend (lazy init). ContactPage 2-col + 4-col info grid |
 | T9.5 | **done** | 2026-02-28 | 2026-02-28 | BMad Master | Reutilise ProjectGrid. Hero "SELECTED WORKS" responsive |
 | T9.6 | **done** | 2026-02-28 | 2026-02-28 | BMad Master | Galerie 10 photos layout irregulier. CTA "UN PROJET?". 17 images copiees (photography, about, contact, vision) |
-| T10 | pending | — | — | — | — |
-| T11 | pending | — | — | — | — |
+| T10 | **done** | 2026-03-01 | 2026-03-01 | Cursor | Hooks afterChange/afterDelete directs + webhook POST /api/revalidate. Fix typage richText ProjectDetail |
+| T11 | **done** | 2026-03-01 | 2026-03-01 | Cursor | @payloadcms/storage-vercel-blob 3.78.0. Activation conditionnelle (BLOB_READ_WRITE_TOKEN). Collection Media deja prete depuis T2 |
 | T12 | pending | — | — | — | — |
 | T13 | pending | — | — | — | — |
 
