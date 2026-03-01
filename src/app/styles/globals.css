@@ -70,10 +70,8 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     line-height: 1.5;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-image: url('/grid-pattern.svg');
+    background-size: 13px;
   }
 
   ::selection {
