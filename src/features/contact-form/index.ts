@@ -1,1 +1,3 @@
-// FSD Features Layer — Contact Form (T9)
+export { ContactForm } from "./ui/ContactForm";
+export { sendContactEmail } from "./api/send-email";
+export { contactFormSchema, type ContactFormData } from "./model/schema";

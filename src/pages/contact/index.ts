@@ -1,1 +1,1 @@
-// FSD Pages Layer — Contact (T9)
+export { ContactPage } from "./ui/ContactPage";
