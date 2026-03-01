@@ -48,7 +48,7 @@ export function ServicesAnimated({ services }: ServicesAnimatedProps) {
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, delay: shouldReduceMotion ? 0 : 0.2 }}
       >
-        J&apos;allie créativité et technique pour donner vie vos projets !
+        J&apos;allie créativité et technique pour donner vie à vos projets !
       </m.p>
 
       {/* Accordion */}

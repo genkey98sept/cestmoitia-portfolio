@@ -11,7 +11,7 @@ export function PhotographyPage() {
         aria-label="Galerie Photo"
       >
         <h1 className="text-center font-clash text-[40px] font-semibold uppercase leading-[30px] text-text tablet:text-[90px] tablet:leading-[70px] desktop:text-[140px] desktop:leading-[110px] desktop:tracking-[-3.2px]">
-          <span className="block">Gallerie</span>
+          <span className="block">Galerie</span>
           <span className="block">PHOTO</span>
         </h1>
       </section>

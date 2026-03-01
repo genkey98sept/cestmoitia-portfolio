@@ -56,7 +56,7 @@ export function FooterAnimated({
         {/* Column 2: Bio */}
         <div>
           <p className="font-inter text-[16px] leading-[1.5] text-text-muted">
-            Installe a Puna&apos;auia, Tahiti, je suis un artiste digital. Mon
+            Installé à Puna&apos;auia, Tahiti, je suis un artiste digital. Mon
             but est de mettre ma passion pour l&apos;image au service de projets
             qui ont du sens.
           </p>
