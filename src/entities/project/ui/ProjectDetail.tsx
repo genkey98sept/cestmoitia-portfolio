@@ -3,6 +3,16 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 
 import type { Project } from "../model/types";
 
+type LexicalData = React.ComponentProps<typeof RichText>["data"];
+
+function isLexicalContent(value: unknown): value is LexicalData {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "root" in value
+  );
+}
+
 export interface ProjectDetailProps {
   project: Project;
 }
@@ -47,9 +57,9 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                 <div className="mt-3 max-w-[650px] px-5 font-inter text-[16px] font-normal leading-[1.5] text-text-muted tablet:px-[30px]">
                   {typeof sub.subDescription === "string" ? (
                     <p>{sub.subDescription}</p>
-                  ) : (
+                  ) : isLexicalContent(sub.subDescription) ? (
                     <RichText data={sub.subDescription} />
-                  )}
+                  ) : null}
                 </div>
               )}
 
