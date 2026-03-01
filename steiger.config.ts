@@ -12,6 +12,10 @@ export default defineConfig([
     ignores: ["**/collections/**"],
   },
   {
+    // Ignore Payload globals — not part of FSD
+    ignores: ["**/globals/**"],
+  },
+  {
     // Disable insignificant-slice during scaffold — slices are populated incrementally
     rules: {
       "fsd/insignificant-slice": "off",
