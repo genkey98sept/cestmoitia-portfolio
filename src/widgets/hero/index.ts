@@ -1,1 +1,1 @@
-// FSD Widgets Layer — Hero (T5)
+export { Hero } from "./ui/Hero";
