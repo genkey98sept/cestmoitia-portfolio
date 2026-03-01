@@ -1,1 +1,1 @@
-// FSD Pages Layer — Home (T7)
+export { HomePage } from "./ui/HomePage";
