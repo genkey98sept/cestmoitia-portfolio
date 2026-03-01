@@ -1,1 +1,1 @@
-// FSD App Layer — Providers (T1)
+export { AppProviders } from "./AppProviders";
