@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 import type { Project } from "../model/types";
 
@@ -42,12 +43,15 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                 {sub.subTitle}
               </h2>
 
-              {typeof sub.subDescription === "string" &&
-                sub.subDescription.length > 0 && (
-                  <p className="mt-3 max-w-[650px] px-5 font-inter text-[16px] font-normal leading-[1.5] text-text-muted tablet:px-[30px]">
-                    {sub.subDescription}
-                  </p>
-                )}
+              {sub.subDescription != null && (
+                <div className="mt-3 max-w-[650px] px-5 font-inter text-[16px] font-normal leading-[1.5] text-text-muted tablet:px-[30px]">
+                  {typeof sub.subDescription === "string" ? (
+                    <p>{sub.subDescription}</p>
+                  ) : (
+                    <RichText data={sub.subDescription} />
+                  )}
+                </div>
+              )}
 
               {sub.subMedia && sub.subMedia.length > 0 && (
                 <div className="mt-6 grid grid-cols-1 gap-5 px-5 tablet:grid-cols-2 tablet:px-[30px]">
