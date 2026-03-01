@@ -36,7 +36,7 @@ _This document builds collaboratively through step-by-step discovery. Sections a
 
 - **FSD Architecture (non-negotiable):** Feature-Sliced Design with ESLint + Steiger enforced import rules. Detailed rules in FSD Reference section below.
 - **Next.js App Router:** Server Components by default. `"use client"` only for animations, interactions, contact form.
-- **Payload CMS 3.x:** Embedded in Next.js process. Collections: Projets, Infos. Admin at /admin. Isolé dans `app/(cms)/` pour respecter FSD.
+- **Payload CMS 3.x:** Embedded in Next.js process. Collections: Projets, Infos. Admin at /admin. Isolé dans `src/app/(payload)/` pour respecter FSD (adaptation T0 : `(cms)` → `(payload)`, convention officielle).
 - **Vercel Deployment:** CDN edge global (critical for Tahiti/Pacific coverage). Blob storage for media.
 - **PostgreSQL:** Database for Payload CMS data.
 - **Framer Site as Visual Spec:** https://cestmoitia.framer.website/ — pixel-perfect reproduction required. Phase 0 audit via Playwright prerequisite.
@@ -133,103 +133,176 @@ import { ProjectCard } from "@/entities/project/ui/ProjectCard";  // ❌ Deep im
 
 ### FSD + Next.js App Router — Structure
 
+> **IMPORTANT :** Cette section reflète la structure réelle après les adaptations T0.
+> Le routing Next.js et les layers FSD sont tous sous `src/`.
+> Le dossier `pages/` à la racine est vide (empêche Pages Router).
+
 ```
 project-root/
-├── app/                          # Next.js routing (thin re-exports UNIQUEMENT)
-│   ├── page.tsx                  # Re-export depuis src/pages/home
-│   ├── projects/[slug]/
-│   │   └── page.tsx              # Re-export depuis src/pages/project
-│   ├── contact/
-│   │   └── page.tsx              # Re-export depuis src/pages/contact
-│   ├── (cms)/                    # Payload CMS isolé dans un route group
-│   │   ├── admin/[[...segments]]/
-│   │   │   └── page.tsx          # Payload admin UI
-│   │   └── api/[...segments]/
-│   │       └── route.ts          # Payload API routes
-│   ├── api/                      # Route handlers custom (webhooks, etc.)
-│   ├── layout.tsx                # Root layout (thin, importe depuis src/)
-│   ├── not-found.tsx
-│   └── sitemap.ts
+├── pages/                              # DOSSIER VIDE OBLIGATOIRE (empêche Pages Router)
+│   └── .gitkeep
 │
-├── pages/                        # DOSSIER VIDE OBLIGATOIRE (empêche Pages Router)
-│
-└── src/                          # FSD Architecture
-    ├── app/                      # FSD App Layer
-    │   ├── providers/
+└── src/
+    ├── app/                            # FSD App Layer + Next.js routing combinés
+    │   ├── (frontend)/                 # Route group frontend (thin re-exports UNIQUEMENT)
+    │   │   ├── layout.tsx              # Root layout (html, body, metadata, providers, fonts)
+    │   │   ├── page.tsx                # Re-export depuis src/pages/home
+    │   │   ├── not-found.tsx           # Page 404
+    │   │   ├── work/
+    │   │   │   ├── page.tsx            # Re-export depuis src/pages/work (T9.5)
+    │   │   │   └── [slug]/
+    │   │   │       └── page.tsx        # Re-export depuis src/pages/project (T8)
+    │   │   ├── photography/
+    │   │   │   └── page.tsx            # Re-export depuis src/pages/photography (T9.6)
+    │   │   └── contact/
+    │   │       └── page.tsx            # Re-export depuis src/pages/contact (T9)
+    │   │
+    │   ├── (payload)/                  # Route group Payload CMS (convention officielle)
+    │   │   ├── layout.tsx              # Payload admin layout (auto-généré)
+    │   │   ├── custom.scss             # Styles admin custom
+    │   │   ├── admin/
+    │   │   │   ├── importMap.js
+    │   │   │   └── [[...segments]]/
+    │   │   │       ├── page.tsx        # Payload Admin UI
+    │   │   │       └── not-found.tsx
+    │   │   └── api/
+    │   │       ├── graphql/
+    │   │       │   └── route.ts        # GraphQL API
+    │   │       └── [...slug]/
+    │   │           └── route.ts        # REST API
+    │   │
+    │   ├── providers/                  # FSD App segment
+    │   │   ├── AppProviders.tsx        # MotionProvider + wrappers
     │   │   └── index.ts
     │   ├── styles/
-    │   │   └── globals.css
-    │   └── api-routes/           # Webhook revalidation, etc.
+    │   │   └── globals.css             # Tailwind v4 CSS-first tokens
+    │   └── fonts/
+    │       ├── index.ts                # next/font definitions
+    │       ├── ClashDisplay-Bold.woff2
+    │       ├── ClashDisplay-Medium.woff2
+    │       └── ClashDisplay-Semibold.woff2
     │
-    ├── pages/                    # FSD Pages Layer
+    ├── pages/                          # FSD Pages Layer (composition)
     │   ├── home/
     │   │   ├── ui/
-    │   │   │   └── HomePage.tsx  # Server Component
+    │   │   │   └── HomePage.tsx        # Server Component — compose widgets
     │   │   └── index.ts
     │   ├── project/
     │   │   ├── ui/
     │   │   │   └── ProjectPage.tsx
+    │   │   ├── api/
+    │   │   │   └── metadata.ts         # generateMetadata + generateStaticParams
     │   │   └── index.ts
-    │   └── contact/
+    │   ├── contact/
+    │   │   ├── ui/
+    │   │   │   └── ContactPage.tsx
+    │   │   └── index.ts
+    │   ├── work/                       # NOUVEAU — découvert lors de l'audit Framer (T9.5)
+    │   │   ├── ui/
+    │   │   │   └── WorkPage.tsx
+    │   │   └── index.ts
+    │   └── photography/                # NOUVEAU — découvert lors de l'audit Framer (T9.6)
     │       ├── ui/
-    │       │   └── ContactPage.tsx
+    │       │   └── PhotographyPage.tsx
     │       └── index.ts
     │
-    ├── widgets/                  # Blocs UI composés réutilisables
+    ├── widgets/                        # Blocs UI composés réutilisables
     │   ├── header/
     │   │   ├── ui/
+    │   │   │   ├── Header.tsx          # Server Component
+    │   │   │   └── MobileMenuAnimated.tsx  # Client — menu burger
     │   │   └── index.ts
     │   ├── footer/
     │   │   ├── ui/
+    │   │   │   └── Footer.tsx
     │   │   └── index.ts
     │   ├── hero/
     │   │   ├── ui/
+    │   │   │   ├── Hero.tsx            # Server Component
+    │   │   │   └── HeroAnimated.tsx    # Client — animations
     │   │   └── index.ts
     │   └── project-grid/
     │       ├── ui/
+    │       │   ├── ProjectGrid.tsx     # Server Component
+    │       │   └── ProjectGridAnimated.tsx  # Client — stagger
     │       └── index.ts
     │
-    ├── features/                 # Interactions utilisateur
+    ├── features/                       # Interactions utilisateur
     │   ├── contact-form/
-    │   │   ├── ui/               # "use client"
-    │   │   ├── model/            # Validation Zod
-    │   │   ├── api/              # Server action envoi email
+    │   │   ├── ui/
+    │   │   │   └── ContactForm.tsx     # Client — formulaire interactif
+    │   │   ├── model/
+    │   │   │   └── schema.ts           # Zod validation
+    │   │   ├── api/
+    │   │   │   └── send-email.ts       # Server Action → Resend
     │   │   └── index.ts
     │   └── project-publish/
-    │       ├── api/              # Server action revalidation
+    │       ├── api/
+    │       │   └── revalidate.ts       # Server Action revalidation
     │       └── index.ts
     │
-    ├── entities/                 # Concepts métier
+    ├── entities/                       # Concepts métier
     │   ├── project/
-    │   │   ├── ui/               # ProjectCard, ProjectDetail
-    │   │   ├── model/            # Types, schemas
-    │   │   ├── api/              # Queries Payload
+    │   │   ├── ui/
+    │   │   │   ├── ProjectCard.tsx     # Server Component
+    │   │   │   ├── ProjectCardAnimated.tsx  # Client — hover/reveal
+    │   │   │   └── ProjectDetail.tsx   # Server Component
+    │   │   ├── model/
+    │   │   │   └── types.ts            # Type Project (dérivé Payload)
+    │   │   ├── api/
+    │   │   │   └── queries.ts          # getProjects(), getProjectBySlug()
     │   │   └── index.ts
     │   └── site-info/
     │       ├── model/
+    │       │   └── types.ts            # Type SiteInfo
     │       ├── api/
+    │       │   └── queries.ts          # getSiteInfo()
     │       └── index.ts
     │
-    └── shared/                   # Code réutilisable sans business logic
-        ├── ui/                   # Composants génériques (Button, etc.)
-        ├── lib/                  # Utilitaires (cn, dates, cache tags)
-        ├── api/                  # Client Payload base
-        ├── config/               # Env vars, constantes
-        └── types/                # Types partagés
+    ├── shared/                         # Code réutilisable sans business logic
+    │   ├── ui/
+    │   │   ├── MotionProvider.tsx       # "use client" — LazyMotion wrapper
+    │   │   └── index.ts
+    │   ├── lib/
+    │   │   ├── payload-client.ts       # getPayload() helper
+    │   │   ├── cn.ts                   # clsx + twMerge utility
+    │   │   └── index.ts
+    │   ├── api/
+    │   │   └── index.ts                # Payload client re-export
+    │   ├── config/
+    │   │   ├── site.ts                 # SITE_URL, SITE_NAME constantes
+    │   │   └── index.ts
+    │   └── model/                      # Nommé "model" (pas "types") — Steiger by-purpose
+    │       ├── action-result.ts        # ActionResult<T> type
+    │       └── index.ts
+    │
+    ├── collections/                    # Payload CMS collection definitions (hors FSD)
+    │   └── Users.ts                    # Collection authentification admin
+    │
+    └── payload.config.ts               # Config Payload (collections, DB, plugins)
 ```
 
 ### Re-export Pattern (CRITIQUE pour Next.js)
 
 ```typescript
-// app/page.tsx — Next.js routing file
+// src/app/(frontend)/page.tsx — Next.js routing file
 export { HomePage as default } from "@/pages/home";
 
-// app/projects/[slug]/page.tsx
+// src/app/(frontend)/work/[slug]/page.tsx
 export { ProjectPage as default } from "@/pages/project";
 export { generateMetadata } from "@/pages/project";
+
+// src/app/(frontend)/work/page.tsx
+export { WorkPage as default } from "@/pages/work";
+
+// src/app/(frontend)/contact/page.tsx
+export { ContactPage as default } from "@/pages/contact";
+
+// src/app/(frontend)/photography/page.tsx
+export { PhotographyPage as default } from "@/pages/photography";
 ```
 
-Le dossier `app/` Next.js ne contient AUCUNE logique — uniquement des re-exports. Le CMS Payload est isolé dans `app/(cms)/` comme route group dédié.
+Les fichiers `page.tsx` dans `src/app/(frontend)/` ne contiennent AUCUNE logique — uniquement des re-exports depuis le layer FSD `src/pages/`. Le CMS Payload est isolé dans `src/app/(payload)/` comme route group dédié.
 
 ### Server/Client Components dans FSD
 
@@ -365,7 +438,7 @@ Full-stack web application (Next.js App Router + Payload CMS + PostgreSQL) — i
 Crée `src/app/(frontend)/(payload)` — structure incompatible avec le FSD dual-folder pattern (root `app/` + `src/` pour layers FSD). Restructuration trop lourde et risquée.
 
 **Option B — `create-next-app` + Payload Manuel (SÉLECTIONNÉE)**
-Contrôle total sur la structure FSD dès le premier commit. Installation manuelle de Payload = ~6 packages + payload.config.ts + fichiers admin dans `app/(cms)/`.
+Contrôle total sur la structure FSD dès le premier commit. Installation manuelle de Payload = ~6 packages + `src/payload.config.ts` + fichiers admin dans `src/app/(payload)/`.
 
 ### Selected Starter: create-next-app + Payload Manuel
 
@@ -389,8 +462,8 @@ pnpm add -D steiger @feature-sliced/steiger-plugin
 
 1. Créer `src/` avec tous les layers FSD (app, pages, widgets, features, entities, shared)
 2. Modifier `tsconfig.json` : `"@/*" → "./src/*"`
-3. Créer `app/(cms)/admin/[[...segments]]/page.tsx` (admin Payload)
-4. Créer `app/(cms)/api/[...segments]/route.ts` (API Payload)
+3. Créer `src/app/(payload)/admin/[[...segments]]/page.tsx` (admin Payload)
+4. Créer `src/app/(payload)/api/[...slug]/route.ts` (API Payload)
 5. Créer `payload.config.ts` à la racine (collections, DB adapter, plugins)
 6. Créer `pages/` vide à la racine (empêche Pages Router sur `src/pages/`)
 7. Configurer `next.config.mjs` avec `withPayload()`
@@ -638,7 +711,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 **Server Action Return Format (standardisé) :**
 
 ```typescript
-// shared/types/action-result.ts
+// shared/model/action-result.ts
 type ActionResult<T = void> =
   | { success: true; data: T }
   | { success: false; error: string };
@@ -769,87 +842,96 @@ NEXT_PUBLIC_SITE_URL=
 
 ### Complete Project Directory Structure
 
+> **NOTE :** Cette section reflète la structure réelle après les adaptations T0.
+> Voir la section "Adaptations Architecture" du dev-plan.md pour l'historique des changements.
+
 ```
 tia/
 ├── .env.local                          # Secrets (DATABASE_URL, PAYLOAD_SECRET, etc.)
 ├── .env.example                        # Template sans valeurs (commité)
-├── .eslintrc.json                      # ESLint Next.js + règles FSD
 ├── .gitignore
-├── next.config.mjs                     # withPayload() wrapper
+├── eslint.config.mjs                   # ESLint flat config + FlatCompat + FSD rules
+├── next.config.mjs                     # withPayload() wrapper (ESM requis par Payload)
 ├── package.json
-├── payload.config.ts                   # Config Payload (collections, DB, plugins)
 ├── pnpm-lock.yaml
-├── postcss.config.js                   # PostCSS pour Tailwind
+├── postcss.config.mjs                  # PostCSS pour Tailwind v4
 ├── steiger.config.ts                   # FSD linter config
-├── tailwind.config.ts                  # Tokens design Framer (couleurs, typos, breakpoints)
-├── tsconfig.json                       # strict, paths: { "@/*": ["./src/*"] }
+├── tsconfig.json                       # strict, paths: { "@/*": ["./src/*"], "@payload-config": [...] }
 │
 ├── public/                             # Assets statiques
 │   ├── favicon.ico
-│   ├── og-default.jpg                  # OG image par défaut
-│   └── robots.txt
+│   ├── og-default.jpg                  # OG image par défaut (T12)
+│   └── robots.txt                      # (T12)
 │
-├── pages/                              # VIDE — empêche Next.js Pages Router
+├── pages/                              # VIDE — empêche Next.js Pages Router sur src/pages/
 │   └── .gitkeep
 │
-├── app/                                # Next.js App Router (thin re-exports ONLY)
-│   ├── layout.tsx                      # Root layout → importe providers depuis src/app/
-│   ├── page.tsx                        # Re-export HomePage depuis src/pages/home
-│   ├── not-found.tsx                   # Page 404
-│   ├── loading.tsx                     # Loading state global
-│   ├── error.tsx                       # Error boundary global ("use client")
-│   ├── sitemap.ts                      # Sitemap dynamique (query Payload)
-│   │
-│   ├── projects/
-│   │   └── [slug]/
-│   │       ├── page.tsx                # Re-export ProjectPage + generateMetadata
-│   │       ├── loading.tsx
-│   │       └── error.tsx
-│   │
-│   ├── contact/
-│   │   ├── page.tsx                    # Re-export ContactPage
-│   │   └── loading.tsx
-│   │
-│   ├── (cms)/                          # Route group Payload CMS (isolé)
-│   │   ├── admin/
-│   │   │   └── [[...segments]]/
-│   │   │       └── page.tsx            # Payload Admin UI
-│   │   └── api/
-│   │       └── [...segments]/
-│   │           └── route.ts            # Payload REST/GraphQL API
-│   │
-│   └── api/
-│       └── revalidate/
-│           └── route.ts                # Webhook revalidation (POST)
-│
-└── src/                                # FSD Architecture
-    │
-    ├── app/                            # Layer: App (initialization)
-    │   ├── providers/
-    │   │   ├── index.ts                # Export AppProviders
-    │   │   └── AppProviders.tsx        # MotionProvider + autres wrappers
+└── src/
+    ├── app/                            # FSD App Layer + Next.js routing combinés
+    │   ├── (frontend)/                 # Route group frontend (thin re-exports UNIQUEMENT)
+    │   │   ├── layout.tsx              # Root layout (html, body, metadata, providers, fonts)
+    │   │   ├── page.tsx                # Re-export HomePage depuis src/pages/home
+    │   │   ├── not-found.tsx           # Page 404
+    │   │   ├── work/
+    │   │   │   ├── page.tsx            # Re-export WorkPage (T9.5)
+    │   │   │   └── [slug]/
+    │   │   │       ├── page.tsx        # Re-export ProjectPage + generateMetadata (T8)
+    │   │   │       ├── loading.tsx
+    │   │   │       └── error.tsx
+    │   │   ├── photography/
+    │   │   │   └── page.tsx            # Re-export PhotographyPage (T9.6)
+    │   │   └── contact/
+    │   │       ├── page.tsx            # Re-export ContactPage (T9)
+    │   │       └── loading.tsx
+    │   │
+    │   ├── (payload)/                  # Route group Payload CMS (convention officielle)
+    │   │   ├── layout.tsx              # Payload admin layout
+    │   │   ├── custom.scss             # Styles admin custom
+    │   │   ├── admin/
+    │   │   │   ├── importMap.js
+    │   │   │   └── [[...segments]]/
+    │   │   │       ├── page.tsx        # Payload Admin UI
+    │   │   │       └── not-found.tsx
+    │   │   └── api/
+    │   │       ├── graphql/
+    │   │       │   └── route.ts        # GraphQL API
+    │   │       └── [...slug]/
+    │   │           └── route.ts        # REST API
+    │   │
+    │   ├── providers/                  # FSD App segment
+    │   │   ├── AppProviders.tsx        # MotionProvider + wrappers
+    │   │   └── index.ts
     │   ├── styles/
-    │   │   └── globals.css             # @tailwind directives + CSS variables globales
+    │   │   └── globals.css             # Tailwind v4 CSS-first tokens
     │   └── fonts/
-    │       └── index.ts                # next/font definitions (polices Framer)
+    │       ├── index.ts                # next/font definitions
+    │       ├── ClashDisplay-Bold.woff2
+    │       ├── ClashDisplay-Medium.woff2
+    │       └── ClashDisplay-Semibold.woff2
     │
     ├── pages/                          # Layer: Pages (composition)
     │   ├── home/
     │   │   ├── ui/
     │   │   │   └── HomePage.tsx        # Server Component — compose widgets
     │   │   └── index.ts                # export { HomePage }
-    │   │
     │   ├── project/
     │   │   ├── ui/
     │   │   │   └── ProjectPage.tsx     # Server Component — détail projet
     │   │   ├── api/
     │   │   │   └── metadata.ts         # generateMetadata + generateStaticParams
-    │   │   └── index.ts                # export { ProjectPage, generateMetadata }
-    │   │
-    │   └── contact/
+    │   │   └── index.ts
+    │   ├── contact/
+    │   │   ├── ui/
+    │   │   │   └── ContactPage.tsx     # Server Component — page contact
+    │   │   └── index.ts
+    │   ├── work/                       # Découvert audit Framer (T9.5)
+    │   │   ├── ui/
+    │   │   │   └── WorkPage.tsx
+    │   │   └── index.ts
+    │   └── photography/                # Découvert audit Framer (T9.6)
     │       ├── ui/
-    │       │   └── ContactPage.tsx     # Server Component — page contact
-    │       └── index.ts                # export { ContactPage }
+    │       │   └── PhotographyPage.tsx
+    │       └── index.ts
     │
     ├── widgets/                        # Layer: Widgets (blocs UI composés)
     │   ├── header/
@@ -857,18 +939,15 @@ tia/
     │   │   │   ├── Header.tsx          # Server Component — structure
     │   │   │   └── MobileMenuAnimated.tsx  # Client — menu burger animé
     │   │   └── index.ts
-    │   │
     │   ├── footer/
     │   │   ├── ui/
     │   │   │   └── Footer.tsx          # Server Component
     │   │   └── index.ts
-    │   │
     │   ├── hero/
     │   │   ├── ui/
     │   │   │   ├── Hero.tsx            # Server Component — structure
     │   │   │   └── HeroAnimated.tsx    # Client — animations scroll/parallax
     │   │   └── index.ts
-    │   │
     │   └── project-grid/
     │       ├── ui/
     │       │   ├── ProjectGrid.tsx     # Server Component — grille
@@ -884,7 +963,6 @@ tia/
     │   │   ├── api/
     │   │   │   └── send-email.ts       # Server Action → Resend
     │   │   └── index.ts
-    │   │
     │   └── project-publish/
     │       ├── api/
     │       │   └── revalidate.ts       # Server Action revalidation
@@ -901,7 +979,6 @@ tia/
     │   │   ├── api/
     │   │   │   └── queries.ts          # getProjects(), getProjectBySlug()
     │   │   └── index.ts
-    │   │
     │   └── site-info/
     │       ├── model/
     │       │   └── types.ts            # Type SiteInfo
@@ -909,29 +986,35 @@ tia/
     │       │   └── queries.ts          # getSiteInfo()
     │       └── index.ts
     │
-    └── shared/                         # Layer: Shared (code réutilisable)
-        ├── ui/
-        │   ├── MotionProvider.tsx       # "use client" — LazyMotion wrapper
-        │   └── index.ts
-        ├── lib/
-        │   ├── payload-client.ts       # getPayload() helper
-        │   ├── cn.ts                   # clsx + twMerge utility
-        │   └── index.ts
-        ├── api/
-        │   └── index.ts                # Payload client re-export
-        ├── config/
-        │   ├── site.ts                 # SITE_URL, SITE_NAME constantes
-        │   └── index.ts
-        └── types/
-            ├── action-result.ts        # ActionResult<T> type
-            └── index.ts
+    ├── shared/                         # Layer: Shared (code réutilisable)
+    │   ├── ui/
+    │   │   ├── MotionProvider.tsx       # "use client" — LazyMotion wrapper
+    │   │   └── index.ts
+    │   ├── lib/
+    │   │   ├── payload-client.ts       # getPayload() helper
+    │   │   ├── cn.ts                   # clsx + twMerge utility
+    │   │   └── index.ts
+    │   ├── api/
+    │   │   └── index.ts                # Payload client re-export
+    │   ├── config/
+    │   │   ├── site.ts                 # SITE_URL, SITE_NAME constantes
+    │   │   └── index.ts
+    │   └── model/                      # Nommé "model" (pas "types") — Steiger by-purpose
+    │       ├── action-result.ts        # ActionResult<T> type
+    │       └── index.ts
+    │
+    ├── collections/                    # Payload CMS collection definitions (hors FSD)
+    │   └── Users.ts                    # Collection authentification admin
+    │
+    └── payload.config.ts               # Config Payload (collections, DB, plugins)
 ```
 
 ### Architectural Boundaries
 
 **Boundary CMS (Payload) ↔ Frontend (FSD) :**
-- Payload vit dans `app/(cms)/` — complètement isolé du frontend
-- `payload.config.ts` est à la racine (convention Payload)
+- Payload vit dans `src/app/(payload)/` — complètement isolé du frontend via route group
+- `src/payload.config.ts` est dans src (convention officielle Payload)
+- Collections Payload dans `src/collections/` (hors FSD, ignoré par Steiger)
 - Les entities FSD accèdent à Payload via `shared/lib/payload-client.ts` → `getPayload()`
 - Les types Payload générés (`payload-types.ts`) sont re-exportés dans `entities/*/model/types.ts`
 
@@ -956,9 +1039,9 @@ tia/
 | FR18-FR19 Page contact | `pages/contact/`, `features/contact-form/` |
 | FR20-FR23 Media optimization | `entities/project/ui/` (Next.js Image), Tailwind responsive |
 | FR24-FR27 Animations Framer | `widgets/*/ui/*Animated.tsx`, `entities/*/ui/*Animated.tsx` |
-| FR28-FR31 SEO | `pages/*/api/metadata.ts`, `app/sitemap.ts` |
-| FR32-FR35 CMS Payload | `app/(cms)/`, `payload.config.ts`, collections |
-| FR36-FR41 Admin BO | `app/(cms)/admin/`, `features/project-publish/` |
+| FR28-FR31 SEO | `pages/*/api/metadata.ts`, `src/app/(frontend)/sitemap.ts` |
+| FR32-FR35 CMS Payload | `src/app/(payload)/`, `src/payload.config.ts`, `src/collections/` |
+| FR36-FR41 Admin BO | `src/app/(payload)/admin/`, `features/project-publish/` |
 
 ### Data Flow
 
@@ -973,9 +1056,9 @@ Visiteur → Vercel CDN → Static HTML (pre-built)
                  ↓
            PostgreSQL
 
-Admin Tianoa → app/(cms)/admin → Payload Admin UI
+Admin Tianoa → src/app/(payload)/admin → Payload Admin UI
                  ↓ (afterChange hook)
-           app/api/revalidate/route.ts
+           revalidation endpoint (T10)
                  ↓
            revalidatePath() → CDN purge
 ```
@@ -991,9 +1074,9 @@ Admin Tianoa → app/(cms)/admin → Payload Admin UI
 
 ### File Organization Patterns
 
-**Configuration Files :** Tous à la racine (`next.config.mjs`, `payload.config.ts`, `tailwind.config.ts`, `steiger.config.ts`, `tsconfig.json`).
+**Configuration Files :** À la racine (`next.config.mjs`, `steiger.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `postcss.config.mjs`). Exception : `payload.config.ts` dans `src/` (convention officielle Payload). Tailwind v4 = CSS-first dans `globals.css` (pas de `tailwind.config.ts`).
 
-**Source Organization :** FSD strict dans `src/`. Routing Next.js dans `app/` (thin re-exports). Payload isolé dans `app/(cms)/`.
+**Source Organization :** Tout dans `src/`. Routing Next.js dans `src/app/(frontend)/` (thin re-exports). FSD layers dans `src/pages|widgets|features|entities|shared`. Payload isolé dans `src/app/(payload)/`. Collections CMS dans `src/collections/`.
 
 **Asset Organization :**
 - `public/` : favicon, OG image par défaut, robots.txt
@@ -1029,7 +1112,7 @@ Admin Tianoa → app/(cms)/admin → Payload Admin UI
 | FR12-FR15 Contact | ✅ | features/contact-form, Resend, Zod validation |
 | FR16-FR19 Design & Animations | ✅ | Motion v12 (même moteur Framer), Tailwind tokens, next/font |
 | FR20-FR23 Media | ✅ | Next.js Image, Vercel Blob, lazy loading |
-| FR24-FR32 CMS | ✅ | app/(cms)/, payload.config.ts, revalidation webhook |
+| FR24-FR32 CMS | ✅ | src/app/(payload)/, src/payload.config.ts, src/collections/, revalidation webhook |
 | FR33-FR38 SEO | ✅ | generateMetadata, sitemap.ts, JSON-LD, Server Components |
 | FR39-FR41 Seed Scripts | ✅ | scripts/ à la racine (hors FSD — scripts one-shot) |
 
