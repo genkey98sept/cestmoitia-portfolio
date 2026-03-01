@@ -24,6 +24,7 @@ name,description,module,path
 "document-project","Document brownfield projects for AI context. Use when the user says 'document this project' or 'generate project docs'","bmm","_bmad/bmm/workflows/document-project/workflow.yaml"
 "generate-project-context","Create project-context.md with AI rules. Use when the user says 'generate project context' or 'create project context'","bmm","_bmad/bmm/workflows/generate-project-context/workflow.md"
 "qa-generate-e2e-tests","Generate end to end automated tests for existing features. Use when the user says 'create qa automated tests for [feature]'","bmm","_bmad/bmm/workflows/qa-generate-e2e-tests/workflow.yaml"
+"dev-checkpoint","Run a development checkpoint - analyze code, review BMAD artifacts, identify misalignments, and realign project context. Use when the user says 'dev checkpoint' or 'run dev checkpoint' or 'faire un point de dev'","bmm","_bmad/bmm/workflows/4-implementation/dev-checkpoint/workflow.md"
 "create-agent","Create a new BMAD agent with best practices and compliance","bmb","_bmad/bmb/workflows/agent/workflow-create-agent.md"
 "edit-agent","Edit existing BMAD agents while maintaining compliance","bmb","_bmad/bmb/workflows/agent/workflow-edit-agent.md"
 "validate-agent","Validate existing BMAD agents and offer to improve deficiencies","bmb","_bmad/bmb/workflows/agent/workflow-validate-agent.md"
