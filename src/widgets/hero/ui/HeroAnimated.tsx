@@ -53,9 +53,9 @@ export function HeroAnimated() {
         initial="hidden"
         animate="visible"
         transition={{
-          duration: 0.6,
-          ease: [0.25, 0.1, 0.25, 1],
-          delay: 0.4,
+          duration: 0.94,
+          ease: "linear",
+          delay: 0.2,
         }}
       >
         {/* Location */}

@@ -33,12 +33,12 @@ export function ProjectGridAnimated({ children }: ProjectGridAnimatedProps) {
           role="listitem"
           initial={{
             opacity: 0,
-            y: shouldReduceMotion ? 0 : 40,
+            y: shouldReduceMotion ? 0 : 30,
           }}
           animate={
             isInView
               ? { opacity: 1, y: 0 }
-              : { opacity: 0, y: shouldReduceMotion ? 0 : 40 }
+              : { opacity: 0, y: shouldReduceMotion ? 0 : 30 }
           }
           transition={{
             duration: 0.6,
