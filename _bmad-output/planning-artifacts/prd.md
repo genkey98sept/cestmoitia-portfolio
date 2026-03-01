@@ -96,8 +96,10 @@ Ce n'est pas un portfolio from scratch — c'est une **migration technique** d'u
 
 **Frontend Next.js :**
 - Homepage pixel-perfect (hero, grille projets, toutes sections)
-- Page projet individuelle (détail, médias, contexte)
-- Page contact (formulaire ou liens — selon audit Framer)
+- Page `/work` — listing projets dédié (découvert lors de l'audit Framer)
+- Page projet individuelle `/work/[slug]` (détail, médias, contexte)
+- Page `/photography` — galerie photo dédiée (découvert lors de l'audit Framer)
+- Page contact `/contact` (formulaire fonctionnel avec validation et envoi email)
 - Navigation sticky + footer
 - Toutes les animations reproduites fidèlement
 - Responsive : desktop, tablet, mobile
@@ -370,6 +372,11 @@ Mobile-first CSS. Aucun scroll horizontal. Navigation adaptée par breakpoint (b
 - **FR36:** Le système inclut des données structurées JSON-LD (Portfolio/CreativeWork) sur les pages projet
 - **FR37:** Le système est indexable par les moteurs de recherche (rendu serveur)
 - **FR38:** Le système cible le référencement local (Tahiti, Polynésie française) et international
+
+### Pages Additionnelles (découvertes post-audit Framer)
+
+- **FR42:** Les visiteurs peuvent accéder à une page `/work` listant tous les projets publiés avec une grille visuelle
+- **FR43:** Les visiteurs peuvent accéder à une page `/photography` présentant une galerie photo dédiée avec un layout irrégulier fidèle au site Framer
 
 ### Data Migration
 

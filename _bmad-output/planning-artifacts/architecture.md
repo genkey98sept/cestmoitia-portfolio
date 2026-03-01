@@ -423,7 +423,7 @@ Full-stack web application (Next.js App Router + Payload CMS + PostgreSQL) — i
 
 | Package | Version Choisie | Justification |
 |---------|----------------|---------------|
-| Next.js | 15.5.12 | Dernière 15.x stable, combo éprouvé avec Payload. Next.js 16.2 (requis par Payload pour le support 16.x) est encore en canary. |
+| Next.js | 15.4.11 | Dernière 15.x stable supportée par Payload. Next.js 16.x incompatible avec Payload 3.78. |
 | Payload CMS | 3.78.0 | Dernière version stable. Supporte Next.js 15.x nativement. |
 | @payloadcms/db-postgres | 3.78.0 | Adapter PostgreSQL pour Payload |
 | React | 19.x | Peer dependency de Next.js 15.5 |
@@ -449,7 +449,7 @@ Le FSD dual-folder pattern est non-négociable : `app/` à la racine pour le rou
 
 ```bash
 # 1. Scaffold Next.js (sans --src-dir : app/ reste à la racine)
-npx create-next-app@15.5.12 . --typescript --eslint --app --import-alias "@/*" --use-pnpm
+npx create-next-app@15.4.11 . --typescript --eslint --app --import-alias "@/*" --use-pnpm
 
 # 2. Installer Payload CMS + Database adapter
 pnpm add payload @payloadcms/next @payloadcms/db-postgres @payloadcms/richtext-lexical sharp graphql
@@ -524,8 +524,45 @@ Steiger (linter structurel FSD) + ESLint no-restricted-imports (public API enfor
 **Database:** PostgreSQL via @payloadcms/db-postgres 3.78.0 (décidé en Step 03).
 
 **Collections Payload:**
-- `projects` : titre, slug, description, médias, catégorie, ordre, statut (publié/brouillon)
-- `site-info` (Global) : bio, liens réseaux sociaux, email contact
+
+**Collection `projects` :**
+- `title` (text, required)
+- `slug` (text, auto-généré via hook beforeValidate, unique, index)
+- `client` (text) — nom du client
+- `year` (text) — année du projet
+- `category` (text) — catégorie libre (Publicite // aftermovie, Captation video, etc.)
+- `description` (richText Lexical)
+- `coverImage` (upload → Media, required)
+- `projectImages` (array of uploads → Media)
+- `projectVideos` (array: { url text, title text })
+- `subProjects` (array: { subTitle text, subDescription richText Lexical, subMedia array of uploads → Media })
+- `isFeatured` (checkbox)
+- `displayOrder` (number, required, default 0)
+- `status` (select: published/draft, default draft)
+- `publishedAt` (date, auto-set via hook beforeChange)
+
+**Collection `Media` :**
+- `alt` (text, required)
+- Formats: images (jpg, png, webp, avif, gif, svg) + vidéos (mp4, webm)
+- imageSizes: thumbnail (300x300), card (768x480), full (1920x1080)
+- crop + focalPoint activés
+
+**Collection `Users` :**
+- Auth built-in Payload (admin unique Tianoa)
+
+**Global `SiteInfo` :**
+- `heroTagline` (text)
+- `bio` (richText Lexical)
+- `email` (email, required)
+- `phone` (text)
+- `location` (group: city, zipCode, country, countryCode)
+- `cvUrl` (text)
+- `instagramUrl` (text)
+- `facebookUrl` (text)
+- `twitterUrl` (text)
+- `otherLinks` (array: { label, url })
+- `services` (array: { title, description })
+- `experiences` (array: { company, position, year, description })
 
 **Data Validation:** Payload gère la validation côté CMS (champs required, types). Zod pour la validation côté frontend (formulaire de contact dans `features/contact-form/model/`).
 
@@ -1197,7 +1234,7 @@ Admin Tianoa → src/app/(payload)/admin → Payload Admin UI
 
 ```bash
 # Story 0 — Scaffold + Structure FSD
-npx create-next-app@15.5.12 . --typescript --eslint --app --import-alias "@/*" --use-pnpm
+npx create-next-app@15.4.11 . --typescript --eslint --app --import-alias "@/*" --use-pnpm
 pnpm add payload @payloadcms/next @payloadcms/db-postgres @payloadcms/richtext-lexical sharp graphql
 pnpm add -D steiger @feature-sliced/steiger-plugin
 ```

@@ -187,11 +187,11 @@ tsconfig.json (modifie)
 
 **Criteres de validation :**
 
-- [ ] `pnpm dev` demarre sans erreur
-- [ ] `npx steiger src/` — 0 erreur
-- [ ] `pnpm lint` — 0 erreur
-- [ ] `/admin` accessible (page Payload vide)
-- [ ] Structure FSD conforme au schema architecture.md
+- [x] `pnpm dev` demarre sans erreur
+- [x] `npx steiger src/` — 0 erreur
+- [x] `pnpm lint` — 0 erreur
+- [x] `/admin` accessible (page Payload vide)
+- [x] Structure FSD conforme au schema architecture.md
 
 **Notes :** _A remplir par l'agent apres completion_
 
