@@ -1,1 +1,9 @@
-// FSD Entities Layer — Site Info (T3)
+export type {
+  SiteInfo,
+  SiteInfoLocation,
+  SiteInfoLink,
+  SiteInfoService,
+  SiteInfoExperience,
+} from "./model/types";
+
+export { getSiteInfo } from "./api/queries";
