@@ -1,3 +1,4 @@
+import { revalidatePath, revalidateTag } from "next/cache";
 import type { GlobalConfig } from "payload";
 
 export const SiteInfo: GlobalConfig = {
@@ -6,6 +7,22 @@ export const SiteInfo: GlobalConfig = {
   access: {
     read: () => true,
     update: ({ req }) => !!req.user,
+  },
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        try {
+          revalidatePath("/");
+          revalidatePath("/work");
+          revalidatePath("/photography");
+          revalidatePath("/contact");
+          revalidateTag("site-info");
+        } catch {
+          // Revalidation can fail during build/seed — safe to ignore
+        }
+        return doc;
+      },
+    ],
   },
   fields: [
     {

@@ -1,3 +1,4 @@
+import { revalidatePath, revalidateTag } from "next/cache";
 import type { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
@@ -42,6 +43,40 @@ export const Projects: CollectionConfig = {
           data.publishedAt = new Date().toISOString();
         }
         return data;
+      },
+    ],
+    afterChange: [
+      ({ doc }) => {
+        try {
+          const slug = typeof doc.slug === "string" ? doc.slug : undefined;
+          revalidatePath("/");
+          revalidatePath("/work");
+          revalidatePath("/photography");
+          if (slug) {
+            revalidatePath(`/work/${slug}`);
+          }
+          revalidateTag("projects");
+        } catch {
+          // Revalidation can fail during build/seed — safe to ignore
+        }
+        return doc;
+      },
+    ],
+    afterDelete: [
+      ({ doc }) => {
+        try {
+          const slug = typeof doc.slug === "string" ? doc.slug : undefined;
+          revalidatePath("/");
+          revalidatePath("/work");
+          revalidatePath("/photography");
+          if (slug) {
+            revalidatePath(`/work/${slug}`);
+          }
+          revalidateTag("projects");
+        } catch {
+          // Safe to ignore during build/seed
+        }
+        return doc;
       },
     ],
   },
