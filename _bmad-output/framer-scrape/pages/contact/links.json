@@ -1,0 +1,42 @@
+[
+  {
+    "text": "CONTACTEZ-MOI",
+    "href": "https://cestmoitia.framer.website/contact",
+    "section": "nav"
+  },
+  {
+    "text": "Instagram",
+    "href": "https://www.instagram.com/",
+    "section": "section"
+  },
+  {
+    "text": "facebook",
+    "href": "https://www.facebook.com/Cestmoitia/",
+    "section": "section"
+  },
+  {
+    "text": "+689 87 76 98 19",
+    "href": "tel:+1 13945 88734",
+    "section": "section"
+  },
+  {
+    "text": "cestmoitia@gmail.com",
+    "href": "mailto:dummy@mail.com",
+    "section": "section"
+  },
+  {
+    "text": "©2026",
+    "href": "https://x.com/MandroDesign",
+    "section": "footer"
+  },
+  {
+    "text": "Retour en haut",
+    "href": "https://cestmoitia.framer.website/contact#nav",
+    "section": "footer"
+  },
+  {
+    "text": "Create a free website with Framer, the website builder loved by startups, designers and agencies.",
+    "href": "https://www.framer.com/",
+    "section": "body"
+  }
+]

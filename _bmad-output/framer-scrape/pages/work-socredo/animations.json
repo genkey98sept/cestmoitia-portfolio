@@ -1,0 +1,903 @@
+{
+  "animations": [
+    {
+      "element": "html",
+      "text": "try{if(localStorage.get(\"__framer_force_",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "body",
+      "text": "html body { background: var(--token-f213",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "div",
+      "text": "html body { background: var(--token-f213",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "L",
+      "text": "LOCAL/ 14:30:25CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Nav Menu",
+      "text": "LOCAL/ 14:30:25CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Time",
+      "text": "LOCAL/ 14:30:25",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Content",
+      "text": "LOCAL/ 14:30:25",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text",
+      "text": "LOCAL/",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "p",
+      "text": "LOCAL/",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Time Component",
+      "text": "14:30:25",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Menu Icon",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Primary",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Top",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Circle",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Bottom",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Menu Button",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Secondary",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h6",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Border",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Fill",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Seperator",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Project Details",
+      "text": "2024SOCREDOCollaboration continue avec l",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Headline",
+      "text": "2024",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Title",
+      "text": "SOCREDO",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h2",
+      "text": "SOCREDO",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Description",
+      "text": "Collaboration continue avec les services",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Details",
+      "text": "Year2023 - 2025 ClientSOCREDO CategorySO",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Content 1",
+      "text": "Year2023 - 2025 ClientSOCREDO CategorySO",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "1",
+      "text": "Year2023 - 2025",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text ",
+      "text": "Year",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h5",
+      "text": "2023 - 2025",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "2",
+      "text": "ClientSOCREDO",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "3",
+      "text": "CategorySOCREDO X MISS TAHITI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Pattern",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Parallax Image",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "img",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "TEXT AREA TEST",
+      "text": "SOCREDO // MISS TAHITIRéalisation d'une ",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Left",
+      "text": "SOCREDO // MISS TAHITI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h4",
+      "text": "SOCREDO // MISS TAHITI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Right",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Line 1",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "article",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "button",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "svg",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "path",
+      "text": "",
+      "type": "transition",
+      "properties": "fill 0.1s cubic-bezier(0.4, 0, 1, 1), fill-opacity 0.1s cubic-bezier(0.4, 0, 1, 1)",
+      "duration": "0.1s, 0.1s",
+      "easing": "cubic-bezier(0.4, 0, 1, 1), cubic-bezier(0.4, 0, 1, 1)",
+      "delay": "0s, 0s"
+    },
+    {
+      "element": "path",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Zoom Image",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Image",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Image 2",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "video",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "More Works",
+      "text": "More Works  More Works More Works  More ",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Ticker",
+      "text": "More Works  More Works More Works  More ",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "section",
+      "text": "More Works  More Works More Works  More ",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "ul",
+      "text": "More Works  More Works More Works  More ",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "ul",
+      "text": "More Works  More Works More Works  More ",
+      "type": "web-animation",
+      "properties": "Animation",
+      "duration": "26660",
+      "easing": "linear",
+      "delay": "0"
+    },
+    {
+      "element": "li",
+      "text": "More Works  More Works",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Ticker Text",
+      "text": "More Works  More Works",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h3",
+      "text": "More Works  More Works",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "span",
+      "text": "More Works",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Works",
+      "text": "PROJET PERSOvidéoEXOTIC GARDENVidéo // M",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Project",
+      "text": "PROJET PERSOvidéo",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Two",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Highlighter",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Title/Category",
+      "text": "PROJET PERSOvidéo",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Category",
+      "text": "vidéo",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "XL",
+      "text": "Un projet ? CONTACTEZ-MOIBASED PUNA'AUIA",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Middle",
+      "text": "BASED PUNA'AUIA,TAHITIFilmaker / graphis",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Body Text",
+      "text": "Installé à Puna'auia, Tahiti, je suis un",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Social Links",
+      "text": "InstagramFACEBOOK",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Arrowed",
+      "text": "Instagram",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Line",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Icon",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "foreignobject",
+      "text": "cestmoitia",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h1",
+      "text": "cestmoitia",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Container",
+      "text": "©2026Retour en haut",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Arrow Less",
+      "text": "©2026",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Lines",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Light",
+      "text": "Create a free website with Framer, the w",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Backdrop",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Logo",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    }
+  ],
+  "hints": [
+    {
+      "element": "L",
+      "text": "LOCAL/ 14:30:25CONTACTEZ-MOI",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Text",
+      "text": "SOCREDO",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Description",
+      "text": "Collaboration continue avec les services",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "BUTTON",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -34, -24)",
+      "opacity": "1"
+    },
+    {
+      "element": "BUTTON",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -34, -24)",
+      "opacity": "1"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "willChange": "transform",
+      "transform": "matrix3d(1.25, 0, 0, 0, 0, 1.25, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 0, 1)",
+      "opacity": "1"
+    },
+    {
+      "element": "BUTTON",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -34, -24)",
+      "opacity": "1"
+    },
+    {
+      "element": "BUTTON",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -34, -24)",
+      "opacity": "1"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "willChange": "transform",
+      "transform": "matrix3d(1.25, 0, 0, 0, 0, 1.25, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 0, 1)",
+      "opacity": "1"
+    },
+    {
+      "element": "UL",
+      "text": "More Works  More Works More Works  More ",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1p0ds45-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1mr1hrw-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1p0ds45-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1mr1hrw-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, 0, 1126)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-11hcz9-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-11hcz9-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Content",
+      "text": "cestmoitia",
+      "willChange": "transform",
+      "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 140, 0, 1)",
+      "opacity": "1"
+    },
+    {
+      "element": "[object SVGAnimatedString]",
+      "text": "cestmoitia",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Primary",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -8, -8)",
+      "opacity": "0"
+    },
+    {
+      "element": "Light",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Content",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -59.5, -8)",
+      "opacity": "1"
+    },
+    {
+      "element": "Logo",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -6, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "P",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "auto",
+      "transform": "matrix(0.001, 0, 0, 0.001, 0, 0)",
+      "opacity": "1"
+    }
+  ]
+}

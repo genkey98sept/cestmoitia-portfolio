@@ -1,0 +1,28 @@
+[
+  {
+    "element": "a \"CONTACTEZ-MOI\"",
+    "changes": {
+      "color": {
+        "before": "rgb(255, 255, 255)",
+        "after": "rgb(0, 0, 0)"
+      },
+      "border-color": {
+        "before": "rgb(255, 255, 255)",
+        "after": "rgb(0, 0, 0)"
+      }
+    }
+  },
+  {
+    "element": "button \"Soumettre\"",
+    "changes": {
+      "color": {
+        "before": "rgb(0, 0, 0)",
+        "after": "rgb(255, 255, 255)"
+      },
+      "border-color": {
+        "before": "rgb(0, 0, 0)",
+        "after": "rgb(255, 255, 255)"
+      }
+    }
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "element": "a \"CONTACTEZ-MOI\"",
+    "changes": {
+      "color": {
+        "before": "rgb(255, 255, 255)",
+        "after": "rgb(0, 0, 0)"
+      },
+      "border-color": {
+        "before": "rgb(255, 255, 255)",
+        "after": "rgb(0, 0, 0)"
+      }
+    }
+  }
+]

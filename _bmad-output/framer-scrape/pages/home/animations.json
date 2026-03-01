@@ -1,0 +1,1401 @@
+{
+  "animations": [
+    {
+      "element": "html",
+      "text": "try{if(localStorage.get(\"__framer_force_",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "body",
+      "text": "html body { background: var(--token-f213",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "div",
+      "text": "html body { background: var(--token-f213",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "L",
+      "text": "LOCAL/ 14:29:08CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Nav Menu",
+      "text": "LOCAL/ 14:29:08CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Time",
+      "text": "LOCAL/ 14:29:08",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Content",
+      "text": "LOCAL/ 14:29:08",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text",
+      "text": "LOCAL/",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "p",
+      "text": "LOCAL/",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Time Component",
+      "text": "14:29:08",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Menu Icon",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Primary",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Top",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Circle",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Bottom",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Menu Button",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Secondary",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h6",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Border",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Fill",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Seperator",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Hero",
+      "text": "cestmoitiaBASED IN Puna'auia,TahitiAvail",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Container",
+      "text": "cestmoitiaBASED IN Puna'auia,TahitiAvail",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "foreignobject",
+      "text": "cestmoitia",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h1",
+      "text": "cestmoitia",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Seperator",
+      "text": "",
+      "type": "web-animation",
+      "properties": "Animation",
+      "duration": "940",
+      "easing": "linear",
+      "delay": "200"
+    },
+    {
+      "element": "Details",
+      "text": "BASED IN Puna'auia,TahitiAvailable ALL A",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Details",
+      "text": "BASED IN Puna'auia,TahitiAvailable ALL A",
+      "type": "web-animation",
+      "properties": "Animation",
+      "duration": "940",
+      "easing": "linear",
+      "delay": "200"
+    },
+    {
+      "element": "Location",
+      "text": "BASED IN Puna'auia,Tahiti",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Map Pin",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "svg",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "use",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Availability",
+      "text": "Available ALL AROUNdworldwidE",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Globe ",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "span",
+      "text": "Available ALL AROUNd",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "User Details",
+      "text": "filmaker / graphiste+ motion designer",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Check",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Parallax Image",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Parallax Image",
+      "text": "",
+      "type": "web-animation",
+      "properties": "Animation",
+      "duration": "1020",
+      "easing": "linear",
+      "delay": "400"
+    },
+    {
+      "element": "Image",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "img",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Portfolio",
+      "text": "01//Portfolio2013 - 2025MONPortfolioJe c",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "section",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "ul",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "ul",
+      "text": "",
+      "type": "web-animation",
+      "properties": "Animation",
+      "duration": "52000",
+      "easing": "linear",
+      "delay": "0"
+    },
+    {
+      "element": "li",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Logo Image",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Pattern",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "1",
+      "text": "01",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "2",
+      "text": "//Portfolio",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "3",
+      "text": "2013 - 2025",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Title",
+      "text": "MONPortfolio",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h2",
+      "text": "MON",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Body Text",
+      "text": "Je crée, j’imagine et je construis dans ",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Works",
+      "text": "AMEXPublicite // aftermovieSOCREDOPublic",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Project",
+      "text": "AMEXPublicite // aftermovie",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Left",
+      "text": "AMEXPublicite // aftermovie",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Three",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Highlighter",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Title/Category",
+      "text": "AMEXPublicite // aftermovie",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Category",
+      "text": "Publicite // aftermovie",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Right",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "path",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Two",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Five",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Who Am I",
+      "text": "02//a propos de moiSince 2000à propos de",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text 1",
+      "text": "à propos de",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h3",
+      "text": "à propos de",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text 2",
+      "text": "MOi",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Title/Body Text",
+      "text": "Moi, c’est Tia, un jeune créatif passion",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h5",
+      "text": "Moi, c’est Tia, un jeune créatif passion",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Services",
+      "text": "03//ServicesFast DeliveryServices //comp",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Primary Closed",
+      "text": "Captation VidéoMaitrise de mon matériel,",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Inner Content",
+      "text": "Captation VidéoMaitrise de mon matériel,",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Four",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Secondary Closed",
+      "text": "PhotographieMariage, portrait, real esta",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "My Vision",
+      "text": "04//Since 2001JEUNE Créatif AMOUREUX DE ",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text/Signature",
+      "text": "JEUNE Créatif AMOUREUX DE L'AUDIOVISUEL:",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Fill Your Signature Image Here",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Images",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "1 & 2",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Image 1",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Image 2",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "4 & 5",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Image 4",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Image 5",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "6",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Image 6",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Experience",
+      "text": "05//ExperienceEXPERIENCEEXOTIC GARDENcad",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h4",
+      "text": "EXPERIENCE",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Line",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Position/Year",
+      "text": "cadreur // monteur // motion designer202",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Position",
+      "text": "cadreur // monteur // motion designer",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Year",
+      "text": "2022",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Description",
+      "text": "Stage d’un mois chez Exotic Garden : cré",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "XL",
+      "text": "Un projet ? CONTACTEZ-MOIBASED PUNA'AUIA",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Middle",
+      "text": "BASED PUNA'AUIA,TAHITIFilmaker / graphis",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Social Links",
+      "text": "InstagramFACEBOOK",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Arrowed",
+      "text": "Instagram",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Icon",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Arrow Less",
+      "text": "©2026",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Lines",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Light",
+      "text": "Create a free website with Framer, the w",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Backdrop",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Logo",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    }
+  ],
+  "hints": [
+    {
+      "element": "L",
+      "text": "LOCAL/ 14:29:08CONTACTEZ-MOI",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Text",
+      "text": "cestmoitia",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "[object SVGAnimatedString]",
+      "text": "cestmoitia",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Seperator",
+      "text": "",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Details",
+      "text": "BASED IN Puna'auia,TahitiAvailable ALL A",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Seperator",
+      "text": "",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Parallax Image",
+      "text": "",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "UL",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "SPAN",
+      "text": "MON",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "Portfolio",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "Works",
+      "text": "AMEXPublicite // aftermovieSOCREDOPublic",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -690, -260)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1p0ds45-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1mr1hrw-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1p0ds45-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1mr1hrw-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1p0ds45-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1mr1hrw-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1p0ds45-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1mr1hrw-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1p0ds45-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1mr1hrw-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1p0ds45-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1mr1hrw-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Title",
+      "text": "à propos de MOi",
+      "willChange": "transform",
+      "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 0, 1)",
+      "opacity": "1"
+    },
+    {
+      "element": "SPAN",
+      "text": "à",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "propos",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "de",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "MOi",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "willChange": "transform",
+      "transform": "matrix3d(2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 0, 1)",
+      "opacity": "1"
+    },
+    {
+      "element": "SPAN",
+      "text": "Services",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "//",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "competence",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 30)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "framer-1c2mvor-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1c2mvor-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1c2mvor-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1c2mvor-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-1c2mvor-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0, 1, -1, 0, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, -1035, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "SPAN",
+      "text": "JEUNE",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "Créatif",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "AMOUREUX",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "DE",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "L'AUDIOVISUEL:",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "VOTRE",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "IDEE,",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "MA",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "SPAN",
+      "text": "VISION.",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 20)",
+      "opacity": "0.001"
+    },
+    {
+      "element": "Primary",
+      "text": "EXOTIC GARDENcadreur // monteur // motio",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, 0, 50)",
+      "opacity": "1"
+    },
+    {
+      "element": "Secondary",
+      "text": "Jiku productioncadreur // monteur // mot",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, 0, 50)",
+      "opacity": "1"
+    },
+    {
+      "element": "Secondary",
+      "text": "Aremiticommunity manager // graphiste202",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, 0, 50)",
+      "opacity": "1"
+    },
+    {
+      "element": "Secondary",
+      "text": "Freelancephotographe // cadreur // monte",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, 0, 50)",
+      "opacity": "1"
+    },
+    {
+      "element": "UL",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, 0, 1252)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-11hcz9-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-11hcz9-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Content",
+      "text": "cestmoitia",
+      "willChange": "transform",
+      "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 140, 0, 1)",
+      "opacity": "1"
+    },
+    {
+      "element": "[object SVGAnimatedString]",
+      "text": "cestmoitia",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Primary",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -8, -8)",
+      "opacity": "0"
+    },
+    {
+      "element": "Light",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Content",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -59.5, -8)",
+      "opacity": "1"
+    },
+    {
+      "element": "Logo",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -6, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "P",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "auto",
+      "transform": "matrix(0.001, 0, 0, 0.001, 0, 0)",
+      "opacity": "1"
+    }
+  ]
+}

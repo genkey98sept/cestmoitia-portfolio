@@ -1,0 +1,666 @@
+{
+  "animations": [
+    {
+      "element": "html",
+      "text": "try{if(localStorage.get(\"__framer_force_",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "body",
+      "text": "html body { background: var(--token-f213",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "div",
+      "text": "html body { background: var(--token-f213",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "L",
+      "text": "LOCAL/ 14:29:51CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Nav Menu",
+      "text": "LOCAL/ 14:29:51CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Time",
+      "text": "LOCAL/ 14:29:51",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Content",
+      "text": "LOCAL/ 14:29:51",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text",
+      "text": "LOCAL/",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "p",
+      "text": "LOCAL/",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Time Component",
+      "text": "14:29:51",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Menu Icon",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Primary",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Top",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Circle",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Bottom",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Menu Button",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Secondary",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h6",
+      "text": "CONTACTEZ-MOI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Border",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Fill",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Seperator",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Contact",
+      "text": "Ring a bell!Contactez-moi et créons ense",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Container",
+      "text": "Ring a bell!Contactez-moi et créons ense",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Title",
+      "text": "Ring a bell!",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Body Text",
+      "text": "Contactez-moi et créons ensemble quelque",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h5",
+      "text": "Remplissez CE formulaire",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "form",
+      "text": "Soumettre",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "label",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "div",
+      "text": "",
+      "type": "transition",
+      "properties": "background 0.3s cubic-bezier(0.44, 0, 0.56, 1), box-shadow 0.3s cubic-bezier(0.44, 0, 0.56, 1)",
+      "duration": "0.3s",
+      "easing": "cubic-bezier(0.44, 0, 0.56, 1)",
+      "delay": "0s"
+    },
+    {
+      "element": "input",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "textarea",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Default",
+      "text": "Soumettre",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Image",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "img",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Info",
+      "text": "FOLLOW MEInstagramfacebookCURRENT LOCATI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Line",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Inner Content",
+      "text": "FOLLOW MEInstagramfacebookCURRENT LOCATI",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "1",
+      "text": "FOLLOW MEInstagramfacebook",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Social Links",
+      "text": "Instagramfacebook",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Arrowed",
+      "text": "Instagram",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Icon",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "svg",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "path",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "2",
+      "text": "CURRENT LOCATIONPuna'auia, 98717Tahiti",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Address",
+      "text": "Puna'auia, 98717Tahiti",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text 2",
+      "text": "Puna'auia, 98717",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Text 3",
+      "text": "Tahiti",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "3",
+      "text": "PhonePF+689 87 76 98 19",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Phone",
+      "text": "PF+689 87 76 98 19",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Country",
+      "text": "PF",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Arrow Less",
+      "text": "+689 87 76 98 19",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "4",
+      "text": "EMAIL mecestmoitia@gmail.com",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Emails",
+      "text": "cestmoitia@gmail.com",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "XL",
+      "text": "cestmoitia©2026Retour en haut",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "foreignobject",
+      "text": "cestmoitia",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "h1",
+      "text": "cestmoitia",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Left",
+      "text": "©2026",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Right",
+      "text": "Retour en haut",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Pattern",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "BG Lines",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Light",
+      "text": "Create a free website with Framer, the w",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Backdrop",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    },
+    {
+      "element": "Logo",
+      "text": "",
+      "type": "transition",
+      "properties": "all",
+      "duration": "0s",
+      "easing": "ease",
+      "delay": "0s"
+    }
+  ],
+  "hints": [
+    {
+      "element": "L",
+      "text": "LOCAL/ 14:29:51CONTACTEZ-MOI",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Contact",
+      "text": "Ring a bell!Contactez-moi et créons ense",
+      "willChange": "transform",
+      "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 0, 0, 1)",
+      "opacity": "1"
+    },
+    {
+      "element": "Fill Your Image Here",
+      "text": "",
+      "willChange": "transform",
+      "transform": "matrix(1, 0, 0, 1, 0, -5)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-11hcz9-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "framer-11hcz9-container",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Content",
+      "text": "cestmoitia",
+      "willChange": "transform",
+      "transform": "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.000833333, 0, 140, 0, 1)",
+      "opacity": "1"
+    },
+    {
+      "element": "[object SVGAnimatedString]",
+      "text": "cestmoitia",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "Primary",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -8, -8)",
+      "opacity": "0"
+    },
+    {
+      "element": "Light",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "transform",
+      "transform": "none",
+      "opacity": "1"
+    },
+    {
+      "element": "Content",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -59.5, -8)",
+      "opacity": "1"
+    },
+    {
+      "element": "Logo",
+      "text": "",
+      "willChange": "auto",
+      "transform": "matrix(1, 0, 0, 1, -6, 0)",
+      "opacity": "1"
+    },
+    {
+      "element": "P",
+      "text": "Create a free website with Framer, the w",
+      "willChange": "auto",
+      "transform": "matrix(0.001, 0, 0, 0.001, 0, 0)",
+      "opacity": "1"
+    }
+  ]
+}

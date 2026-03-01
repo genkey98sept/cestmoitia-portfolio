@@ -1,0 +1,188 @@
+{
+  "generatedAt": "2026-03-01T00:33:31.098Z",
+  "sourceUrl": "https://cestmoitia.framer.website",
+  "totalPages": 10,
+  "pages": [
+    {
+      "slug": "home",
+      "url": "https://cestmoitia.framer.website/",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Title",
+        "framer:Body Text",
+        "framer:Category",
+        "framer:Text 1",
+        "framer:Text 2",
+        "framer:Position",
+        "framer:Year",
+        "framer:Content"
+      ],
+      "linkCount": 14,
+      "imageCount": 57,
+      "videoCount": 0,
+      "animationCount": 106,
+      "hoverStateCount": 1
+    },
+    {
+      "slug": "work",
+      "url": "https://cestmoitia.framer.website/work",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Text 1",
+        "framer:Text 2",
+        "framer:Title",
+        "framer:Category",
+        "framer:Content"
+      ],
+      "linkCount": 12,
+      "imageCount": 7,
+      "videoCount": 0,
+      "animationCount": 67,
+      "hoverStateCount": 1
+    },
+    {
+      "slug": "photography",
+      "url": "https://cestmoitia.framer.website/photography",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Text 1",
+        "framer:Text 2",
+        "framer:Content"
+      ],
+      "linkCount": 7,
+      "imageCount": 12,
+      "videoCount": 1,
+      "animationCount": 70,
+      "hoverStateCount": 1
+    },
+    {
+      "slug": "contact",
+      "url": "https://cestmoitia.framer.website/contact",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Default",
+        "framer:Text 2",
+        "framer:Text 3",
+        "framer:Country",
+        "framer:Content"
+      ],
+      "linkCount": 8,
+      "imageCount": 2,
+      "videoCount": 0,
+      "animationCount": 64,
+      "hoverStateCount": 2
+    },
+    {
+      "slug": "work-projet-perso",
+      "url": "https://cestmoitia.framer.website/work/projet-perso",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Text ",
+        "framer:Line 1",
+        "framer:Title",
+        "framer:Category",
+        "framer:Content"
+      ],
+      "linkCount": 9,
+      "imageCount": 9,
+      "videoCount": 0,
+      "animationCount": 78,
+      "hoverStateCount": 1
+    },
+    {
+      "slug": "work-socredo",
+      "url": "https://cestmoitia.framer.website/work/socredo",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Text ",
+        "framer:Line 1",
+        "framer:Title",
+        "framer:Category",
+        "framer:Content"
+      ],
+      "linkCount": 9,
+      "imageCount": 14,
+      "videoCount": 1,
+      "animationCount": 81,
+      "hoverStateCount": 1
+    },
+    {
+      "slug": "work-exotic-garden",
+      "url": "https://cestmoitia.framer.website/work/exotic-garden",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Text ",
+        "framer:Line 1",
+        "framer:Title",
+        "framer:Category",
+        "framer:Content"
+      ],
+      "linkCount": 9,
+      "imageCount": 8,
+      "videoCount": 1,
+      "animationCount": 80,
+      "hoverStateCount": 1
+    },
+    {
+      "slug": "work-aremiti",
+      "url": "https://cestmoitia.framer.website/work/aremiti",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Text ",
+        "framer:Line 1",
+        "framer:Title",
+        "framer:Category",
+        "framer:Content"
+      ],
+      "linkCount": 9,
+      "imageCount": 12,
+      "videoCount": 2,
+      "animationCount": 80,
+      "hoverStateCount": 1
+    },
+    {
+      "slug": "work-biga-ranx",
+      "url": "https://cestmoitia.framer.website/work/biga-ranx",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Text ",
+        "framer:Line 1",
+        "framer:Title",
+        "framer:Category",
+        "framer:Content"
+      ],
+      "linkCount": 9,
+      "imageCount": 8,
+      "videoCount": 0,
+      "animationCount": 79,
+      "hoverStateCount": 1
+    },
+    {
+      "slug": "work-amex",
+      "url": "https://cestmoitia.framer.website/work/amex",
+      "textSections": [
+        "framer:Text",
+        "framer:Time Component",
+        "framer:Text ",
+        "framer:Line 1",
+        "framer:Title",
+        "framer:Category",
+        "framer:Content"
+      ],
+      "linkCount": 9,
+      "imageCount": 10,
+      "videoCount": 0,
+      "animationCount": 80,
+      "hoverStateCount": 1
+    }
+  ]
+}
