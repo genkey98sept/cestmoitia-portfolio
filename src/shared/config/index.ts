@@ -1,1 +1,1 @@
-// FSD Shared Layer — Config / constants (T1)
+export { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "./site";

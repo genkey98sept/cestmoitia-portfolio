@@ -1,1 +1,1 @@
-// FSD Shared Layer — Shared types (T1)
+export type { ActionResult } from "./action-result";

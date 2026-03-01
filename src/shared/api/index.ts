@@ -1,1 +1,1 @@
-// FSD Shared Layer — API / Payload client (T1)
+// FSD Shared Layer — API (re-export payload client from lib)

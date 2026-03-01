@@ -1,1 +1,1 @@
-// FSD Shared Layer — UI components (T1)
+export { MotionProvider } from "./MotionProvider";
