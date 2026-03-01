@@ -54,6 +54,10 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     line-height: 1.5;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   ::selection {
@@ -71,6 +75,11 @@
     display: block;
     max-width: 100%;
     height: auto;
+  }
+
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none !important;
   }
 
   @media (prefers-reduced-motion: reduce) {
