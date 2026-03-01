@@ -1,1 +1,1 @@
-// FSD Widgets Layer — Project Grid (T6)
+export { ProjectGrid } from "./ui/ProjectGrid";
