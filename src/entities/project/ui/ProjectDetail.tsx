@@ -12,7 +12,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
       {/* Metadata row */}
       <div className="flex items-baseline justify-between px-5 pt-8 tablet:px-[30px] tablet:pt-[60px]">
         {project.year && (
-          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
             {project.year}
           </span>
         )}
@@ -22,7 +22,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           </span>
         )}
         {project.category && (
-          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
             {project.category}
           </span>
         )}

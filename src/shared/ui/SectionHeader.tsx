@@ -21,7 +21,7 @@ export function SectionHeader({
       </span>
       <span
         className={`font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] ${
-          detailMuted ? "text-[#808080]" : "text-text"
+          detailMuted ? "text-text-secondary" : "text-text"
         }`}
       >
         {detail}

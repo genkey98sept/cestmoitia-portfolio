@@ -44,7 +44,7 @@ export async function ContactPage() {
       <div className="mt-[60px] grid grid-cols-2 gap-8 pb-10 tablet:mt-[100px] tablet:grid-cols-4">
         {/* Follow me */}
         <div className="flex flex-col gap-3">
-          <span className="font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-[#808080]">
+          <span className="font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-text-secondary">
             FOLLOW ME
           </span>
           {siteInfo?.instagramUrl && (
@@ -73,7 +73,7 @@ export async function ContactPage() {
 
         {/* Current location */}
         <div className="flex flex-col gap-1">
-          <span className="font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-[#808080]">
+          <span className="font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-text-secondary">
             CURRENT LOCATION
           </span>
           <span className="font-clash text-[18px] font-semibold uppercase text-text">
@@ -87,7 +87,7 @@ export async function ContactPage() {
 
         {/* Phone */}
         <div className="flex flex-col gap-1">
-          <span className="font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-[#808080]">
+          <span className="font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-text-secondary">
             PHONE
           </span>
           <span className="font-clash text-[18px] font-semibold uppercase text-text">
@@ -105,7 +105,7 @@ export async function ContactPage() {
 
         {/* Email */}
         <div className="flex flex-col gap-1">
-          <span className="font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-[#808080]">
+          <span className="font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-text-secondary">
             EMAIL ME
           </span>
           <a

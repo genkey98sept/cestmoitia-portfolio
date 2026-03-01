@@ -63,7 +63,7 @@ export function HeroAnimated() {
           <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
             BASED IN Puna&apos;auia,
           </p>
-          <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+          <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
             Tahiti
           </p>
         </div>
@@ -73,7 +73,7 @@ export function HeroAnimated() {
           <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
             Available ALL AROUNd
           </p>
-          <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+          <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
             worldwidE
           </p>
         </div>
@@ -83,7 +83,7 @@ export function HeroAnimated() {
           <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
             filmaker / graphiste
           </p>
-          <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+          <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
             + motion designer
           </p>
         </div>

@@ -39,7 +39,7 @@ export function FooterAnimated({
             <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
               BASED {location?.city?.toUpperCase() ?? "PUNA'AUIA"},
             </p>
-            <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+            <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
               {location?.country?.toUpperCase() ?? "TAHITI"}
             </p>
           </div>

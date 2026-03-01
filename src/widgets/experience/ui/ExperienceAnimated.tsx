@@ -71,10 +71,10 @@ export function ExperienceAnimated({ experiences }: ExperienceAnimatedProps) {
 
               {/* Position + Year row */}
               <div className="mt-2 flex items-baseline justify-between">
-                <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+                <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
                   {exp.position}
                 </span>
-                <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+                <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
                   {exp.year}
                 </span>
               </div>
