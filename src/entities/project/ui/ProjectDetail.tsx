@@ -8,45 +8,53 @@ export interface ProjectDetailProps {
 
 export function ProjectDetail({ project }: ProjectDetailProps) {
   return (
-    <article>
-      {/* Cover image */}
-      {project.coverImage?.url && (
-        <div className="relative aspect-video w-full overflow-hidden">
-          <Image
-            src={project.coverImage.url}
-            alt={project.coverImage.alt ?? project.title}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      )}
-
-      {/* Metadata */}
-      <div className="mt-8 space-y-2">
-        <h1 className="text-4xl font-bold uppercase">{project.title}</h1>
-        <div className="flex flex-wrap gap-4 text-sm uppercase tracking-widest opacity-60">
-          {project.client && <span>{project.client}</span>}
-          {project.year && <span>{project.year}</span>}
-          {project.category && <span>{project.category}</span>}
-        </div>
+    <article className="mx-auto max-w-[1440px]">
+      {/* Metadata row */}
+      <div className="flex items-baseline justify-between px-5 pt-8 tablet:px-[30px] tablet:pt-[60px]">
+        {project.year && (
+          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+            {project.year}
+          </span>
+        )}
+        {project.client && (
+          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
+            {project.client}
+          </span>
+        )}
+        {project.category && (
+          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-[#808080]">
+            {project.category}
+          </span>
+        )}
       </div>
+
+      {/* Title */}
+      <h1 className="mt-6 px-5 font-clash text-[40px] font-semibold uppercase leading-[30px] text-text tablet:mt-8 tablet:px-[30px] tablet:text-[90px] tablet:leading-[70px]">
+        {project.title}
+      </h1>
 
       {/* Sub-projects */}
       {project.subProjects && project.subProjects.length > 0 && (
-        <div className="mt-12 space-y-12">
+        <div className="mt-10 flex flex-col gap-[73px] tablet:mt-[100px]">
           {project.subProjects.map((sub) => (
             <section key={sub.id ?? sub.subTitle}>
-              <h2 className="text-2xl font-semibold uppercase">
+              <h2 className="px-5 font-clash text-[34px] font-semibold uppercase leading-[34px] text-text tablet:px-[30px]">
                 {sub.subTitle}
               </h2>
-              {/* Rich text rendering placeholder — will be refined in T8 */}
+
+              {typeof sub.subDescription === "string" &&
+                sub.subDescription.length > 0 && (
+                  <p className="mt-3 max-w-[650px] px-5 font-inter text-[16px] font-normal leading-[1.5] text-text-muted tablet:px-[30px]">
+                    {sub.subDescription}
+                  </p>
+                )}
+
               {sub.subMedia && sub.subMedia.length > 0 && (
-                <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="mt-6 grid grid-cols-1 gap-5 px-5 tablet:grid-cols-2 tablet:px-[30px]">
                   {sub.subMedia.map((media, i) => (
                     <div
                       key={media.id ?? i}
-                      className="relative aspect-video overflow-hidden"
+                      className="relative aspect-video overflow-hidden rounded-[10px]"
                     >
                       {media.image?.url && (
                         <Image
@@ -68,11 +76,11 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
 
       {/* Gallery images */}
       {project.galleryImages && project.galleryImages.length > 0 && (
-        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-5 px-5 tablet:grid-cols-2 tablet:px-[30px]">
           {project.galleryImages.map((item, i) => (
             <div
               key={item.id ?? i}
-              className="relative aspect-video overflow-hidden"
+              className="relative aspect-video overflow-hidden rounded-[10px]"
             >
               {item.image?.url && (
                 <Image
@@ -90,11 +98,11 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
 
       {/* Video embed */}
       {project.videoUrl && (
-        <div className="mt-12 aspect-video w-full overflow-hidden">
+        <div className="mt-10 aspect-video w-full overflow-hidden rounded-[10px] px-5 tablet:px-[30px]">
           <iframe
             src={project.videoUrl}
-            title={`Video — ${project.title}`}
-            className="h-full w-full"
+            title={`Vidéo — ${project.title}`}
+            className="h-full w-full rounded-[10px]"
             allowFullScreen
             loading="lazy"
           />

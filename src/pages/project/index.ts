@@ -1,1 +1,1 @@
-// FSD Pages Layer — Project (T8)
+export { ProjectPage } from "./ui/ProjectPage";
