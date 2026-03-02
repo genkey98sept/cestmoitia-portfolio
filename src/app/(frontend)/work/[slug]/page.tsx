@@ -5,6 +5,8 @@ import {
   getProjectSlugs,
 } from "@/entities/project";
 import { ProjectPage } from "@/pages/project";
+import { buildCreativeWorkJsonLd } from "@/shared/lib";
+import { SITE_URL } from "@/shared/config";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -19,11 +21,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
   if (!project) return {};
+  const description = project.category ?? "Projet creatif";
   return {
     title: `${project.title} — cestmoitia`,
-    description: project.category ?? "Projet créatif",
+    description,
     openGraph: {
+      title: `${project.title} — cestmoitia`,
+      description,
+      type: "article",
       images: project.coverImage?.url ? [project.coverImage.url] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
     },
   };
 }
@@ -40,5 +49,25 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  return <ProjectPage slug={slug} />;
+
+  let project = null;
+  try {
+    project = await getProjectBySlug(slug);
+  } catch {
+    // Payload may not be available
+  }
+
+  return (
+    <>
+      {project && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildCreativeWorkJsonLd(project, SITE_URL)),
+          }}
+        />
+      )}
+      <ProjectPage slug={slug} />
+    </>
+  );
 }
