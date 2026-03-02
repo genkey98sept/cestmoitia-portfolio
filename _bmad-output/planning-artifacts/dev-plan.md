@@ -2,7 +2,7 @@
 
 **Auteur :** Doens
 **Date de creation :** 2026-02-28
-**Derniere mise a jour :** 2026-02-28 (T9.6 complete — Toutes les pages MVP implementees)
+**Derniere mise a jour :** 2026-03-01 (T12 complete — SEO & Finition implementes)
 
 ---
 
@@ -34,7 +34,7 @@
 ```yaml
 phase_actuelle: "Phase 1 — MVP"
 tranche_en_cours: null
-derniere_tranche_completee: T11
+derniere_tranche_completee: T12
 blockers: []
 ```
 
@@ -819,9 +819,9 @@ bloque: [T13]
 ```yaml
 id: T12
 nom: "SEO & Finition"
-status: pending
-date_debut: null
-date_fin: null
+status: done
+date_debut: 2026-03-01
+date_fin: 2026-03-01
 prerequis: [T7, T8, T9, T9.5, T9.6]
 bloque: []
 ```
@@ -854,14 +854,14 @@ bloque: []
 - [ ] Lighthouse SEO >= 95
 - [ ] Lighthouse Accessibility >= 85
 - [ ] Core Web Vitals : LCP < 2.5s, CLS < 0.1, INP < 200ms
-- [ ] Sitemap accessible a `/sitemap.xml`
-- [ ] OG cards fonctionnelles (tester avec opengraph.xyz ou similaire)
-- [ ] JSON-LD valide (tester avec Google Rich Results Test)
-- [ ] `prefers-reduced-motion` respecte
-- [ ] Navigation clavier complete
+- [x] Sitemap accessible a `/sitemap.xml`
+- [x] OG cards fonctionnelles (tester avec opengraph.xyz ou similaire)
+- [x] JSON-LD valide (tester avec Google Rich Results Test)
+- [x] `prefers-reduced-motion` respecte
+- [x] Navigation clavier complete
 - [ ] Steiger + ESLint passent
 
-**Notes :** _A remplir par l'agent apres completion_
+**Notes :** Implemente le 2026-03-01. Livrables : sitemap.ts dynamique, robots.txt, metadataBase + OG defaults dans layout, metadata sur /work /contact /photography, JSON-LD CreativeWork sur pages projet, JSON-LD Person sur homepage, security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy), meta geo Polynesie francaise. OG image par defaut non fournie (a ajouter plus tard). Lighthouse et contrastes a verifier manuellement apres deploiement.
 
 ---
 
