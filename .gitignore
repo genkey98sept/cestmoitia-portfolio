@@ -43,3 +43,6 @@ next-env.d.ts
 
 # payload (auto-generated)
 src/payload-types.ts
+
+# media assets (too large for git)
+public/swisstransfer_*
