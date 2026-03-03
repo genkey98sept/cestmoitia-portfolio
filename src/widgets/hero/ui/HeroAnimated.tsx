@@ -30,7 +30,7 @@ export function HeroAnimated() {
   };
 
   return (
-    <div className="flex flex-col gap-8 px-5 tablet:gap-[60px] tablet:px-[30px]">
+    <div className="flex flex-col gap-8 px-5 pt-[50px] tablet:gap-[60px] tablet:px-[30px]">
       {/* H1 Title */}
       <m.h1
         className="font-clash text-[40px] font-semibold uppercase leading-[30px] tracking-[-1.2px] text-text tablet:text-[80px] tablet:leading-[65px] tablet:tracking-[-2px] desktop:text-[227.2px] desktop:leading-[181.76px] desktop:tracking-[-3px]"
@@ -48,7 +48,7 @@ export function HeroAnimated() {
 
       {/* Details Row */}
       <m.div
-        className="flex flex-col gap-6 tablet:flex-row tablet:justify-between"
+        className="flex flex-col items-center gap-8 desktop:grid desktop:w-full desktop:grid-cols-3 desktop:gap-8"
         variants={fadeUp}
         initial="hidden"
         animate="visible"
@@ -59,7 +59,8 @@ export function HeroAnimated() {
         }}
       >
         {/* Location */}
-        <div className="flex flex-col">
+        <div className="flex min-w-0 flex-col items-center text-center">
+          <LocationIcon />
           <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
             BASED IN Puna&apos;auia,
           </p>
@@ -69,7 +70,8 @@ export function HeroAnimated() {
         </div>
 
         {/* Availability */}
-        <div className="flex flex-col">
+        <div className="flex min-w-0 flex-col items-center text-center">
+          <WorldIcon />
           <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
             Available ALL AROUNd
           </p>
@@ -79,7 +81,8 @@ export function HeroAnimated() {
         </div>
 
         {/* Profession */}
-        <div className="flex flex-col">
+        <div className="flex min-w-0 flex-col items-center text-center">
+          <CraftIcon />
           <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
             filmaker / graphiste
           </p>
@@ -113,12 +116,55 @@ export function HeroAnimated() {
             src="/hero-tia.jpg"
             alt="Portrait de Tia, creatif audiovisuel base a Tahiti"
             fill
-            className="object-cover"
+            className="object-cover object-[50%_32%]"
             sizes="(max-width: 810px) 100vw, 1380px"
             priority
           />
         </m.div>
       </div>
     </div>
+  );
+}
+
+function LocationIcon() {
+  return (
+    <span className="mb-3 shrink-0" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="h-7 w-7 text-accent-green">
+        <path
+          d="M12 21s6-5.25 6-10a6 6 0 1 0-12 0c0 4.75 6 10 6 10Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <circle cx="12" cy="11" r="2.5" fill="none" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    </span>
+  );
+}
+
+function WorldIcon() {
+  return (
+    <span className="mb-3 shrink-0" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="h-7 w-7 text-text">
+        <ellipse cx="12" cy="12" rx="9" ry="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
+        <path d="M3 12h18M12 5.5v13M7.5 6.5c1.5 1.25 2.5 3.25 2.5 5.5s-1 4.25-2.5 5.5M16.5 6.5c-1.5 1.25-2.5 3.25-2.5 5.5s1 4.25 2.5 5.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    </span>
+  );
+}
+
+function CraftIcon() {
+  return (
+    <span className="mb-3 shrink-0" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="h-7 w-7 text-accent-blue">
+        <path
+          d="m12 2.5 7 3v6.2c0 4.2-2.8 8-7 9.8-4.2-1.8-7-5.6-7-9.8V5.5l7-3Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path d="m8.8 12.2 2.2 2.2 4.2-4.2" fill="none" stroke="currentColor" strokeWidth="2" />
+      </svg>
+    </span>
   );
 }
