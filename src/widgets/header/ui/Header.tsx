@@ -2,8 +2,8 @@ import { HeaderAnimated } from "./HeaderAnimated";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-bg">
-      <div className="mx-auto max-w-[1440px] pt-[34px]">
+    <header className="flex w-full flex-col gap-[33px] pt-[34px]">
+      <div className="mx-auto w-full max-w-[1440px]">
         <HeaderAnimated />
       </div>
       <div className="h-px w-full bg-border" />
