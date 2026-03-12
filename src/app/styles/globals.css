@@ -5,6 +5,11 @@
  * Source : _bmad-output/planning-artifacts/framer-audit.md section 2
  */
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 @theme {
   /* ── Couleurs ────────────────────────────────────────── */
   --color-bg: #000000;
@@ -29,6 +34,9 @@
   /* ── Rayons ──────────────────────────────────────────── */
   --radius-card: 10px;
   --radius-container: 20px;
+
+  /* ── Animations ──────────────────────────────────────── */
+  --animate-marquee: marquee 30s linear infinite;
 }
 
 /*
