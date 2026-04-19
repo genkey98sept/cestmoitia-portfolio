@@ -1,7 +1,7 @@
 interface SectionHeaderProps {
   number: string;
   label: string;
-  detail: string;
+  detail?: string;
   detailMuted?: boolean;
 }
 
@@ -20,11 +20,12 @@ export function SectionHeader({
         {label}
       </span>
       <span
+        aria-hidden={!detail}
         className={`font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] ${
           detailMuted ? "text-text-secondary" : "text-text"
         }`}
       >
-        {detail}
+        {detail ?? ""}
       </span>
     </div>
   );
