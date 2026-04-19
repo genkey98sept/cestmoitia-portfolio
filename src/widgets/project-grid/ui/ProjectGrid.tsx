@@ -16,7 +16,7 @@ export async function ProjectGrid() {
       className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
       aria-label="Portfolio"
     >
-      <SectionHeader number="01" label={"//Portfolio"} detail="2013 - 2025" />
+      <SectionHeader number="01" label={"//Portfolio"} detail="2019 - 2025" />
 
       {/* Section Title */}
       <div className="mb-8 tablet:mb-12">
