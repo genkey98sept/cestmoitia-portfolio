@@ -27,15 +27,11 @@ export function ServicesAnimated({ services }: ServicesAnimatedProps) {
 
   return (
     <div ref={sectionRef}>
-      <SectionHeader
-        number="03"
-        label={"//Services"}
-        detail="Fast Delivery"
-      />
+      <SectionHeader number="03" label={"//Services"} />
 
       {/* Title */}
       <div className="mb-8 tablet:mb-12">
-        <h2 className="font-clash text-[40px] font-semibold uppercase leading-[30px] text-text tablet:text-[90px] tablet:leading-[70px]">
+        <h2 className="font-clash text-[40px] font-semibold uppercase leading-[1.05] text-text tablet:text-[90px] tablet:leading-[1.05]">
           <span className="block">Services //</span>
           <span className="block">compétence</span>
         </h2>
