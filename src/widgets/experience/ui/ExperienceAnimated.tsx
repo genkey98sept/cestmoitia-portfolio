@@ -27,7 +27,7 @@ export function ExperienceAnimated({ experiences }: ExperienceAnimatedProps) {
   return (
     <div ref={sectionRef}>
       <SectionHeader
-        number="05"
+        number="04"
         label={"//Experience"}
         detail="EXPERIENCE"
         detailMuted={false}
