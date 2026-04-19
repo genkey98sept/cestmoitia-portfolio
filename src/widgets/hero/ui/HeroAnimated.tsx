@@ -48,7 +48,7 @@ export function HeroAnimated() {
 
       {/* Details Row */}
       <m.div
-        className="flex flex-col items-center gap-8 desktop:grid desktop:w-full desktop:grid-cols-3 desktop:gap-8"
+        className="flex flex-col items-center gap-8 desktop:mx-auto desktop:w-full desktop:max-w-[900px] desktop:flex-row desktop:justify-between desktop:gap-8"
         variants={fadeUp}
         initial="hidden"
         animate="visible"
@@ -59,7 +59,7 @@ export function HeroAnimated() {
         }}
       >
         {/* Location */}
-        <div className="flex min-w-0 flex-col items-center text-center">
+        <div className="flex min-w-0 flex-col items-center text-center desktop:items-start desktop:text-left">
           <LocationIcon />
           <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
             BASED IN Puna&apos;auia,
@@ -69,19 +69,8 @@ export function HeroAnimated() {
           </p>
         </div>
 
-        {/* Availability */}
-        <div className="flex min-w-0 flex-col items-center text-center">
-          <WorldIcon />
-          <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
-            Available ALL AROUNd
-          </p>
-          <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
-            worldwidE
-          </p>
-        </div>
-
         {/* Profession */}
-        <div className="flex min-w-0 flex-col items-center text-center">
+        <div className="flex min-w-0 flex-col items-center text-center desktop:items-end desktop:text-right">
           <CraftIcon />
           <p className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
             filmaker / graphiste
@@ -116,7 +105,7 @@ export function HeroAnimated() {
             src="/hero-tia.jpg"
             alt="Portrait de Tia, creatif audiovisuel base a Tahiti"
             fill
-            className="object-cover object-[50%_32%]"
+            className="object-cover object-[50%_24%]"
             sizes="(max-width: 810px) 100vw, 1380px"
             priority
           />
@@ -137,17 +126,6 @@ function LocationIcon() {
           strokeWidth="2"
         />
         <circle cx="12" cy="11" r="2.5" fill="none" stroke="currentColor" strokeWidth="2" />
-      </svg>
-    </span>
-  );
-}
-
-function WorldIcon() {
-  return (
-    <span className="mb-3 shrink-0" aria-hidden="true">
-      <svg viewBox="0 0 24 24" className="h-7 w-7 text-text">
-        <ellipse cx="12" cy="12" rx="9" ry="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
-        <path d="M3 12h18M12 5.5v13M7.5 6.5c1.5 1.25 2.5 3.25 2.5 5.5s-1 4.25-2.5 5.5M16.5 6.5c-1.5 1.25-2.5 3.25-2.5 5.5s1 4.25 2.5 5.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     </span>
   );
