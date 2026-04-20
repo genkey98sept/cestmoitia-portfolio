@@ -173,6 +173,15 @@ export const Projects: CollectionConfig = {
           label: "Description",
         },
         {
+          name: "youtubeUrl",
+          type: "text",
+          label: "Lien YouTube",
+          admin: {
+            description:
+              "URL YouTube (lien de partage, court youtu.be ou d'embed). Affichee en premier, au-dessus des medias.",
+          },
+        },
+        {
           name: "subMedia",
           type: "array",
           label: "Medias",

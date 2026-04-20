@@ -26,6 +26,7 @@ export type SubProject = {
   id?: string;
   subTitle: string;
   subDescription?: unknown;
+  youtubeUrl?: string;
   subMedia?: Array<{ image: Media; id?: string }>;
 };
 

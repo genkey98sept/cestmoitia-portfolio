@@ -23,6 +23,7 @@ function mapSubProject(raw: any): SubProject {
     id: raw.id,
     subTitle: raw.subTitle ?? "",
     subDescription: raw.subDescription,
+    youtubeUrl: raw.youtubeUrl,
     subMedia: raw.subMedia?.map((m: any) => ({
       id: m.id,
       image: typeof m.image === "object" ? mapMedia(m.image) : m.image,
