@@ -33,14 +33,27 @@ export function ContactForm() {
         REMPLISSEZ CE FORMULAIRE
       </h3>
 
-      {/* Honeypot */}
-      <input
-        name="honeypot"
-        className="sr-only"
-        tabIndex={-1}
-        autoComplete="off"
+      {/* Honeypot — hors écran + nom générique pour éviter l'autofill Chrome */}
+      <div
         aria-hidden="true"
-      />
+        style={{
+          position: "absolute",
+          left: "-5000px",
+          width: "1px",
+          height: "1px",
+          overflow: "hidden",
+        }}
+      >
+        <label htmlFor="contact-hp-field">Ne pas remplir</label>
+        <input
+          id="contact-hp-field"
+          name="honeypot"
+          type="text"
+          tabIndex={-1}
+          autoComplete="new-password"
+          defaultValue=""
+        />
+      </div>
 
       {/* Name */}
       <div className="mb-6">
@@ -54,6 +67,7 @@ export function ContactForm() {
           placeholder="Nom*"
           required
           minLength={2}
+          autoComplete="name"
           className="w-full border-0 border-b border-border bg-transparent py-4 font-inter text-[16px] text-text transition-colors placeholder:text-text-muted focus:border-text focus:outline-none"
         />
       </div>
@@ -69,6 +83,7 @@ export function ContactForm() {
           type="email"
           placeholder="Email*"
           required
+          autoComplete="email"
           className="w-full border-0 border-b border-border bg-transparent py-4 font-inter text-[16px] text-text transition-colors placeholder:text-text-muted focus:border-text focus:outline-none"
         />
       </div>

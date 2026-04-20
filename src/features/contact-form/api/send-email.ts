@@ -5,9 +5,23 @@ import { Resend } from "resend";
 import type { ActionResult } from "@/shared/model";
 
 import { contactFormSchema } from "../model/schema";
+import {
+  buildAdminNotificationHtml,
+  buildAdminNotificationSubject,
+  buildAdminNotificationText,
+  buildUserConfirmationHtml,
+  buildUserConfirmationSubject,
+  buildUserConfirmationText,
+} from "./templates";
 
 function getResendClient() {
   return new Resend(process.env.RESEND_API_KEY);
+}
+
+function getFromAddress() {
+  const address = process.env.EMAIL_FROM ?? "onboarding@resend.dev";
+  const name = process.env.EMAIL_NAME ?? "Cestmoitia";
+  return `${name} <${address}>`;
 }
 
 export async function sendContactEmail(
@@ -24,17 +38,55 @@ export async function sendContactEmail(
   if (!parsed.success) {
     return { success: false, error: "Données invalides" };
   }
-  if (parsed.data.honeypot) {
-    return { success: false, error: "Spam détecté" };
+  // Honeypot : si rempli par un bot (ou autofill bug), on fait semblant
+  // d'avoir accepté sans envoyer — pas d'erreur visible.
+  if (parsed.data.honeypot && parsed.data.honeypot.trim() !== "") {
+    return { success: true, data: null };
   }
 
+  const { name, email, message } = parsed.data;
+  const submittedAt = new Date();
+  const resend = getResendClient();
+  const from = getFromAddress();
+  const adminEmail = process.env.ADMIN_EMAIL ?? "cestmoitia@gmail.com";
+
   try {
-    await getResendClient().emails.send({
-      from: process.env.RESEND_FROM ?? "Contact <onboarding@resend.dev>",
-      to: process.env.CONTACT_EMAIL ?? "cestmoitia@gmail.com",
-      subject: `Nouveau message de ${parsed.data.name}`,
-      text: `Nom: ${parsed.data.name}\nEmail: ${parsed.data.email}\n\n${parsed.data.message}`,
-    });
+    const [adminResult, userResult] = await Promise.all([
+      resend.emails.send({
+        from,
+        to: adminEmail,
+        replyTo: email,
+        subject: buildAdminNotificationSubject(name),
+        html: buildAdminNotificationHtml({
+          name,
+          email,
+          message,
+          submittedAt,
+        }),
+        text: buildAdminNotificationText({
+          name,
+          email,
+          message,
+          submittedAt,
+        }),
+      }),
+      resend.emails.send({
+        from,
+        to: email,
+        replyTo: adminEmail,
+        subject: buildUserConfirmationSubject(),
+        html: buildUserConfirmationHtml({ name, email, message }),
+        text: buildUserConfirmationText({ name, email, message }),
+      }),
+    ]);
+
+    if (adminResult.error) {
+      return { success: false, error: "Erreur d'envoi. Réessayez." };
+    }
+    // Si la confirmation utilisateur échoue (ex: email invalide côté Resend),
+    // la demande admin est déjà partie — on considère l'action réussie.
+    void userResult;
+
     return { success: true, data: null };
   } catch {
     return { success: false, error: "Erreur d'envoi. Réessayez." };
