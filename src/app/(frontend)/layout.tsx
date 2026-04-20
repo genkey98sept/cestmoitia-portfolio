@@ -35,11 +35,12 @@ export default function FrontendLayout({
     <html lang="fr" className={`${inter.variable} ${clashDisplay.variable}`}>
       <body>
         <AppProviders>
-          <SmoothScroll />
-          <CustomCursor />
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <SmoothScroll>
+            <CustomCursor />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
         </AppProviders>
       </body>
     </html>

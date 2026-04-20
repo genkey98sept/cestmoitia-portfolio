@@ -2,28 +2,40 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { m, AnimatePresence } from "motion/react";
+
+import { Menu } from "@/widgets/menu";
 
 export function HeaderAnimated() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav
-      className="flex h-[50px] items-center justify-between px-5 desktop:px-[30px]"
-      aria-label="Navigation principale"
-    >
-      {/* Left: Local Time */}
-      <div className="flex h-[50px] w-[110px] items-center desktop:w-[240px]">
-        <LocalClock />
-      </div>
+    <>
+      <nav
+        className="relative z-50 flex h-[50px] items-center justify-between px-5 desktop:px-[30px]"
+        aria-label="Navigation principale"
+      >
+        {/* Left: Local Time */}
+        <div className="flex h-[50px] w-[110px] items-center desktop:w-[240px]">
+          <LocalClock />
+        </div>
 
-      {/* Center: Dot Grid (home link) */}
-      <div className="flex h-[50px] w-[18px] items-center justify-center desktop:w-[240px]">
-        <DotGrid />
-      </div>
+        {/* Center: Menu toggle (4 dots ↔ X) */}
+        <div className="flex h-[50px] w-[44px] items-center justify-center desktop:w-[240px]">
+          <MenuToggle
+            open={menuOpen}
+            onClick={() => setMenuOpen((o) => !o)}
+          />
+        </div>
 
-      {/* Right: CTA Button */}
-      <div className="flex w-[110px] justify-end desktop:w-[240px]">
-        <CTAButton />
-      </div>
-    </nav>
+        {/* Right: CTA Button */}
+        <div className="flex w-[110px] justify-end desktop:w-[240px]">
+          <CTAButton />
+        </div>
+      </nav>
+
+      <Menu open={menuOpen} onClose={() => setMenuOpen(false)} />
+    </>
   );
 }
 
@@ -64,18 +76,60 @@ function LocalClock() {
   );
 }
 
-function DotGrid() {
+function MenuToggle({
+  open,
+  onClick,
+}: {
+  open: boolean;
+  onClick: () => void;
+}) {
   return (
-    <Link
-      href="/"
-      className="grid h-[18px] w-[18px] grid-cols-2 grid-rows-2 place-items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-blue"
-      aria-label="Accueil cestmoitia"
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+      aria-expanded={open}
+      aria-controls="site-menu"
+      className="relative grid h-10 w-10 place-items-center rounded-full transition-colors duration-200 hover:bg-bg-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-blue"
     >
-      <span className="block h-1 w-1 rounded-full bg-text" />
-      <span className="block h-1 w-1 rounded-full bg-text" />
-      <span className="block h-1 w-1 rounded-full bg-text" />
-      <span className="block h-1 w-1 rounded-full bg-text" />
-    </Link>
+      <AnimatePresence mode="wait" initial={false}>
+        {open ? (
+          <m.svg
+            key="x"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            className="absolute text-text"
+            initial={{ opacity: 0, rotate: -45 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            exit={{ opacity: 0, rotate: 45 }}
+            transition={{ duration: 0.2 }}
+            aria-hidden="true"
+          >
+            <path d="M5 5l10 10M5 15L15 5" />
+          </m.svg>
+        ) : (
+          <m.span
+            key="dots"
+            className="absolute grid h-[18px] w-[18px] grid-cols-2 grid-rows-2 place-items-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            aria-hidden="true"
+          >
+            <span className="block h-1 w-1 rounded-full bg-text" />
+            <span className="block h-1 w-1 rounded-full bg-text" />
+            <span className="block h-1 w-1 rounded-full bg-text" />
+            <span className="block h-1 w-1 rounded-full bg-text" />
+          </m.span>
+        )}
+      </AnimatePresence>
+    </button>
   );
 }
 

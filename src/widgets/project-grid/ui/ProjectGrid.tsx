@@ -13,6 +13,7 @@ export async function ProjectGrid() {
 
   return (
     <section
+      id="portfolio"
       className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
       aria-label="Portfolio"
     >

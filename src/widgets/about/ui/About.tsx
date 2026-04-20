@@ -12,6 +12,7 @@ export async function About() {
 
   return (
     <section
+      id="about"
       className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
       aria-label="À propos"
     >
