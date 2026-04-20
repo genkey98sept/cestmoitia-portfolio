@@ -1,27 +1,54 @@
 import Link from "next/link";
 
-import { PhotoGalleryAnimated } from "./PhotoGalleryAnimated";
+import { getGalleryPhotos, type GalleryPhoto } from "@/entities/gallery";
 
-export function PhotographyPage() {
+import { GalleryGrid } from "./GalleryGrid";
+
+export async function PhotographyPage() {
+  let photos: GalleryPhoto[];
+  try {
+    photos = await getGalleryPhotos();
+  } catch {
+    photos = [];
+  }
+
+  const featured = photos.find((p) => p.featured) ?? null;
+  const rest = featured ? photos.filter((p) => p.id !== featured.id) : photos;
+  const hasPhotos = photos.length > 0;
+
   return (
     <>
       {/* Hero title */}
       <section
         className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
-        aria-label="Galerie Photo"
+        aria-label="Galerie"
       >
-        <h1 className="text-center font-clash text-[40px] font-semibold uppercase leading-[30px] text-text tablet:text-[90px] tablet:leading-[70px] desktop:text-[140px] desktop:leading-[110px] desktop:tracking-[-3.2px]">
-          <span className="block">Galerie</span>
-          <span className="block">PHOTO</span>
+        <p className="text-center font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-text-secondary">
+          (Photographie)
+        </p>
+        <h1 className="mt-4 text-center font-clash text-[40px] font-semibold uppercase leading-[1.05] text-text tablet:text-[90px] desktop:text-[140px] desktop:tracking-[-3.2px]">
+          GALERIE
         </h1>
       </section>
 
-      {/* Photo gallery */}
-      <PhotoGalleryAnimated />
+      {/* Gallery */}
+      {hasPhotos ? (
+        <GalleryGrid featured={featured} photos={rest} />
+      ) : (
+        <section
+          className="mx-auto w-full max-w-[1440px] px-5 py-[80px] tablet:px-[30px] tablet:py-[120px]"
+          aria-label="Galerie vide"
+        >
+          <p className="text-center font-inter text-[16px] text-text-muted">
+            Aucune photo n&apos;est encore publiee. Les visuels arriveront tres
+            bientot.
+          </p>
+        </section>
+      )}
 
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="mx-auto w-full max-w-[1440px] px-5 py-[80px] tablet:px-[30px] tablet:py-[120px]">
-        <h2 className="text-center font-clash text-[40px] font-semibold uppercase leading-[30px] text-text tablet:text-[90px] tablet:leading-[70px]">
+        <h2 className="text-center font-clash text-[40px] font-semibold uppercase leading-[1.05] text-text tablet:text-[90px]">
           Un projet ?
         </h2>
         <div className="mt-8 flex justify-center">
