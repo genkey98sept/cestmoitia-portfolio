@@ -1,4 +1,4 @@
-import { getPayloadClient } from "@/shared/lib";
+import { getPayloadClient, normalizeMediaText } from "@/shared/lib";
 
 import type { Project, SubProject, Media } from "../model/types";
 
@@ -6,8 +6,8 @@ import type { Project, SubProject, Media } from "../model/types";
 function mapMedia(raw: any): Media {
   return {
     id: raw.id ?? "",
-    alt: raw.alt ?? "",
-    caption: raw.caption,
+    alt: normalizeMediaText(raw.alt),
+    caption: normalizeMediaText(raw.caption),
     filename: raw.filename ?? "",
     mimeType: raw.mimeType ?? "",
     filesize: raw.filesize ?? 0,

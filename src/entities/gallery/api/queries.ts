@@ -1,4 +1,4 @@
-import { getPayloadClient } from "@/shared/lib";
+import { getPayloadClient, normalizeMediaText } from "@/shared/lib";
 import type { Media } from "@/shared/model";
 
 import type { GalleryPhoto } from "../model/types";
@@ -7,8 +7,8 @@ import type { GalleryPhoto } from "../model/types";
 function mapMedia(raw: any): Media {
   return {
     id: raw.id ?? "",
-    alt: raw.alt ?? "",
-    caption: raw.caption,
+    alt: normalizeMediaText(raw.alt),
+    caption: normalizeMediaText(raw.caption),
     filename: raw.filename ?? "",
     mimeType: raw.mimeType ?? "",
     filesize: raw.filesize ?? 0,
@@ -23,7 +23,7 @@ function mapPhoto(raw: any): GalleryPhoto {
   return {
     id: raw.id ?? "",
     image: typeof raw.image === "object" ? mapMedia(raw.image) : raw.image,
-    caption: raw.caption,
+    caption: normalizeMediaText(raw.caption),
     featured: !!raw.featured,
     displayOrder: raw.displayOrder ?? 0,
     status: raw.status ?? "draft",

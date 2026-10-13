@@ -15,7 +15,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           title={project.title}
           category={project.category}
           imageUrl={project.coverImage?.url ?? ""}
-          imageAlt={project.coverImage?.alt ?? project.title}
+          imageAlt={project.coverImage?.alt || project.title}
         />
       </Link>
     </article>

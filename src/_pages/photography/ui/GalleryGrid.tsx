@@ -50,7 +50,9 @@ export function GalleryGrid({
                 />
               </div>
               <span className="mt-3 flex items-baseline justify-between gap-4 text-sm text-text-muted">
-                <span>{photo.caption || photo.image.alt}</span>
+                <span>
+                  {photo.caption || photo.image.alt || `Photo ${index + 1}`}
+                </span>
                 <span aria-hidden="true" className="text-accent-red">
                   ↗
                 </span>
@@ -96,7 +98,7 @@ export function GalleryGrid({
                 aria-live="polite"
                 aria-atomic="true"
               >
-                {active.caption || active.image.alt}{" "}
+                {active.caption || active.image.alt || `Photo ${selected! + 1}`}{" "}
                 <span className="ml-2 text-text-secondary">
                   {selected! + 1} / {items.length}
                 </span>
