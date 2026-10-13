@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -27,10 +27,14 @@ export function Menu({
   onClose: () => void;
 }) {
   const pathname = usePathname();
+  const previousPathname = useRef(pathname);
   const lenis = useLenis();
 
   useEffect(() => {
-    onClose();
+    if (previousPathname.current !== pathname) {
+      previousPathname.current = pathname;
+      onClose();
+    }
   }, [pathname, onClose]);
   return (
     <Modal
