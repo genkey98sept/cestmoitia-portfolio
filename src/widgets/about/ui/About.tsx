@@ -15,6 +15,7 @@ export async function About() {
   return (
     <section
       id="about"
+      tabIndex={-1}
       className="site-shell section-space"
       aria-label="À propos"
     >

@@ -13,11 +13,16 @@ export function ExperienceAnimated({
 }: {
   experiences: ExperienceItem[];
 }) {
-  if (!experiences.length) return null;
   return (
     <div>
       <SectionHeader number="04" label="Parcours" />
       <h2 className="section-heading mb-8">Expérience</h2>
+      {!experiences.length && (
+        <p className="max-w-xl font-inter text-text-muted">
+          Le détail de mon parcours n’est pas disponible pour le moment.
+          Contactez-moi pour en savoir plus.
+        </p>
+      )}
       <div className="border-b border-border">
         {experiences.map((experience, index) => (
           <div

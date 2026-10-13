@@ -21,6 +21,7 @@ export async function ProjectGrid({
   return (
     <section
       id="portfolio"
+      tabIndex={-1}
       className={`site-shell ${standalone ? "pt-10" : "section-space"}`}
       aria-label="Portfolio"
     >

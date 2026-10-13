@@ -85,12 +85,17 @@ export function Menu({
                     const reduced = window.matchMedia(
                       "(prefers-reduced-motion: reduce)",
                     ).matches;
-                    if (lenis && !reduced)
-                      lenis.scrollTo(target, { offset: -90, force: true });
-                    else
+                    if (lenis && !reduced) {
+                      lenis.scrollTo(target, {
+                        force: true,
+                        onComplete: () => target.focus({ preventScroll: true }),
+                      });
+                    } else {
                       target.scrollIntoView({
                         behavior: reduced ? "auto" : "smooth",
                       });
+                      target.focus({ preventScroll: true });
+                    }
                   });
                 }}
               >

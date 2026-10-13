@@ -30,7 +30,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         instance = new Lenis({
           lerp: 0.08,
           wheelMultiplier: 0.9,
-          anchors: { offset: -90 },
+          anchors: true,
         });
         const raf = (time: number) => {
           instance?.raf(time);
@@ -63,9 +63,17 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const scroll = () => {
       const target = document.getElementById(targetId);
       if (target) {
-        const top = target.getBoundingClientRect().top + window.scrollY - 90;
-        if (lenis) lenis.scrollTo(top, { immediate: true });
-        else window.scrollTo({ top, behavior: "auto" });
+        const padding =
+          Number.parseFloat(
+            getComputedStyle(document.documentElement).scrollPaddingTop,
+          ) || 0;
+        const top = target.getBoundingClientRect().top + window.scrollY - padding;
+        if (lenis) {
+          // Une nouvelle page peut dépasser les dimensions de la précédente.
+          lenis.resize();
+          lenis.scrollTo(top, { immediate: true, force: true });
+        } else window.scrollTo({ top, behavior: "auto" });
+        target.focus({ preventScroll: true });
       } else if (++attempts < 90) frame = requestAnimationFrame(scroll);
     };
     frame = requestAnimationFrame(scroll);

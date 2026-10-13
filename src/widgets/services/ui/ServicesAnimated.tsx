@@ -26,6 +26,12 @@ export function ServicesAnimated({ services }: { services: ServiceItem[] }) {
           </p>
         </div>
         <div className="border-b border-border">
+          {!services.length && (
+            <p className="py-6 font-inter text-text-muted">
+              Le détail des prestations n’est pas disponible pour le moment.
+              Contactez-moi pour parler de votre projet.
+            </p>
+          )}
           {services.map((service, index) => (
             <div key={service.id || index} className="border-t border-border">
               <h3>

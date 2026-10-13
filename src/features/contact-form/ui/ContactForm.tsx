@@ -5,11 +5,18 @@ import { useActionState, useEffect, useRef, useState } from "react";
 import type { ActionResult } from "@/shared/model";
 
 import { sendContactEmail } from "../api/send-email";
+import { contactFormSchema } from "../model/schema";
+
+type ContactField = "name" | "email" | "message";
 
 export function ContactForm() {
   const [fields, setFields] = useState({ name: "", email: "", message: "" });
+  const [fieldErrors, setFieldErrors] = useState<
+    Partial<Record<ContactField, string>>
+  >({});
   const updateField = (field: keyof typeof fields, value: string) => {
     setFields((current) => ({ ...current, [field]: value }));
+    setFieldErrors((current) => ({ ...current, [field]: undefined }));
   };
   const [state, formAction, isPending] = useActionState<
     ActionResult<null> | null,
@@ -47,6 +54,32 @@ export function ContactForm() {
       className="mt-8"
       aria-busy={isPending}
       aria-describedby="contact-helper"
+      onSubmit={(event) => {
+        const data = new FormData(event.currentTarget);
+        if (data.get("honeypot")) return;
+        const parsed = contactFormSchema.safeParse(Object.fromEntries(data));
+        if (parsed.success) {
+          setFieldErrors({});
+          return;
+        }
+        event.preventDefault();
+        const errors: Partial<Record<ContactField, string>> = {};
+        for (const issue of parsed.error.issues) {
+          const field = issue.path[0];
+          if (field === "name" || field === "email" || field === "message") {
+            errors[field] ??= issue.message;
+          }
+        }
+        setFieldErrors(errors);
+        const firstField = (["name", "email", "message"] as const).find(
+          (field) => errors[field],
+        );
+        const input =
+          firstField && event.currentTarget.elements.namedItem(firstField);
+        if (input instanceof HTMLElement) {
+          requestAnimationFrame(() => input.focus());
+        }
+      }}
     >
       <p
         id="contact-helper"
@@ -96,9 +129,19 @@ export function ContactForm() {
           minLength={2}
           autoComplete="name"
           value={fields.name}
+          aria-invalid={fieldErrors.name ? true : undefined}
+          aria-describedby={fieldErrors.name ? "contact-name-error" : undefined}
           onChange={(event) => updateField("name", event.currentTarget.value)}
           className="form-field"
         />
+        {fieldErrors.name && (
+          <p
+            id="contact-name-error"
+            className="mt-2 font-inter text-sm text-accent-red"
+          >
+            {fieldErrors.name}
+          </p>
+        )}
       </div>
 
       {/* Adresse email */}
@@ -118,9 +161,19 @@ export function ContactForm() {
           required
           autoComplete="email"
           value={fields.email}
+          aria-invalid={fieldErrors.email ? true : undefined}
+          aria-describedby={fieldErrors.email ? "contact-email-error" : undefined}
           onChange={(event) => updateField("email", event.currentTarget.value)}
           className="form-field"
         />
+        {fieldErrors.email && (
+          <p
+            id="contact-email-error"
+            className="mt-2 font-inter text-sm text-accent-red"
+          >
+            {fieldErrors.email}
+          </p>
+        )}
       </div>
 
       {/* Message */}
@@ -136,7 +189,8 @@ export function ContactForm() {
           name="message"
           placeholder="Votre projet, vos envies, vos contraintes…"
           maxLength={5000}
-          aria-describedby="contact-message-help"
+          aria-describedby={`contact-message-help${fieldErrors.message ? " contact-message-error" : ""}`}
+          aria-invalid={fieldErrors.message ? true : undefined}
           required
           minLength={10}
           rows={5}
@@ -150,6 +204,14 @@ export function ContactForm() {
         >
           10 caractères minimum.
         </p>
+        {fieldErrors.message && (
+          <p
+            id="contact-message-error"
+            className="mt-2 font-inter text-sm text-accent-red"
+          >
+            {fieldErrors.message}
+          </p>
+        )}
       </div>
 
       {/* Retour de l’envoi */}

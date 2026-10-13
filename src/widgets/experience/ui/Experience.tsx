@@ -13,6 +13,7 @@ export async function Experience() {
   return (
     <section
       id="experience"
+      tabIndex={-1}
       className="site-shell section-space"
       aria-label="Expérience"
     >

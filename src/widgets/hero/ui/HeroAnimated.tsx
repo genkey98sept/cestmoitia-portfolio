@@ -12,7 +12,7 @@ export function HeroAnimated({
 }) {
   return (
     <div>
-      <h1 className="font-clash text-[clamp(48px,14.4vw,205px)] font-semibold uppercase leading-[.95] tracking-[-.045em]">
+      <h1 className="font-clash text-[clamp(40px,14vw,205px)] font-semibold uppercase leading-[.95] tracking-[-.045em]">
         cestmoitia
       </h1>
       <div className="my-7 flex flex-col justify-between gap-5 border-t border-border pt-6 tablet:my-10 tablet:flex-row tablet:items-end">

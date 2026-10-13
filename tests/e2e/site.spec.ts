@@ -251,11 +251,19 @@ test("reduced motion keeps editorial content visible and routes within the viewp
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const width of [390, 1280, 1440]) {
+  for (const width of [320, 390, 1280, 1440]) {
     await page.setViewportSize({ width, height: 800 });
     for (const route of ["/", "/work", "/photography", "/contact"]) {
       await page.goto(route, { waitUntil: "domcontentloaded" });
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      if (route === "/") {
+        const lines = await page.locator("h1").evaluate(
+          (node) =>
+            node.getBoundingClientRect().height /
+            Number.parseFloat(getComputedStyle(node).lineHeight),
+        );
+        expect(lines).toBeLessThanOrEqual(1.01);
+      }
       const headings = page.locator("main h1, main h2");
       for (const heading of await headings.all()) {
         await heading.scrollIntoViewIfNeeded();
@@ -307,4 +315,73 @@ test("editorial content and photography are server-rendered without JavaScript",
   } finally {
     await context.close();
   }
+});
+
+test("menu section links use one header offset and focus their destination", async ({
+  page,
+}) => {
+  for (const reducedMotion of ["no-preference", "reduce"] as const) {
+    await page.emulateMedia({ reducedMotion });
+    for (const route of ["/", "/contact"]) {
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      await page.getByRole("button", { name: "Ouvrir le menu" }).click();
+      const menu = page.getByRole("dialog", { name: "Menu de navigation" });
+      await menu
+        .getByRole("link", { name: "Services", exact: true })
+        .press("Enter");
+      await expect(page).toHaveURL(/\/#services$/);
+      await expect(menu).toHaveCount(0);
+      const target = page.locator("#services");
+      await expect(target).toBeFocused();
+      await expect
+        .poll(() =>
+          target.evaluate((node) =>
+            Math.abs(node.getBoundingClientRect().top - 90),
+          ),
+        )
+        .toBeLessThanOrEqual(2);
+      await page.keyboard.press("Tab");
+      await expect(
+        target.getByRole("button", { name: "Captation Vidéo", exact: true }),
+      ).toBeFocused();
+    }
+  }
+});
+
+test("contact flags whitespace and email formats rejected by the shared schema without submitting", async ({
+  page,
+}) => {
+  await page.goto("/contact");
+  let submissions = 0;
+  page.on("request", (request) => {
+    if (request.method() === "POST") submissions++;
+  });
+  const name = page.getByRole("textbox", { name: "Nom", exact: true });
+  const email = page.getByRole("textbox", { name: "Email", exact: true });
+  const message = page.getByRole("textbox", { name: "Message", exact: true });
+  const submit = page.getByRole("button", { name: "Envoyer le message" });
+  await name.fill(" a ");
+  await email.fill("test@example.com");
+  await message.fill("Un message valide pour ce contrôle.");
+  await submit.click();
+  await expect(name).toHaveAttribute("aria-invalid", "true");
+  await expect(name).toBeFocused();
+  await expect(page.locator("#contact-name-error")).toHaveText(
+    "Saisissez un nom d’au moins 2 caractères.",
+  );
+  await name.fill("Tia");
+  await expect(name).not.toHaveAttribute("aria-invalid", "true");
+  await email.fill("tia@localhost");
+  await message.fill(" bonjour  ");
+  await submit.click();
+  await expect(email).toHaveAttribute("aria-invalid", "true");
+  await expect(message).toHaveAttribute("aria-invalid", "true");
+  await expect(email).toBeFocused();
+  await expect(page.locator("#contact-email-error")).toHaveText(
+    "Saisissez une adresse email valide.",
+  );
+  await expect(page.locator("#contact-message-error")).toHaveText(
+    "Votre message doit contenir au moins 10 caractères.",
+  );
+  expect(submissions).toBe(0);
 });
