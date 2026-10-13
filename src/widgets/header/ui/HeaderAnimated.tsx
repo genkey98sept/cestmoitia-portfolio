@@ -1,12 +1,21 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { Menu } from "./Menu";
 
+const subscribe = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
+
 export function HeaderAnimated() {
+  const isInteractive = useSyncExternalStore(
+    subscribe,
+    clientSnapshot,
+    serverSnapshot,
+  );
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const pathname = usePathname();
@@ -31,12 +40,13 @@ export function HeaderAnimated() {
           </span>
           <button
             type="button"
+            disabled={!isInteractive}
             onClick={() => setMenuOpen(true)}
             aria-label="Ouvrir le menu"
             aria-expanded={menuOpen}
             aria-controls="site-menu"
             aria-haspopup="dialog"
-            className="secondary-link !px-4"
+            className="secondary-link !px-4 disabled:opacity-60"
           >
             Menu <span aria-hidden="true">☰</span>
           </button>

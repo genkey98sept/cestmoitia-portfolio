@@ -1,5 +1,34 @@
 import { expect, test } from "@playwright/test";
 
+test("menu hydration readiness keeps the first interaction usable", async ({
+  page,
+}) => {
+  let releaseScripts: (() => void) | undefined;
+  const scriptsBlocked = new Promise<void>((resolve) => {
+    releaseScripts = resolve;
+  });
+  // Reproduire un chargement lent sans dépendre de la vitesse du réseau.
+  await page.route("**/_next/static/**", async (route) => {
+    if (route.request().resourceType() === "script") await scriptsBlocked;
+    await route.continue();
+  });
+  try {
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const opener = page.getByRole("button", { name: "Ouvrir le menu" });
+    await expect(opener).toBeDisabled();
+    releaseScripts?.();
+    await opener.click();
+    const menu = page.getByRole("dialog", { name: "Menu de navigation" });
+    await expect(menu).toBeVisible();
+    await menu.getByRole("button", { name: "Fermer le menu" }).press("Escape");
+    await expect(menu).toHaveCount(0);
+    await expect(opener).toBeFocused();
+  } finally {
+    releaseScripts?.();
+    await page.unrouteAll({ behavior: "wait" });
+  }
+});
+
 test("public routes render without browser exceptions", async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
