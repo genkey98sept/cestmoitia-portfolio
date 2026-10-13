@@ -5,6 +5,9 @@ onlyBuiltDependencies:
   - esbuild
 overrides:
   # Monaco pins an older DOMPurify with published security advisories.
-  monaco-editor>dompurify: 3.4.15
+  monaco-editor>dompurify: 3.4.16
   # Drizzle's legacy TS loader otherwise brings in vulnerable esbuild 0.18.
   '@esbuild-kit/core-utils>esbuild': 0.25.12
+  # Correctifs compatibles pour les dépendances transitives de Payload et des styles.
+  'undici@^7': 7.29.1
+  source-map-js: 1.2.2
