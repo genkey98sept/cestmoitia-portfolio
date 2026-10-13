@@ -23,7 +23,7 @@ export function ExperienceAnimated({
           Contactez-moi pour en savoir plus.
         </p>
       )}
-      <div className="border-b border-border">
+      <div className={experiences.length ? "border-b border-border" : undefined}>
         {experiences.map((experience, index) => (
           <div
             key={experience.id || index}

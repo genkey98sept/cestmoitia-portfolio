@@ -348,6 +348,26 @@ test("menu section links use one header offset and focus their destination", asy
   }
 });
 
+test("menu section focus survives an interrupted smooth scroll", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Ouvrir le menu" }).click();
+  await page
+    .getByRole("dialog", { name: "Menu de navigation" })
+    .getByRole("link", { name: "Services", exact: true })
+    .press("Enter");
+  const target = page.locator("#services");
+  await expect(target).toBeFocused();
+  await page.mouse.wheel(0, 60);
+  await expect(target).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(
+    target.getByRole("button", { name: "Captation Vidéo", exact: true }),
+  ).toBeFocused();
+});
+
 test("contact flags whitespace and email formats rejected by the shared schema without submitting", async ({
   page,
 }) => {

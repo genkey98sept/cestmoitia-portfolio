@@ -113,6 +113,9 @@
     outline: 2px solid var(--color-accent-red);
     outline-offset: 5px;
   }
+  section[tabindex="-1"]:focus-visible {
+    outline: none;
+  }
   :disabled {
     cursor: not-allowed;
   }

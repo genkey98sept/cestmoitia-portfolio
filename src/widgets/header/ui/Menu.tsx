@@ -85,16 +85,15 @@ export function Menu({
                     const reduced = window.matchMedia(
                       "(prefers-reduced-motion: reduce)",
                     ).matches;
+                    target.focus({ preventScroll: true });
                     if (lenis && !reduced) {
                       lenis.scrollTo(target, {
                         force: true,
-                        onComplete: () => target.focus({ preventScroll: true }),
                       });
                     } else {
                       target.scrollIntoView({
                         behavior: reduced ? "auto" : "smooth",
                       });
-                      target.focus({ preventScroll: true });
                     }
                   });
                 }}
