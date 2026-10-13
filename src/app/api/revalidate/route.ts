@@ -1,16 +1,6 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
-
-const bodySchema = z.union([
-  z.strictObject({ global: z.literal("site-info") }),
-  z.strictObject({
-    collection: z.literal("projects"),
-    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).optional(),
-  }),
-  z.strictObject({ collection: z.literal("gallery") }),
-  z.strictObject({}),
-]);
+import { revalidationBodySchema } from "@/shared/model/revalidation";
 
 export async function POST(request: NextRequest) {
   const secret = request.headers.get("x-revalidation-secret");
@@ -26,7 +16,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  const parsed = bodySchema.safeParse(input);
+  const parsed = revalidationBodySchema.safeParse(input);
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid revalidation target" }, { status: 400 });
   }

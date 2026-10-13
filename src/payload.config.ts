@@ -36,15 +36,25 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    ...(process.env.BLOB_READ_WRITE_TOKEN
-      ? [
-          vercelBlobStorage({
-            collections: {
-              media: true,
-            },
-            token: process.env.BLOB_READ_WRITE_TOKEN,
-          }),
-        ]
-      : []),
+    async (config) => {
+      // Enregistrer le provider même en local pour stabiliser l'import map.
+      const withStorage = await vercelBlobStorage({
+        collections: { media: true },
+        clientUploads: false,
+        enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+        token: process.env.BLOB_READ_WRITE_TOKEN || "",
+      })(config);
+
+      // Sans préfixe ni upload client, filename suffit à retrouver les fichiers.
+      // Le champ technique ajouté par le plugin ne doit pas modifier le schéma SQL.
+      for (const collection of withStorage.collections || []) {
+        if (collection.slug === "media") {
+          collection.fields = collection.fields.filter(
+            (field) => !("name" in field && field.name === "_objectKey"),
+          );
+        }
+      }
+      return withStorage;
+    },
   ],
 });

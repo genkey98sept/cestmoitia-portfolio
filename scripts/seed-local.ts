@@ -4,6 +4,7 @@ import path from "node:path";
 import { getPayload } from "payload";
 import config from "../src/payload.config";
 import { siteInfoSeed } from "./seed-data/site-info";
+import { findSeedMedia } from "./seed-helpers";
 
 process.env.DISABLE_PAYLOAD_HMR = "true";
 
@@ -26,15 +27,12 @@ try {
   const directory = path.resolve("public/photography");
   const filenames = fs.readdirSync(directory).filter((name) => /\.jpe?g$/i.test(name)).sort();
   for (const [index, filename] of filenames.entries()) {
-    const existingMedia = await payload.find({
-      collection: "media",
-      where: { filename: { equals: filename } },
-      limit: 1,
-    });
-    const media = existingMedia.docs[0] ?? await payload.create({
+    const filePath = path.join(directory, filename);
+    const existingMedia = await findSeedMedia(payload, filename, fs.readFileSync(filePath));
+    const media = existingMedia ?? await payload.create({
       collection: "media",
       data: { alt: filename.replace(/^\d+-|\.jpg$/g, "").replaceAll("-", " ") },
-      filePath: path.join(directory, filename),
+      filePath,
     });
     const existingPhoto = await payload.find({
       collection: "gallery",
