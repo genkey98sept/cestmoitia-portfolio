@@ -70,7 +70,7 @@ Ne jamais versionner `.env.local`, les secrets, les médias locaux ou une sauveg
 
 L'import vérifie les fichiers avant toute modification, réutilise les médias/projets déjà importés et signale un échec par un code de sortie non nul. `pnpm seed:media` importe uniquement les médias ; `pnpm seed:data` importe les textes et projets avec les médias déjà en base. Le seed historique réapplique les informations du site.
 
-**`pnpm seed:clean` supprime les projets et médias avant réimport.** Ne pas l'utiliser sur une base contenant des modifications à conserver. Vérifier `DATABASE_URL` avant toute opération de seed ou de migration.
+**`pnpm seed:clean` supprime les projets, la galerie et les médias avant réimport.** Ne pas l'utiliser sur une base contenant des modifications à conserver. Vérifier `DATABASE_URL` avant toute opération de seed ou de migration.
 
 ## Vérifications
 

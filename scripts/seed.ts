@@ -12,6 +12,7 @@ import "./load-env.mjs";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
+import { cleanSeedCollections, findSeedMedia } from "./seed-helpers";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -87,17 +88,9 @@ async function main() {
   async function cleanDatabase() {
     log("🗑️", "Nettoyage de la base de données...");
 
-    const projects = await payload.find({ collection: "projects", limit: 1000 });
-    for (const project of projects.docs) {
-      await payload.delete({ collection: "projects", id: project.id });
-    }
-    log("✓", `${projects.docs.length} projet(s) supprimé(s)`);
-
-    const media = await payload.find({ collection: "media", limit: 1000 });
-    for (const m of media.docs) {
-      await payload.delete({ collection: "media", id: m.id });
-    }
-    log("✓", `${media.docs.length} média(s) supprimé(s)`);
+    await cleanSeedCollections(payload, (collection, count) => {
+      log("✓", `${count} document(s) supprimé(s) de ${collection}`);
+    });
 
     log("✓", "Base de données nettoyée");
   }
@@ -122,17 +115,13 @@ async function main() {
 
       const ext = path.extname(filePath);
       const filename = normalizeFilename(key, ext);
-      const existing = await payload.find({
-        collection: "media",
-        where: { filename: { equals: filename } },
-        limit: 1,
-      });
-      if (existing.docs[0]) {
-        mediaIdRegistry[key] = existing.docs[0].id;
+      const fileBuffer = fs.readFileSync(filePath);
+      const existing = await findSeedMedia(payload, filename, fileBuffer);
+      if (existing) {
+        mediaIdRegistry[key] = existing.id;
         continue;
       }
       const mimeType = getMimeType(ext);
-      const fileBuffer = fs.readFileSync(filePath);
       const fileSize = fs.statSync(filePath).size;
 
       try {
@@ -174,13 +163,11 @@ async function main() {
   async function loadExistingMediaIds() {
     log("🔍", "Chargement des médias existants...");
 
-    const allMedia = await payload.find({ collection: "media", limit: 1000 });
-
-    for (const [key] of Object.entries(mediaMap)) {
-      const found = allMedia.docs.find((m) => {
-        const mFilename = typeof m.filename === "string" ? m.filename : "";
-        return mFilename.startsWith(key);
-      });
+    for (const [key, entry] of Object.entries(mediaMap)) {
+      const filePath = resolveMediaPath(entry.sourcePath);
+      const filename = normalizeFilename(key, path.extname(filePath));
+      const source = fs.existsSync(filePath) ? fs.readFileSync(filePath) : undefined;
+      const found = await findSeedMedia(payload, filename, source);
       if (found) {
         mediaIdRegistry[key] = found.id;
       }
