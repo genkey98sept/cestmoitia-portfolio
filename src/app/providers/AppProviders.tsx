@@ -1,7 +1,7 @@
 "use client";
 
-import { MotionProvider } from "@/shared/ui";
+import { SmoothScroll } from "@/shared/ui";
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
-  return <MotionProvider>{children}</MotionProvider>;
+  return <SmoothScroll>{children}</SmoothScroll>;
 }

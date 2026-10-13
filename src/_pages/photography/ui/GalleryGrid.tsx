@@ -44,6 +44,7 @@ export function GalleryGrid({
                   }
                   width={photo.image.width || 1200}
                   height={photo.image.height || 1600}
+                  loading={index === 0 ? "eager" : "lazy"}
                   sizes="(max-width: 810px) 92vw, (max-width: 1200px) 46vw, (max-width: 1440px) 30vw, 424px"
                   className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transform-none"
                 />

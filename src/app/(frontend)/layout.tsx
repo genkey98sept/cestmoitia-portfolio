@@ -4,7 +4,6 @@ import { inter, clashDisplay } from "@/app/fonts";
 import { AppProviders } from "@/app/providers";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
-import { SmoothScroll } from "@/shared/ui";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/shared/config";
 import "@/app/styles/globals.css";
 
@@ -35,16 +34,14 @@ export default function FrontendLayout({
     <html lang="fr" className={`${inter.variable} ${clashDisplay.variable}`}>
       <body>
         <AppProviders>
-          <SmoothScroll>
-            <a href="#main-content" className="skip-link">
-              Aller au contenu
-            </a>
-            <Header />
-            <main id="main-content" tabIndex={-1}>
-              {children}
-            </main>
-            <Footer />
-          </SmoothScroll>
+          <a href="#main-content" className="skip-link">
+            Aller au contenu
+          </a>
+          <Header />
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
         </AppProviders>
       </body>
     </html>
