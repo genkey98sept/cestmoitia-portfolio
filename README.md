@@ -81,12 +81,14 @@ pnpm check                  # Génération Payload, ESLint, architecture FSD, Ty
 pnpm test:integration       # Base locale initialisée : contrôle réel des droits brouillon/publication
 pnpm exec playwright install chromium  # Ou PLAYWRIGHT_CHANNEL=chrome dans .env.local
 pnpm test:e2e               # Navigation, galerie, contact sans envoi, admin et webhook ; desktop/mobile
-pnpm build                  # Build de production (base disponible)
+pnpm build                  # Génération Payload puis build de production (base disponible)
 pnpm start                  # Serveur de production après build
 pnpm audit                  # Vulnérabilités publiées des dépendances
 ```
 
 `CAPTURE_UI=1 pnpm test:e2e` sauvegarde les vues des quatre pages publiques sur ordinateur et mobile dans `test-results/` (non versionné).
+
+Le build régénère les types Payload ignorés par Git et l’import map avant la compilation Next.js. Il fonctionne ainsi sur un checkout neuf, y compris sur Vercel, sans dépendre d’un précédent `pnpm check`.
 
 Au 12 octobre 2026, les correctifs disponibles sont intégrés. `pnpm audit` signale encore [l'avis non corrigé sur `braces`](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), une dépendance transitive de l'outillage et de Payload. Cet avis reste visible dans l'audit ; aucune exclusion ne le masque.
 
