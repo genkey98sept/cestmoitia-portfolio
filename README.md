@@ -1,6 +1,6 @@
 # cestmoitia — portfolio de Tia
 
-Portfolio Next.js (App Router), React, TypeScript et Tailwind CSS, avec Payload CMS et PostgreSQL. Les contenus se gèrent dans `/admin` : projets, galerie, médias et informations du site. Motion et Lenis assurent les animations et le défilement.
+Portfolio Next.js (App Router), React, TypeScript et Tailwind CSS, avec Payload CMS et PostgreSQL. Les contenus se gèrent dans `/admin` : projets, galerie, médias et informations du site. Lenis assure le défilement en respectant la préférence de mouvement réduit.
 
 ## Installation locale
 
@@ -70,6 +70,8 @@ Ne jamais versionner `.env.local`, les secrets, les médias locaux ou une sauveg
 
 L'import vérifie les fichiers avant toute modification, réutilise les médias/projets déjà importés et signale un échec par un code de sortie non nul. `pnpm seed:media` importe uniquement les médias ; `pnpm seed:data` importe les textes et projets avec les médias déjà en base. Le seed historique réapplique les informations du site.
 
+Si Payload a renommé un fichier lors d'une collision, fournir l'archive source pour vérifier son contenu et retrouver le bon média. Sans archive, `seed:data` accepte uniquement les noms d'origine ; il refuse de deviner à partir d'un suffixe.
+
 **`pnpm seed:clean` supprime les projets, la galerie et les médias avant réimport.** Ne pas l'utiliser sur une base contenant des modifications à conserver. Vérifier `DATABASE_URL` avant toute opération de seed ou de migration.
 
 ## Vérifications
@@ -83,6 +85,10 @@ pnpm build                  # Build de production (base disponible)
 pnpm start                  # Serveur de production après build
 pnpm audit                  # Vulnérabilités publiées des dépendances
 ```
+
+`CAPTURE_UI=1 pnpm test:e2e` sauvegarde les vues des quatre pages publiques sur ordinateur et mobile dans `test-results/` (non versionné).
+
+Au 12 octobre 2026, les correctifs disponibles sont intégrés. `pnpm audit` signale encore [l'avis non corrigé sur `braces`](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), une dépendance transitive de l'outillage et de Payload. Cet avis reste visible dans l'audit ; aucune exclusion ne le masque.
 
 Les tests d'intégration créent des contenus temporaires puis les suppriment. Les tests navigateur utilisent le serveur local existant ou le démarrent automatiquement ; arrêter `pnpm start` pour tester explicitement le mode développement. Le scénario contact est ignoré lorsqu'une clé Resend est configurée. Sur ce Mac, `PLAYWRIGHT_CHANNEL=chrome` réutilise Google Chrome déjà installé. Les tests CMS utilisent `--test-force-exit`, car Payload conserve une connexion PostgreSQL réservée après `destroy()`.
 
