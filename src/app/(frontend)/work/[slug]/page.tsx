@@ -4,8 +4,8 @@ import {
   getProjectBySlug,
   getProjectSlugs,
 } from "@/entities/project";
-import { ProjectPage } from "@/pages/project";
-import { buildCreativeWorkJsonLd } from "@/shared/lib";
+import { ProjectPage } from "@/_pages/project";
+import { buildCreativeWorkJsonLd, serializeJsonLd } from "@/shared/lib";
 import { SITE_URL } from "@/shared/config";
 
 interface Props {
@@ -63,7 +63,7 @@ export default async function Page({ params }: Props) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildCreativeWorkJsonLd(project, SITE_URL)),
+            __html: serializeJsonLd(buildCreativeWorkJsonLd(project, SITE_URL)),
           }}
         />
       )}

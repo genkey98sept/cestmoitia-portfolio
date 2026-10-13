@@ -1,6 +1,6 @@
 import { getSiteInfo } from "@/entities/site-info";
-import { HomePage } from "@/pages/home";
-import { buildPersonJsonLd } from "@/shared/lib";
+import { HomePage } from "@/_pages/home";
+import { buildPersonJsonLd, serializeJsonLd } from "@/shared/lib";
 import { SITE_URL } from "@/shared/config";
 
 export default async function Page() {
@@ -17,7 +17,7 @@ export default async function Page() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(buildPersonJsonLd(siteInfo, SITE_URL)),
+            __html: serializeJsonLd(buildPersonJsonLd(siteInfo, SITE_URL)),
           }}
         />
       )}

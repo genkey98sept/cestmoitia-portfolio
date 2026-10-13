@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -31,15 +31,15 @@ interface MenuProps {
   onClose: () => void;
 }
 
+const subscribeToHydration = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
+
 export function Menu({ open, onClose }: MenuProps) {
   const lenis = useLenis();
   const pathname = usePathname();
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(subscribeToHydration, clientSnapshot, serverSnapshot);
 
   useEffect(() => {
     if (!open) return;
@@ -97,7 +97,7 @@ export function Menu({ open, onClose }: MenuProps) {
       // page's HashScroller can move the viewport. Otherwise the .lenis-stopped
       // class (overflow:hidden on <html>) blocks window.scrollTo on arrival.
       lenis?.start();
-      document.body.style.overflow = "";
+      document.body.style.removeProperty("overflow");
       onClose();
       // Default Link behavior triggers navigation with scroll={false}.
     }
@@ -106,7 +106,7 @@ export function Menu({ open, onClose }: MenuProps) {
   function handlePageClick() {
     // Same unlock for page nav so the destination page can scroll.
     lenis?.start();
-    document.body.style.overflow = "";
+    document.body.style.removeProperty("overflow");
     onClose();
   }
 

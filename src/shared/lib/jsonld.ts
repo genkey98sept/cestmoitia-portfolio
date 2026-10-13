@@ -1,3 +1,7 @@
+export function serializeJsonLd(value: Record<string, unknown>): string {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
 interface PersonJsonLdInput {
   email: string;
   location?: {

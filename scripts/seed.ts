@@ -8,6 +8,7 @@
  *   npx tsx scripts/seed.ts --data-only  # SiteInfo + Projets uniquement (médias déjà uploadés)
  */
 
+import "./load-env.mjs";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
@@ -15,32 +16,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, "..");
-
-// ─── Charger l'env AVANT tout ────────────────────────
-function loadEnvFile(filePath: string) {
-  if (!fs.existsSync(filePath)) return;
-  const content = fs.readFileSync(filePath, "utf-8");
-  for (const line of content.split("\n")) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const eqIndex = trimmed.indexOf("=");
-    if (eqIndex === -1) continue;
-    const key = trimmed.slice(0, eqIndex).trim();
-    let value = trimmed.slice(eqIndex + 1).trim();
-    if (
-      (value.startsWith('"') && value.endsWith('"')) ||
-      (value.startsWith("'") && value.endsWith("'"))
-    ) {
-      value = value.slice(1, -1);
-    }
-    if (!process.env[key]) {
-      process.env[key] = value;
-    }
-  }
-}
-
-loadEnvFile(path.resolve(PROJECT_ROOT, ".env.local"));
-loadEnvFile(path.resolve(PROJECT_ROOT, ".env"));
+process.env.DISABLE_PAYLOAD_HMR = "true";
 
 // ─── Imports dynamiques (après chargement env) ──────
 async function main() {
@@ -55,9 +31,16 @@ async function main() {
   const FLAG_CLEAN = args.includes("--clean");
   const FLAG_MEDIA_ONLY = args.includes("--media-only");
   const FLAG_DATA_ONLY = args.includes("--data-only");
+  if (FLAG_MEDIA_ONLY && FLAG_DATA_ONLY) {
+    throw new Error("--media-only et --data-only sont incompatibles.");
+  }
+  if (FLAG_CLEAN && FLAG_DATA_ONLY) {
+    throw new Error("--clean supprimerait les médias nécessaires à --data-only.");
+  }
+  let failures = 0;
 
   // ─── Media ID registry ───────────────────────────
-  const mediaIdRegistry: Record<string, number | string> = {};
+  const mediaIdRegistry: Record<string, number> = {};
 
   // ─── Helpers ─────────────────────────────────────
   function log(emoji: string, msg: string) {
@@ -70,6 +53,16 @@ async function main() {
 
   function resolveMediaPath(sourcePath: string): string {
     return path.resolve(PROJECT_ROOT, MEDIA_ROOT, sourcePath);
+  }
+
+  // Validate the complete archive before connecting or deleting any content.
+  if (!FLAG_DATA_ONLY) {
+    const missing = Object.values(mediaMap).filter(
+      ({ sourcePath }) => !fs.existsSync(resolveMediaPath(sourcePath)),
+    );
+    if (missing.length) {
+      throw new Error(`${missing.length} médias absents de ${MEDIA_ROOT}. Renseignez SEED_MEDIA_ROOT ou utilisez pnpm seed:local pour les photos incluses dans Git.`);
+    }
   }
 
   function getMimeType(ext: string): string {
@@ -129,6 +122,15 @@ async function main() {
 
       const ext = path.extname(filePath);
       const filename = normalizeFilename(key, ext);
+      const existing = await payload.find({
+        collection: "media",
+        where: { filename: { equals: filename } },
+        limit: 1,
+      });
+      if (existing.docs[0]) {
+        mediaIdRegistry[key] = existing.docs[0].id;
+        continue;
+      }
       const mimeType = getMimeType(ext);
       const fileBuffer = fs.readFileSync(filePath);
       const fileSize = fs.statSync(filePath).size;
@@ -165,6 +167,7 @@ async function main() {
     }
 
     log("✅", `Upload terminé: ${uploaded} réussis, ${failed} échoués`);
+    failures += failed;
   }
 
   // ─── Phase 1b: Charger IDs existants ─────────────
@@ -191,7 +194,7 @@ async function main() {
     log("🏠", "Mise à jour du SiteInfo...");
 
     await payload.updateGlobal({
-      slug: "site-info" as "site-info",
+      slug: "site-info",
       data: siteInfoSeed as Record<string, unknown>,
     });
 
@@ -199,7 +202,7 @@ async function main() {
   }
 
   // ─── Phase 3: Seed Projects ──────────────────────
-  function resolveMediaId(key: string): number | string | null {
+  function resolveMediaId(key: string): number | null {
     const id = mediaIdRegistry[key];
     if (!id) {
       log("⚠️", `Média non trouvé pour la clé: ${key}`);
@@ -215,6 +218,17 @@ async function main() {
       const coverId = resolveMediaId(project.coverImageKey);
       if (!coverId) {
         log("❌", `SKIP ${project.title}: cover image manquante (${project.coverImageKey})`);
+        failures++;
+        continue;
+      }
+
+      const existing = await payload.find({
+        collection: "projects",
+        where: { slug: { equals: project.slug } },
+        limit: 1,
+      });
+      if (existing.docs.length) {
+        log("✓", `Projet existant conservé : ${project.title}`);
         continue;
       }
 
@@ -223,7 +237,7 @@ async function main() {
           const id = resolveMediaId(key);
           return id ? { image: id } : null;
         })
-        .filter(Boolean);
+        .filter((item): item is { image: number } => item !== null);
 
       const subProjects = project.subProjects.map((sub) => {
         const subMedia = sub.subMediaKeys
@@ -231,7 +245,7 @@ async function main() {
             const id = resolveMediaId(key);
             return id ? { image: id } : null;
           })
-          .filter(Boolean);
+          .filter((item): item is { image: number } => item !== null);
 
         return {
           subTitle: sub.subTitle,
@@ -263,10 +277,11 @@ async function main() {
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
         log("❌", `ERREUR création ${project.title}: ${message}`);
+        failures++;
       }
     }
 
-    log("✅", "Tous les projets ont été créés");
+    log("✓", "Import des projets terminé");
   }
 
   // ─── Exécution ───────────────────────────────────
@@ -275,39 +290,38 @@ async function main() {
   log("🚀", "=== SEED PAYLOAD CMS ===");
   log("📋", `Flags: clean=${FLAG_CLEAN} media-only=${FLAG_MEDIA_ONLY} data-only=${FLAG_DATA_ONLY}`);
 
-  // Handler global pour les erreurs de connexion DB non gérées
-  process.on("unhandledRejection", (err) => {
-    log("⚠️", `Unhandled rejection: ${err instanceof Error ? err.message : String(err)}`);
-  });
-
   log("⚙️", "Initialisation de Payload...");
   const payload = await getPayload({ config });
   log("✅", "Payload initialisé");
 
-  if (FLAG_CLEAN) {
-    await cleanDatabase();
+  try {
+    if (FLAG_CLEAN) {
+      await cleanDatabase();
+    }
+
+    if (!FLAG_DATA_ONLY) {
+      await uploadMedia();
+    } else {
+      await loadExistingMediaIds();
+    }
+
+    if (!FLAG_MEDIA_ONLY) {
+      await seedSiteInfo();
+      await seedProjects();
+    }
+
+    const duration = ((Date.now() - startTime) / 1000).toFixed(1);
+    log("🎉", "=== SEED TERMINÉ ===");
+    log("📊", `Médias en registre: ${Object.keys(mediaIdRegistry).length}`);
+    log("⏱️", `Durée totale: ${duration}s`);
+
+    if (failures) throw new Error(`Import incomplet : ${failures} erreur(s).`);
+  } finally {
+    await payload.destroy();
   }
-
-  if (!FLAG_DATA_ONLY) {
-    await uploadMedia();
-  } else {
-    await loadExistingMediaIds();
-  }
-
-  if (!FLAG_MEDIA_ONLY) {
-    await seedSiteInfo();
-    await seedProjects();
-  }
-
-  const duration = ((Date.now() - startTime) / 1000).toFixed(1);
-  log("🎉", "=== SEED TERMINÉ ===");
-  log("📊", `Médias en registre: ${Object.keys(mediaIdRegistry).length}`);
-  log("⏱️", `Durée totale: ${duration}s`);
-
-  process.exit(0);
 }
 
-main().catch((err) => {
+main().then(() => process.exit(0)).catch((err) => {
   console.error("ERREUR FATALE:", err);
   process.exit(1);
 });

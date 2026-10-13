@@ -11,7 +11,7 @@ export async function revalidateProject(slug?: string) {
     revalidatePath(`/work/${slug}`);
   }
 
-  revalidateTag("projects");
+  revalidateTag("projects", { expire: 0 });
 }
 
 export async function revalidateSiteInfo() {
@@ -20,5 +20,5 @@ export async function revalidateSiteInfo() {
   revalidatePath("/photography");
   revalidatePath("/contact");
 
-  revalidateTag("site-info");
+  revalidateTag("site-info", { expire: 0 });
 }

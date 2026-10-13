@@ -4,6 +4,11 @@ import { defineConfig } from "steiger";
 export default defineConfig([
   ...fsd.configs.recommended,
   {
+    // _pages is the documented Next.js/FSD prefix. Other FSD checks still apply.
+    files: ["**/_pages", "**/_pages/**"],
+    rules: { "fsd/typo-in-layer-name": "off" },
+  },
+  {
     // Ignore Next.js routing directory — not part of FSD
     ignores: ["**/app/**"],
   },

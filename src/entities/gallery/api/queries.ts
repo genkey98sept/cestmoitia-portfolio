@@ -1,5 +1,5 @@
 import { getPayloadClient } from "@/shared/lib";
-import type { Media } from "@/entities/project";
+import type { Media } from "@/shared/model";
 
 import type { GalleryPhoto } from "../model/types";
 

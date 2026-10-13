@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/playwright-report/
+/test-results/
+/.local/
 
 # next.js
 /.next/
@@ -43,6 +46,7 @@ next-env.d.ts
 
 # payload (auto-generated)
 src/payload-types.ts
+/media/
 
 # media assets (too large for git)
 public/swisstransfer_*

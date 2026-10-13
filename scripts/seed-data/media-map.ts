@@ -6,6 +6,7 @@
  */
 
 export const MEDIA_ROOT =
+  process.env.SEED_MEDIA_ROOT ||
   "public/swisstransfer_019ba9cd-bb4c-4317-b1e5-85ddac5b7a52/Portfolio 2026 maybe";
 
 export type MediaEntry = {

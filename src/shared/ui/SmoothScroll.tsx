@@ -26,6 +26,8 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       touchMultiplier: 1.1,
       syncTouch: true,
     });
+    // Publish this browser-only external instance to context after mounting.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLenis(instance);
 
     let rafId = 0;

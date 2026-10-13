@@ -19,7 +19,7 @@ export const Gallery: CollectionConfig = {
   },
   defaultSort: "displayOrder",
   access: {
-    read: () => true,
+    read: ({ req }) => req.user ? true : { status: { equals: "published" } },
     create: ({ req }) => !!req.user,
     update: ({ req }) => !!req.user,
     delete: ({ req }) => !!req.user,
@@ -29,7 +29,7 @@ export const Gallery: CollectionConfig = {
       ({ doc }) => {
         try {
           revalidatePath("/photography");
-          revalidateTag("gallery");
+          revalidateTag("gallery", { expire: 0 });
         } catch {
           // Safe to ignore during build/seed
         }
@@ -40,7 +40,7 @@ export const Gallery: CollectionConfig = {
       ({ doc }) => {
         try {
           revalidatePath("/photography");
-          revalidateTag("gallery");
+          revalidateTag("gallery", { expire: 0 });
         } catch {
           // Safe to ignore during build/seed
         }

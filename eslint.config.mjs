@@ -1,18 +1,10 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTypescript from "eslint-config-next/typescript";
 
 /** @type {import('eslint').Linter.Config[]} */
 const eslintConfig = [
-  // Next.js core-web-vitals + TypeScript (loaded via FlatCompat)
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...nextVitals,
+  ...nextTypescript,
 
   // Global ignores
   {
@@ -22,7 +14,18 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
       "src/app/(payload)/admin/importMap.js",
-      "scripts/**",
+      "src/payload-types.ts",
+      "_bmad/**",
+      "_bmad-output/**",
+      ".agents/**",
+      ".claude/**",
+      ".cursor/**",
+      "media/**",
+      "playwright-report/**",
+      "test-results/**",
+      ".local/**",
+      // Historical one-off scraper; its untyped browser snapshots are not app code.
+      "scripts/scrape-framer.ts",
     ],
   },
 
@@ -49,8 +52,8 @@ const eslintConfig = [
                 "Use widgets/* public API only (import from index.ts).",
             },
             {
-              group: ["@/pages/*/*", "!@/pages/*/index*"],
-              message: "Use pages/* public API only (import from index.ts).",
+              group: ["@/_pages/*/*", "!@/_pages/*/index*"],
+              message: "Use _pages/* public API only (import from index.ts).",
             },
           ],
         },

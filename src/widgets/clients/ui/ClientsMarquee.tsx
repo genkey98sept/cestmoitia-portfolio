@@ -36,7 +36,8 @@ export function ClientsMarquee() {
     );
 
     const onVisibility = () => {
-      document.hidden ? anim.pause() : anim.play();
+      if (document.hidden) anim.pause();
+      else anim.play();
     };
     document.addEventListener("visibilitychange", onVisibility);
 
@@ -81,6 +82,7 @@ export function ClientsMarquee() {
               src={logo.src}
               alt={logo.alt}
               fill
+              sizes="100px"
               className="object-contain"
             />
           </div>

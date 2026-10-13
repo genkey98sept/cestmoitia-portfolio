@@ -1,4 +1,4 @@
-import type { Media } from "@/entities/project";
+import type { Media } from "@/shared/model";
 
 export type GalleryPhoto = {
   id: string;

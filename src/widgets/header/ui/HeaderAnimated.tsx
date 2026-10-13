@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { m, AnimatePresence } from "motion/react";
 
-import { Menu } from "@/widgets/menu";
+import { Menu } from "./Menu";
 
 export function HeaderAnimated() {
   const [menuOpen, setMenuOpen] = useState(false);

@@ -11,4 +11,4 @@ export const metadata: Metadata = {
   },
 };
 
-export { PhotographyPage as default } from "@/pages/photography";
+export { PhotographyPage as default } from "@/_pages/photography";

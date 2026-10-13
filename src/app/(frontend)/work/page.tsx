@@ -11,4 +11,4 @@ export const metadata: Metadata = {
   },
 };
 
-export { WorkPage as default } from "@/pages/work";
+export { WorkPage as default } from "@/_pages/work";

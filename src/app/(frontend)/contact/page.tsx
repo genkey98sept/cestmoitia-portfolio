@@ -11,4 +11,4 @@ export const metadata: Metadata = {
   },
 };
 
-export { ContactPage as default } from "@/pages/contact";
+export { ContactPage as default } from "@/_pages/contact";

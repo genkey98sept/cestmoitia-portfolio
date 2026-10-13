@@ -16,7 +16,7 @@ export const SiteInfo: GlobalConfig = {
           revalidatePath("/work");
           revalidatePath("/photography");
           revalidatePath("/contact");
-          revalidateTag("site-info");
+          revalidateTag("site-info", { expire: 0 });
         } catch {
           // Revalidation can fail during build/seed — safe to ignore
         }

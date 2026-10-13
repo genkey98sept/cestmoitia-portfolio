@@ -12,7 +12,7 @@ export const Projects: CollectionConfig = {
     defaultColumns: ["title", "client", "status", "displayOrder", "updatedAt"],
   },
   access: {
-    read: () => true,
+    read: ({ req }) => req.user ? true : { status: { equals: "published" } },
     create: ({ req }) => !!req.user,
     update: ({ req }) => !!req.user,
     delete: ({ req }) => !!req.user,
@@ -55,7 +55,7 @@ export const Projects: CollectionConfig = {
           if (slug) {
             revalidatePath(`/work/${slug}`);
           }
-          revalidateTag("projects");
+          revalidateTag("projects", { expire: 0 });
         } catch {
           // Revalidation can fail during build/seed — safe to ignore
         }
@@ -72,7 +72,7 @@ export const Projects: CollectionConfig = {
           if (slug) {
             revalidatePath(`/work/${slug}`);
           }
-          revalidateTag("projects");
+          revalidateTag("projects", { expire: 0 });
         } catch {
           // Safe to ignore during build/seed
         }

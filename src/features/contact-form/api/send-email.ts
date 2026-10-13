@@ -46,11 +46,14 @@ export async function sendContactEmail(
 
   const { name, email, message } = parsed.data;
   const submittedAt = new Date();
-  const resend = getResendClient();
+  if (!process.env.RESEND_API_KEY) {
+    return { success: false, error: "Le formulaire est temporairement indisponible. Réessayez plus tard." };
+  }
   const from = getFromAddress();
   const adminEmail = process.env.ADMIN_EMAIL ?? "cestmoitia@gmail.com";
 
   try {
+    const resend = getResendClient();
     const [adminResult, userResult] = await Promise.all([
       resend.emails.send({
         from,
