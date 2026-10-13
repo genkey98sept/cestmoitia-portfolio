@@ -3,22 +3,20 @@ import { ProjectGrid } from "@/widgets/project-grid";
 export function WorkPage() {
   return (
     <>
-      {/* Hero title */}
       <section
-        className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
-        aria-label="Selected Works"
+        className="site-shell section-space"
+        aria-label="Projets sélectionnés"
       >
-        <p className="text-center font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-text-secondary">
-          (Portfolio)
+        <p className="eyebrow mb-5">
+          Portfolio · Audiovisuel & création digitale
         </p>
-        <h1 className="mt-4 text-center font-clash text-[40px] font-semibold uppercase leading-[30px] text-text tablet:text-[90px] tablet:leading-[70px] desktop:text-[140px] desktop:leading-[110px] desktop:tracking-[-3.2px]">
-          <span className="block">SELECTED</span>
-          <span className="block">WORKS</span>
-        </h1>
+        <h1 className="page-heading">Les projets</h1>
+        <p className="mt-6 max-w-xl font-inter text-lg leading-relaxed text-text-muted">
+          Une sélection de mes réalisations en vidéo, graphisme et motion
+          design.
+        </p>
       </section>
-
-      {/* Reuse the same ProjectGrid widget */}
-      <ProjectGrid />
+      <ProjectGrid standalone />
     </>
   );
 }

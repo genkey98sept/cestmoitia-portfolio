@@ -12,21 +12,15 @@ export function SectionHeader({
   detailMuted = true,
 }: SectionHeaderProps) {
   return (
-    <div className="mb-6 flex items-baseline justify-between tablet:mb-8">
-      <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
-        {number}
+    <div className="eyebrow mb-8 flex flex-wrap items-baseline justify-between gap-4 border-t border-border pt-5">
+      <span>
+        {number} / {label}
       </span>
-      <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
-        {label}
-      </span>
-      <span
-        aria-hidden={!detail}
-        className={`font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] ${
-          detailMuted ? "text-text-secondary" : "text-text"
-        }`}
-      >
-        {detail ?? ""}
-      </span>
+      {detail && (
+        <span className={detailMuted ? "text-text-secondary" : "text-text"}>
+          {detail}
+        </span>
+      )}
     </div>
   );
 }

@@ -10,12 +10,12 @@ export function MoreWorks({ projects }: MoreWorksProps) {
   if (projects.length === 0) return null;
 
   return (
-    <div className="mt-10 tablet:mt-[100px]">
-      {/* Scrolling marquee text */}
+    <div className="section-space">
+      {/* Autres réalisations publiées */}
       <MoreWorksAnimated />
 
-      {/* Related project cards */}
-      <div className="mx-auto max-w-[1440px] px-5 tablet:px-[30px]">
+      {/* Cartes de projets associés */}
+      <div className="site-shell">
         <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 tablet:gap-[28px]">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />

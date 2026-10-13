@@ -10,7 +10,7 @@ export interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article>
-      <Link href={`/work/${project.slug}`} className="block">
+      <Link href={`/work/${project.slug}`} className="group block">
         <ProjectCardAnimated
           title={project.title}
           category={project.category}

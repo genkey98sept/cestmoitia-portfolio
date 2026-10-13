@@ -1,3 +1,5 @@
+import { RichText } from "@payloadcms/richtext-lexical/react";
+
 import { getSiteInfo, type SiteInfo } from "@/entities/site-info";
 
 import { AboutAnimated } from "./AboutAnimated";
@@ -13,10 +15,20 @@ export async function About() {
   return (
     <section
       id="about"
-      className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
+      className="site-shell section-space"
       aria-label="À propos"
     >
-      <AboutAnimated cvUrl={siteInfo?.cvUrl} />
+      <AboutAnimated cvUrl={siteInfo?.cvUrl}>
+        {typeof siteInfo?.bio === "string" ? (
+          <p>{siteInfo.bio}</p>
+        ) : siteInfo?.bio &&
+          typeof siteInfo.bio === "object" &&
+          "root" in siteInfo.bio ? (
+          <RichText
+            data={siteInfo.bio as React.ComponentProps<typeof RichText>["data"]}
+          />
+        ) : undefined}
+      </AboutAnimated>
     </section>
   );
 }

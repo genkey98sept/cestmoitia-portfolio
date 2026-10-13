@@ -4,7 +4,7 @@ import { inter, clashDisplay } from "@/app/fonts";
 import { AppProviders } from "@/app/providers";
 import { Header } from "@/widgets/header";
 import { Footer } from "@/widgets/footer";
-import { CustomCursor, SmoothScroll } from "@/shared/ui";
+import { SmoothScroll } from "@/shared/ui";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/shared/config";
 import "@/app/styles/globals.css";
 
@@ -36,9 +36,13 @@ export default function FrontendLayout({
       <body>
         <AppProviders>
           <SmoothScroll>
-            <CustomCursor />
+            <a href="#main-content" className="skip-link">
+              Aller au contenu
+            </a>
             <Header />
-            <main>{children}</main>
+            <main id="main-content" tabIndex={-1}>
+              {children}
+            </main>
             <Footer />
           </SmoothScroll>
         </AppProviders>

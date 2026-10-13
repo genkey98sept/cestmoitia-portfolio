@@ -1,12 +1,16 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 
 import type { ActionResult } from "@/shared/model";
 
 import { sendContactEmail } from "../api/send-email";
 
 export function ContactForm() {
+  const [fields, setFields] = useState({ name: "", email: "", message: "" });
+  const updateField = (field: keyof typeof fields, value: string) => {
+    setFields((current) => ({ ...current, [field]: value }));
+  };
   const [state, formAction, isPending] = useActionState<
     ActionResult<null> | null,
     FormData
@@ -14,24 +18,43 @@ export function ContactForm() {
     return sendContactEmail(formData);
   }, null);
 
+  const feedbackRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (state) feedbackRef.current?.focus({ preventScroll: true });
+  }, [state]);
+
   if (state?.success) {
     return (
-      <div className="py-10">
+      <div
+        ref={feedbackRef}
+        role="status"
+        tabIndex={-1}
+        className="mt-8 border border-accent-green p-6"
+      >
         <p className="font-clash text-[24px] font-semibold uppercase text-accent-green">
           Merci !
         </p>
         <p className="mt-2 font-inter text-[16px] text-text-muted">
-          Votre message a bien été envoyé. Je vous recontacte très vite.
+          Votre message a bien été envoyé. Merci de m’avoir contacté.
         </p>
       </div>
     );
   }
 
   return (
-    <form action={formAction} className="mt-8">
-      <h3 className="mb-8 font-clash text-[24px] font-semibold uppercase">
-        REMPLISSEZ CE FORMULAIRE
-      </h3>
+    <form
+      action={formAction}
+      className="mt-8"
+      aria-busy={isPending}
+      aria-describedby="contact-helper"
+    >
+      <p
+        id="contact-helper"
+        className="mb-6 font-inter text-sm text-text-secondary"
+      >
+        Tous les champs sont obligatoires. Décrivez votre besoin et les
+        informations utiles à votre projet.
+      </p>
 
       {/* Honeypot — hors écran + nom générique pour éviter l'autofill Chrome */}
       <div
@@ -55,69 +78,99 @@ export function ContactForm() {
         />
       </div>
 
-      {/* Name */}
+      {/* Nom */}
       <div className="mb-6">
-        <label htmlFor="contact-name" className="sr-only">
+        <label
+          htmlFor="contact-name"
+          className="font-inter text-sm font-medium"
+        >
           Nom
         </label>
         <input
           id="contact-name"
           name="name"
           type="text"
-          placeholder="Nom*"
+          placeholder="Votre nom"
+          maxLength={100}
           required
           minLength={2}
           autoComplete="name"
-          className="w-full border-0 border-b border-border bg-transparent py-4 font-inter text-[16px] text-text transition-colors placeholder:text-text-muted focus:border-text focus:outline-none"
+          value={fields.name}
+          onChange={(event) => updateField("name", event.currentTarget.value)}
+          className="form-field"
         />
       </div>
 
-      {/* Email */}
+      {/* Adresse email */}
       <div className="mb-6">
-        <label htmlFor="contact-email" className="sr-only">
+        <label
+          htmlFor="contact-email"
+          className="font-inter text-sm font-medium"
+        >
           Email
         </label>
         <input
           id="contact-email"
           name="email"
           type="email"
-          placeholder="Email*"
+          placeholder="vous@exemple.com"
+          maxLength={254}
           required
           autoComplete="email"
-          className="w-full border-0 border-b border-border bg-transparent py-4 font-inter text-[16px] text-text transition-colors placeholder:text-text-muted focus:border-text focus:outline-none"
+          value={fields.email}
+          onChange={(event) => updateField("email", event.currentTarget.value)}
+          className="form-field"
         />
       </div>
 
       {/* Message */}
       <div className="mb-6">
-        <label htmlFor="contact-message" className="sr-only">
+        <label
+          htmlFor="contact-message"
+          className="font-inter text-sm font-medium"
+        >
           Message
         </label>
         <textarea
           id="contact-message"
           name="message"
-          placeholder="Message*"
+          placeholder="Votre projet, vos envies, vos contraintes…"
+          maxLength={5000}
+          aria-describedby="contact-message-help"
           required
           minLength={10}
           rows={5}
-          className="w-full resize-none border-0 border-b border-border bg-transparent py-4 font-inter text-[16px] text-text transition-colors placeholder:text-text-muted focus:border-text focus:outline-none"
+          value={fields.message}
+          onChange={(event) => updateField("message", event.currentTarget.value)}
+          className="form-field min-h-36 resize-y"
         />
+        <p
+          id="contact-message-help"
+          className="mt-2 font-inter text-xs text-text-secondary"
+        >
+          10 caractères minimum.
+        </p>
       </div>
 
-      {/* Error message */}
+      {/* Retour de l’envoi */}
       {state && !state.success && (
-        <p className="mb-4 font-inter text-[14px] text-accent-red">
+        <div
+          ref={feedbackRef}
+          role="alert"
+          tabIndex={-1}
+          className="mb-5 border border-accent-red p-4 font-inter text-sm text-accent-red"
+        >
           {state.error}
-        </p>
+        </div>
       )}
 
-      {/* Submit */}
+      {/* Envoi */}
       <button
         type="submit"
         disabled={isPending}
-        className="w-full rounded-[10px] border border-transparent bg-text py-6 font-inter text-[12px] uppercase tracking-wider text-bg transition-colors duration-300 hover:border-text hover:bg-transparent hover:text-text disabled:cursor-not-allowed disabled:opacity-50"
+        className="primary-link w-full disabled:opacity-60"
       >
-        {isPending ? "Envoi en cours..." : "Soumettre"}
+        {isPending ? "Envoi en cours..." : "Envoyer le message"}
       </button>
     </form>
   );

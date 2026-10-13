@@ -13,7 +13,7 @@ export async function Experience() {
   return (
     <section
       id="experience"
-      className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
+      className="site-shell section-space"
       aria-label="Expérience"
     >
       <ExperienceAnimated experiences={siteInfo?.experiences ?? []} />

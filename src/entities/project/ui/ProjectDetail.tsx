@@ -1,17 +1,55 @@
 import Image from "next/image";
+import Link from "next/link";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 
 import { toYoutubeEmbed } from "@/shared/lib";
+import type { Media } from "@/shared/model";
 
 import type { Project } from "../model/types";
 
 type LexicalData = React.ComponentProps<typeof RichText>["data"];
 
-function isLexicalContent(value: unknown): value is LexicalData {
+function Description({ content }: { content: unknown }) {
+  if (typeof content === "string") return <p>{content}</p>;
+  if (content && typeof content === "object" && "root" in content)
+    return <RichText data={content as LexicalData} />;
+  return null;
+}
+
+function ProjectImage({ image, alt }: { image: Media; alt: string }) {
+  if (!image?.url) return null;
   return (
-    typeof value === "object" &&
-    value !== null &&
-    "root" in value
+    <figure>
+      <Image
+        src={image.url}
+        alt={image.alt || alt}
+        width={image.width || 1600}
+        height={image.height || 1000}
+        className="h-auto w-full"
+        sizes="(max-width: 810px) 92vw, (max-width: 1440px) 46vw, 646px"
+      />
+      {image.caption && (
+        <figcaption className="mt-3 font-inter text-sm text-text-secondary">
+          {image.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+function ProjectVideo({ url, title }: { url: string; title: string }) {
+  return (
+    <div className="relative aspect-video w-full overflow-hidden bg-bg-alt">
+      <iframe
+        src={url}
+        title={`Vidéo — ${title}`}
+        className="absolute inset-0 h-full w-full"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        referrerPolicy="strict-origin-when-cross-origin"
+      />
+    </div>
   );
 }
 
@@ -21,89 +59,90 @@ export interface ProjectDetailProps {
 
 export function ProjectDetail({ project }: ProjectDetailProps) {
   return (
-    <article className="mx-auto max-w-[1440px]">
-      {/* Metadata row */}
-      <div className="flex items-baseline justify-between px-5 pt-8 tablet:px-[30px] tablet:pt-[60px]">
-        {project.year && (
-          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
-            {project.year}
-          </span>
-        )}
-        {project.client && (
-          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text">
-            {project.client}
-          </span>
-        )}
-        {project.category && (
-          <span className="font-clash text-[12px] font-medium uppercase leading-[15px] tracking-[0.8px] text-text-secondary">
-            {project.category}
-          </span>
-        )}
-      </div>
-
-      {/* Title */}
-      <h1 className="mt-6 px-5 font-clash text-[40px] font-semibold uppercase leading-[30px] text-text tablet:mt-8 tablet:px-[30px] tablet:text-[90px] tablet:leading-[70px]">
+    <article className="site-shell section-space">
+      <nav
+        aria-label="Fil d’Ariane"
+        className="mb-8 font-inter text-sm text-text-secondary"
+      >
+        <Link
+          href="/work"
+          className="inline-flex min-h-12 items-center gap-2 hover:text-text"
+        >
+          <span aria-hidden="true">←</span> Retour aux projets
+        </Link>
+      </nav>
+      <h1 className="page-heading text-[clamp(32px,6vw,96px)]">
         {project.title}
       </h1>
-
-      {/* Sub-projects */}
+      <dl className="mt-8 flex flex-wrap gap-x-12 gap-y-5 border-y border-border py-6">
+        {project.year && (
+          <div>
+            <dt className="eyebrow mb-2">Année</dt>
+            <dd>{project.year}</dd>
+          </div>
+        )}
+        {project.client && (
+          <div className="min-w-0 max-w-full">
+            <dt className="eyebrow mb-2">Client</dt>
+            <dd className="[overflow-wrap:anywhere]">{project.client}</dd>
+          </div>
+        )}
+        {project.category && (
+          <div className="min-w-0 max-w-full">
+            <dt className="eyebrow mb-2">Discipline</dt>
+            <dd className="[overflow-wrap:anywhere]">{project.category}</dd>
+          </div>
+        )}
+      </dl>
+      {project.description != null && (
+        <div className="mt-8 max-w-3xl space-y-4 font-inter text-lg leading-relaxed text-text-muted">
+          <Description content={project.description} />
+        </div>
+      )}
+      {project.coverImage?.url && (
+        <div className="mt-10">
+          <Image
+            src={project.coverImage.url}
+            alt={project.coverImage.alt || project.title}
+            width={project.coverImage.width || 1600}
+            height={project.coverImage.height || 1000}
+            className="h-auto w-full"
+            sizes="(max-width: 1440px) 92vw, 1320px"
+          />
+        </div>
+      )}
       {project.subProjects && project.subProjects.length > 0 && (
-        <div className="mt-10 flex flex-col gap-[73px] tablet:mt-[100px]">
+        <div className="mt-12 space-y-16 tablet:mt-20">
           {project.subProjects.map((sub) => {
             const embedUrl = sub.youtubeUrl
               ? toYoutubeEmbed(sub.youtubeUrl)
               : null;
-
             return (
-              <section key={sub.id ?? sub.subTitle}>
-                <h2 className="px-5 font-clash text-[34px] font-semibold uppercase leading-[34px] text-text tablet:px-[30px]">
+              <section key={sub.id || sub.subTitle}>
+                <h2 className="font-clash text-3xl font-semibold uppercase leading-tight tablet:text-4xl">
                   {sub.subTitle}
                 </h2>
-
                 {sub.subDescription != null && (
-                  <div className="mt-3 max-w-[650px] px-5 font-inter text-[16px] font-normal leading-[1.5] text-text-muted tablet:px-[30px]">
-                    {typeof sub.subDescription === "string" ? (
-                      <p>{sub.subDescription}</p>
-                    ) : isLexicalContent(sub.subDescription) ? (
-                      <RichText data={sub.subDescription} />
-                    ) : null}
+                  <div className="mt-4 max-w-3xl space-y-4 font-inter leading-relaxed text-text-muted">
+                    <Description content={sub.subDescription} />
                   </div>
                 )}
-
                 {embedUrl && (
-                  <div className="mt-6 px-5 tablet:px-[30px]">
-                    <div className="relative aspect-video w-full overflow-hidden rounded-[10px] bg-bg-alt">
-                      <iframe
-                        src={embedUrl}
-                        title={`Video — ${sub.subTitle}`}
-                        className="absolute inset-0 h-full w-full"
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        referrerPolicy="strict-origin-when-cross-origin"
-                      />
-                    </div>
+                  <div className="mt-6">
+                    <ProjectVideo url={embedUrl} title={sub.subTitle} />
                   </div>
                 )}
-
-                {sub.subMedia && sub.subMedia.length > 0 && (
-                  <div className="mt-6 grid grid-cols-1 gap-5 px-5 tablet:grid-cols-2 tablet:px-[30px]">
-                    {sub.subMedia.map((media, i) => (
-                      <div
-                        key={media.id ?? i}
-                        className="relative aspect-video overflow-hidden rounded-[10px]"
-                      >
-                        {media.image?.url && (
-                          <Image
-                            src={media.image.url}
-                            alt={media.image.alt ?? `${sub.subTitle} ${i + 1}`}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 810px) 100vw, 50vw"
-                          />
-                        )}
-                      </div>
-                    ))}
+                {sub.subMedia && (
+                  <div className="mt-6 grid items-start gap-6 tablet:grid-cols-2">
+                    {sub.subMedia
+                      .filter((media) => media.image?.url)
+                      .map((media, index) => (
+                        <ProjectImage
+                          key={media.id || index}
+                          image={media.image}
+                          alt={`${sub.subTitle} — ${index + 1}`}
+                        />
+                      ))}
                   </div>
                 )}
               </section>
@@ -111,48 +150,32 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           })}
         </div>
       )}
-
-      {/* Gallery images */}
-      {project.galleryImages && project.galleryImages.length > 0 && (
-        <div className="mt-10 grid grid-cols-1 gap-5 px-5 tablet:grid-cols-2 tablet:px-[30px]">
-          {project.galleryImages.map((item, i) => (
-            <div
-              key={item.id ?? i}
-              className="relative aspect-video overflow-hidden rounded-[10px]"
-            >
-              {item.image?.url && (
-                <Image
-                  src={item.image.url}
-                  alt={item.image.alt ?? `Galerie ${i + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 810px) 100vw, 50vw"
-                />
-              )}
-            </div>
-          ))}
+      {project.galleryImages && (
+        <div className="mt-10 grid items-start gap-6 tablet:grid-cols-2">
+          {project.galleryImages
+            .filter((item) => item.image?.url)
+            .map((item, index) => (
+              <ProjectImage
+                key={item.id || index}
+                image={item.image}
+                alt={`${project.title} — ${index + 1}`}
+              />
+            ))}
         </div>
       )}
-
-      {/* Video embed */}
-      {project.videoUrl && (() => {
-        const projectEmbed = toYoutubeEmbed(project.videoUrl) ?? project.videoUrl;
-        return (
-          <div className="mt-10 px-5 tablet:px-[30px]">
-            <div className="relative aspect-video w-full overflow-hidden rounded-[10px] bg-bg-alt">
-              <iframe
-                src={projectEmbed}
-                title={`Video — ${project.title}`}
-                className="absolute inset-0 h-full w-full"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
-            </div>
-          </div>
-        );
-      })()}
+      {project.videoUrl && (
+        <div className="mt-10">
+          <ProjectVideo
+            url={toYoutubeEmbed(project.videoUrl) || project.videoUrl}
+            title={project.title}
+          />
+        </div>
+      )}
+      <div className="mt-12">
+        <Link href="/contact" className="secondary-link">
+          Parlons de votre projet <span aria-hidden="true">↗</span>
+        </Link>
+      </div>
     </article>
   );
 }

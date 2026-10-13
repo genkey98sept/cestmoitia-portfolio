@@ -6,18 +6,22 @@
  */
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @theme {
   /* ── Couleurs ────────────────────────────────────────── */
   --color-bg: #000000;
   --color-bg-alt: #0a0a0a;
-  --color-border: #161616;
+  --color-border: #333333;
   --color-text: #ffffff;
   --color-text-muted: rgba(255, 255, 255, 0.6);
-  --color-text-secondary: #808080;
+  --color-text-secondary: #a3a3a3;
   --color-overlay: rgba(0, 0, 0, 0.75);
   --color-accent-red: #ff462e;
   --color-accent-green: #14c700;
@@ -78,8 +82,6 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     line-height: 1.5;
-    background-image: url('/grid-pattern.svg');
-    background-size: 13px;
   }
 
   ::selection {
@@ -99,9 +101,44 @@
     height: auto;
   }
 
-  .has-custom-cursor,
-  .has-custom-cursor * {
-    cursor: none !important;
+  button,
+  summary {
+    cursor: pointer;
+  }
+  input,
+  textarea {
+    cursor: text;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent-red);
+    outline-offset: 5px;
+  }
+  :disabled {
+    cursor: not-allowed;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  [id] {
+    scroll-margin-top: 90px;
+  }
+  html {
+    scroll-padding-top: 90px;
+  }
+  dialog {
+    color: var(--color-text);
+  }
+  dialog:not([open]) {
+    display: none;
+  }
+  dialog::backdrop {
+    background: rgb(0 0 0 / 85%);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -113,5 +150,137 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* Échelle commune aux pages et aux sections éditoriales. */
+@layer components {
+  .site-shell {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 4vw, 60px);
+  }
+  .section-space {
+    padding-top: clamp(64px, 8vw, 120px);
+  }
+  .page-heading {
+    font-family: var(--font-clash);
+    font-size: clamp(48px, 9vw, 128px);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+  }
+  .section-heading {
+    font-family: var(--font-clash);
+    font-size: clamp(36px, 6vw, 80px);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-secondary);
+  }
+  .primary-link,
+  .secondary-link {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+  }
+  .primary-link {
+    background: var(--color-accent-red);
+    color: #000;
+    border: 1px solid var(--color-accent-red);
+  }
+  .primary-link:hover {
+    background: #fff;
+    border-color: #fff;
+  }
+  .secondary-link {
+    border: 1px solid #666;
+  }
+  .secondary-link:hover {
+    background: #fff;
+    color: #000;
+  }
+  .form-field {
+    width: 100%;
+    margin-top: 8px;
+    border: 1px solid #666;
+    border-radius: 6px;
+    background: #111;
+    padding: 14px 16px;
+    font-family: var(--font-inter);
+    font-size: 16px;
+    color: #fff;
+  }
+  .form-field:focus {
+    border-color: var(--color-accent-red);
+  }
+  .form-field::placeholder {
+    color: #999;
+  }
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: 20px;
+    z-index: 100;
+    padding: 12px 20px;
+    background: #fff;
+    color: #000;
+    transform: translateY(-200%);
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+  .modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(100% - 24px, 1380px);
+    max-height: calc(100dvh - 24px);
+    height: fit-content;
+    overflow: auto;
+    overscroll-behavior: contain;
+    border: 1px solid #444;
+    background: #0a0a0a;
+    padding: clamp(20px, 4vw, 56px);
+  }
+  .modal-close {
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #666;
+    border-radius: 999px;
+    padding: 10px 20px;
+    margin-left: auto;
+  }
+  .menu-link {
+    display: inline-block;
+    padding-block: 6px;
+    font-size: clamp(36px, 7vw, 88px);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .menu-link:hover,
+  .menu-link[aria-current] {
+    color: var(--color-accent-red);
   }
 }

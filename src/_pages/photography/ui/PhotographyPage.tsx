@@ -1,65 +1,40 @@
-import Link from "next/link";
-
 import { getGalleryPhotos, type GalleryPhoto } from "@/entities/gallery";
 
 import { GalleryGrid } from "./GalleryGrid";
 
 export async function PhotographyPage() {
-  let photos: GalleryPhoto[];
+  let photos: GalleryPhoto[] = [];
+  let unavailable = false;
   try {
     photos = await getGalleryPhotos();
   } catch {
-    photos = [];
+    unavailable = true;
   }
-
-  const featured = photos.find((p) => p.featured) ?? null;
-  const rest = featured ? photos.filter((p) => p.id !== featured.id) : photos;
-  const hasPhotos = photos.length > 0;
-
+  const featured = photos.find((photo) => photo.featured) ?? null;
+  const rest = featured
+    ? photos.filter((photo) => photo.id !== featured.id)
+    : photos;
   return (
     <>
-      {/* Hero title */}
-      <section
-        className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
-        aria-label="Galerie"
-      >
-        <p className="text-center font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-text-secondary">
-          (Photographie)
+      <section className="site-shell section-space" aria-label="Galerie">
+        <p className="eyebrow mb-5">Photographie</p>
+        <h1 className="page-heading">Galerie</h1>
+        <p className="mt-6 max-w-xl font-inter text-lg leading-relaxed text-text-muted">
+          Un regard sur les lieux, les instants et les détails. Ouvrez une photo
+          pour la découvrir en entier.
         </p>
-        <h1 className="mt-4 text-center font-clash text-[40px] font-semibold uppercase leading-[1.05] text-text tablet:text-[90px] desktop:text-[140px] desktop:tracking-[-3.2px]">
-          GALERIE
-        </h1>
       </section>
-
-      {/* Gallery */}
-      {hasPhotos ? (
+      {photos.length ? (
         <GalleryGrid featured={featured} photos={rest} />
       ) : (
-        <section
-          className="mx-auto w-full max-w-[1440px] px-5 py-[80px] tablet:px-[30px] tablet:py-[120px]"
-          aria-label="Galerie vide"
-        >
-          <p className="text-center font-inter text-[16px] text-text-muted">
-            Aucune photo n&apos;est encore publiee. Les visuels arriveront tres
-            bientot.
+        <div className="site-shell py-16">
+          <p className="border-y border-border py-10 font-inter text-text-muted">
+            {unavailable
+              ? "La galerie est momentanément indisponible. Réessayez plus tard."
+              : "Aucune photo n’est publiée pour le moment."}
           </p>
-        </section>
-      )}
-
-      {/* CTA */}
-      <section className="mx-auto w-full max-w-[1440px] px-5 py-[80px] tablet:px-[30px] tablet:py-[120px]">
-        <h2 className="text-center font-clash text-[40px] font-semibold uppercase leading-[1.05] text-text tablet:text-[90px]">
-          Un projet ?
-        </h2>
-        <div className="mt-8 flex justify-center">
-          <Link
-            href="/contact"
-            className="rounded-[10px] bg-text px-10 py-4 font-inter text-[12px] uppercase tracking-wider text-bg transition-colors duration-300 hover:border hover:border-text hover:bg-transparent hover:text-text"
-          >
-            CONTACTEZ-MOI
-          </Link>
         </div>
-      </section>
+      )}
     </>
   );
 }

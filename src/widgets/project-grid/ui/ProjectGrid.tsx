@@ -1,38 +1,68 @@
+import Link from "next/link";
+
 import { getProjects, ProjectCard, type Project } from "@/entities/project";
 import { SectionHeader } from "@/shared/ui";
 
 import { ProjectGridAnimated } from "./ProjectGridAnimated";
 
-export async function ProjectGrid() {
-  let projects: Project[];
+export async function ProjectGrid({
+  standalone = false,
+}: {
+  standalone?: boolean;
+}) {
+  let projects: Project[] = [];
+  let unavailable = false;
   try {
     projects = await getProjects();
   } catch {
-    projects = [];
+    unavailable = true;
   }
 
   return (
     <section
       id="portfolio"
-      className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
+      className={`site-shell ${standalone ? "pt-10" : "section-space"}`}
       aria-label="Portfolio"
     >
-      <SectionHeader number="01" label={"//Portfolio"} detail="2019 - 2025" />
-
-      {/* Section Title */}
-      <div className="mb-8 tablet:mb-12">
-        <h2 className="max-w-[700px] font-clash text-[40px] font-semibold uppercase leading-[30px] text-text tablet:text-[60px] tablet:leading-[50px] tablet:tracking-[-1px] desktop:text-[120px] desktop:leading-[90px] desktop:tracking-[-1.6px]">
-          <span className="block">MON</span>
-          <span className="block">Portfolio</span>
-        </h2>
-      </div>
-
-      {/* Project Grid — cards rendered server-side, wrapped by client animation */}
-      <ProjectGridAnimated>
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </ProjectGridAnimated>
+      {!standalone && (
+        <>
+          <SectionHeader number="01" label="Portfolio" />
+          <h2 className="section-heading mb-8">Les projets</h2>
+        </>
+      )}
+      {projects.length > 0 ? (
+        <ProjectGridAnimated>
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </ProjectGridAnimated>
+      ) : (
+        <div className="border-y border-border py-10 tablet:py-16">
+          <p className="max-w-2xl font-clash text-2xl font-medium tablet:text-3xl">
+            {unavailable
+              ? "Les projets sont momentanément indisponibles."
+              : "Aucun projet n’est publié pour le moment."}
+          </p>
+          <p className="mt-4 max-w-xl font-inter text-text-muted">
+            {unavailable
+              ? "Vous pouvez réessayer plus tard ou me contacter directement."
+              : "Découvrez mon regard à travers la galerie photo, ou parlons de votre projet."}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/photography" className="secondary-link">
+              Découvrir la galerie
+            </Link>
+            <Link href="/contact" className="primary-link">
+              Parlons de votre projet
+            </Link>
+          </div>
+        </div>
+      )}
+      {!standalone && projects.length > 0 && (
+        <Link href="/work" className="secondary-link mt-8">
+          Tous les projets <span aria-hidden="true">↗</span>
+        </Link>
+      )}
     </section>
   );
 }

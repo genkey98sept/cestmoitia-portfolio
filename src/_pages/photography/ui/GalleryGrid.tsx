@@ -1,134 +1,127 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
-import { m, useInView, useReducedMotion } from "motion/react";
 
 import type { GalleryPhoto } from "@/entities/gallery";
+import { Modal } from "@/shared/ui";
 
-interface GalleryGridProps {
+export function GalleryGrid({
+  featured,
+  photos,
+}: {
   featured: GalleryPhoto | null;
   photos: GalleryPhoto[];
-}
-
-export function GalleryGrid({ featured, photos }: GalleryGridProps) {
-  const shouldReduceMotion = useReducedMotion();
+}) {
+  const items = (featured ? [featured, ...photos] : photos).filter(
+    (photo) => photo.image?.url,
+  );
+  const [selected, setSelected] = useState<number | null>(null);
+  const close = useCallback(() => setSelected(null), []);
+  const move = (delta: number) =>
+    setSelected((current) =>
+      current === null ? null : (current + delta + items.length) % items.length,
+    );
+  const active = selected === null ? null : items[selected];
 
   return (
-    <section
-      className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[60px]"
-      aria-label="Mosaique de photos"
-    >
-      {featured && (
-        <FeaturedPhoto
-          photo={featured}
-          shouldReduceMotion={!!shouldReduceMotion}
-        />
-      )}
-
-      {photos.length > 0 && (
-        <div
-          className={`gap-5 tablet:gap-6 ${
-            featured ? "mt-5 tablet:mt-6" : ""
-          } columns-1 tablet:columns-2 desktop:columns-3`}
-        >
-          {photos.map((photo, i) => (
-            <MasonryItem
-              key={photo.id}
-              photo={photo}
-              index={i}
-              shouldReduceMotion={!!shouldReduceMotion}
-            />
-          ))}
-        </div>
-      )}
+    <section className="site-shell pt-10" aria-label="Mosaïque de photos">
+      <div className="columns-1 gap-6 tablet:columns-2 min-[1200px]:columns-3">
+        {items.map((photo, index) => (
+          <figure key={photo.id} className="mb-8 break-inside-avoid">
+            <button
+              type="button"
+              onClick={() => setSelected(index)}
+              className="group block w-full text-left"
+              aria-label={`Voir la photo : ${photo.caption || photo.image.alt || `Photo ${index + 1}`}`}
+              aria-haspopup="dialog"
+            >
+              <div className="overflow-hidden">
+                <Image
+                  src={photo.image.url!}
+                  alt={
+                    photo.image.alt || photo.caption || "Photographie de Tia"
+                  }
+                  width={photo.image.width || 1200}
+                  height={photo.image.height || 1600}
+                  sizes="(max-width: 810px) 92vw, (max-width: 1200px) 46vw, (max-width: 1440px) 30vw, 424px"
+                  className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transform-none"
+                />
+              </div>
+              <span className="mt-3 flex items-baseline justify-between gap-4 text-sm text-text-muted">
+                <span>{photo.caption || photo.image.alt}</span>
+                <span aria-hidden="true" className="text-accent-red">
+                  ↗
+                </span>
+              </span>
+            </button>
+            {photo.caption && (
+              <figcaption className="sr-only">{photo.caption}</figcaption>
+            )}
+          </figure>
+        ))}
+      </div>
+      <Modal
+        open={selected !== null}
+        onClose={close}
+        label="Visionneuse de photos"
+        onKeyDown={(event) => {
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            move(1);
+          }
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            move(-1);
+          }
+        }}
+      >
+        {active && (
+          <>
+            <div className="relative mt-5 h-[min(65dvh,850px)] w-full">
+              <Image
+                src={active.image.url!}
+                alt={
+                  active.image.alt || active.caption || "Photographie de Tia"
+                }
+                fill
+                className="object-contain"
+                sizes="(max-width: 1440px) 90vw, 1250px"
+              />
+            </div>
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+              <p
+                className="min-w-0 flex-1 font-inter text-sm"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {active.caption || active.image.alt}{" "}
+                <span className="ml-2 text-text-secondary">
+                  {selected! + 1} / {items.length}
+                </span>
+              </p>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  className="secondary-link"
+                  aria-label="Photo précédente"
+                  onClick={() => move(-1)}
+                >
+                  ← <span className="hidden tablet:inline">Précédente</span>
+                </button>
+                <button
+                  type="button"
+                  className="secondary-link"
+                  aria-label="Photo suivante"
+                  onClick={() => move(1)}
+                >
+                  <span className="hidden tablet:inline">Suivante</span> →
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+      </Modal>
     </section>
-  );
-}
-
-function FeaturedPhoto({
-  photo,
-  shouldReduceMotion,
-}: {
-  photo: GalleryPhoto;
-  shouldReduceMotion: boolean;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-
-  if (!photo.image?.url) return null;
-
-  const ratio =
-    photo.image.width && photo.image.height
-      ? photo.image.width / photo.image.height
-      : 16 / 9;
-
-  return (
-    <m.figure
-      ref={ref}
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : undefined}
-      transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-      className="group relative w-full overflow-hidden rounded-[10px]"
-      style={{ aspectRatio: ratio }}
-    >
-      <Image
-        src={photo.image.url}
-        alt={photo.image.alt ?? photo.caption ?? "Photo"}
-        fill
-        priority
-        sizes="(max-width: 1440px) 100vw, 1380px"
-        className="object-cover"
-      />
-      {photo.caption && (
-        <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/70 to-transparent p-4 font-clash text-[12px] font-medium uppercase tracking-[0.8px] text-text opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 tablet:p-6 tablet:text-[14px]">
-          {photo.caption}
-        </figcaption>
-      )}
-    </m.figure>
-  );
-}
-
-function MasonryItem({
-  photo,
-  index,
-  shouldReduceMotion,
-}: {
-  photo: GalleryPhoto;
-  index: number;
-  shouldReduceMotion: boolean;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
-  if (!photo.image?.url) return null;
-
-  // Stagger across columns by index modulo a small number to avoid long delays.
-  const delay = shouldReduceMotion ? 0 : Math.min(index * 0.06, 0.3);
-  const w = photo.image.width ?? 1200;
-  const h = photo.image.height ?? 1600;
-
-  return (
-    <m.figure
-      ref={ref}
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : undefined}
-      transition={{ duration: 0.55, delay, ease: [0.25, 0.1, 0.25, 1] }}
-      className="group relative mb-5 break-inside-avoid overflow-hidden rounded-[10px] tablet:mb-6"
-    >
-      <Image
-        src={photo.image.url}
-        alt={photo.image.alt ?? photo.caption ?? "Photo"}
-        width={w}
-        height={h}
-        sizes="(max-width: 810px) 100vw, (max-width: 1440px) 50vw, 33vw"
-        className="h-auto w-full"
-      />
-      {photo.caption && (
-        <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/70 to-transparent p-3 font-clash text-[11px] font-medium uppercase tracking-[0.6px] text-text opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 tablet:p-4 tablet:text-[12px]">
-          {photo.caption}
-        </figcaption>
-      )}
-    </m.figure>
   );
 }

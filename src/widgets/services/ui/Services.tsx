@@ -13,7 +13,7 @@ export async function Services() {
   return (
     <section
       id="services"
-      className="mx-auto w-full max-w-[1440px] px-5 pt-10 tablet:px-[30px] tablet:pt-[100px]"
+      className="site-shell section-space"
       aria-label="Services"
     >
       <ServicesAnimated services={siteInfo?.services ?? []} />
